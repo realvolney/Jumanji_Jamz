@@ -26,6 +26,7 @@ U9. _As a user I'd like to organize how to display the charts_
 
 Stretch goal:
 - Link songs to playable versions on youtube/ spotify etc.
+- Be able to grab the bpm from song by listening
 
 ## 4. Project Scope
 
@@ -41,4 +42,16 @@ _I will use API Gateway and Lambda to create endpoints: _
 
 _I will store the Songs in a DynamoDBTable and use GSIs to organize them_
 
-_Will provide a user interface 
+_Will provide a user interface for users to view, edit. and add charts_
+
+## 6. API
+
+## 6.1 Public Models
+
+```
+// Chart Model
+
+String name;
+String artist;
+Integer bpm;
+
