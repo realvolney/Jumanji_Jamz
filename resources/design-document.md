@@ -1,6 +1,6 @@
 # Design Document
 
-## Jumanji Charts
+## Jumanji Jamz
 
 ## 1. Problem Statement
 
@@ -23,18 +23,26 @@ U6. _As a user I would like to be able to browse available music charts_
 U7. _As a user I would like to add a chart_
 U8. _As a user I'd like to see charts sorted by genre_
 U9. _As a user I'd like to organize how to display the charts_
+U10. _As a user I would like tgo modify setList_
 
 Stretch goal:
 - Link songs to playable versions on youtube/ spotify etc.
 - Be able to grab the bpm from song by listening
+- The setList endpoints may be stretch goals
 
 ## 4. Project Scope
 
 ### 4.1 In Scope
 
 - _searching any song at all_
+- _adding and converting to PDF_
 
 ### 4.2 Out of Scope
+
+- _having a group account to modify in real time_
+- _leave comments on pdfs_
+- _use draw tools  on charts_
+
 
 ## 5. Proposed Architecture Overview
 
@@ -54,7 +62,7 @@ UUID id;
 String name;
 String artist;
 Integer bpm;
-String Content;
+String content;
 Set<Strings> genres
 
 // SetList Model
@@ -67,7 +75,7 @@ Set<String> genres
 ### 6.2 Get All Charts Endpoint
 
 * Accepts `GET` request to `/musicCharts`
-* Scan `Charts` table and return all ChartModel
+* Scan `Chart` table and return all ChartModel
 * If no charts found, will throw `ChartNotFoundException`
 
 ### 6.3 Get One Chart Endpoint
@@ -79,44 +87,78 @@ Set<String> genres
 ### 6.4 Create Chart Endpoint
 
 * Accepts `POST` request to `/chart/:id` 
-* Will contain optional body to post other fields : "'name', 'artist', 'bpm', 'Content'"
-* Accepts chart `ID` and adds the chart to the `Charts` table
+* Will contain optional body to post other fields : "`name`, `artist`, `bpm`, `content`, `genres`"
+* Accepts chart `ID` and adds the chart to the `Chart` table
   * `ID` will be generated using java's `UUID` class
-* If Vendor name/artist/Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
-* If chart is unable to be added to `Charts` table, will throw `UnableToAddToTableException`
+* If chart name/artist/Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
+* If chart is unable to be added to `Chart` table, will throw `UnableToAddToTableException`
 
 ### 6.5 Update Chart Endpoint
 
 * Accepts `PUT` request to `/chart/:id`
-* Accepts chart `ID` and overrides old chart on `Charts` table
-* Will contain optional body to update fields : "'name', 'artist', 'bpm', 'Content'"
-* If Vendor name/artist/Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
-* If chart is unable to be added to `Charts` table, will throw `UnableToAddToTableException`
+* Accepts chart `ID` and overrides old chart on `Chart` table
+* Will contain optional body to update fields : "`name`, `artist`, `bpm`, `content`, `genres`"
+* If chart name/artist/Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
+* If chart is unable to be added to `Chart` table, will throw `UnableToAddToTableException`
 
 ### 6.6 Create SetList Endpoint
 
 * Accepts `POST` request to `/setList/:id`
-* Will contain optional body to post other fields : "'name', 'artist', 'bpm', 'Content'"
+* Will contain optional body to post other fields : "`name`, `genres`, `charts`"
 * Accepts setList `ID` and adds to `SetList` table
   * `ID` will be generated using java's `UUID` class
-* Will contain optional body to update fields : "'name', 'artist', 'bpm', 'Content'"
-* If Vendor name/artist/Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
-* If chart is unable to be added to `Charts` table, will throw `UnableToAddToTableException`
+* If setList name//Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
+* If setList is unable to be added to `SetList` table, will throw `UnableToAddToTableException`
 
-### 6.7 Add to SetList Endpoint
+### 6.7 Get one SetList  Endpoint
 
-### 6.8 Remove from SetList Endpoint
+* Accepts `GET` request to `/setlist/:id`
+* Accepts setList `ID` and Queries for specific setList and returns SetListModel
+* If setList not found, will throw `SetListNotFoundException`
 
-### 6.7 Convert Chart to PDF Endpoint
+### 6.8 Add to SetList Endpoint
 
-*
+* Accepts `POST` request to `/setList/:id/chart/:chartId`
+* Accepts setList `ID` and chart `ID` and adds chart to `SetList` table
+* Will check to make sure chart exists in `Chart` table
+* If chart is unable to be added to `SetList` table, will throw `UnableToAddToTableException`
 
-### 6.8 Convert SetList to PDF Endpoint
+### 6.9 Remove from SetList Endpoint
+
+* Accepts `PUT` request to `/setList/:id/chart/:chartId`
+* Accepts setList `ID` and chart `ID` and removes chart from `SetList` table
+* Will update entry
+* Will check to make sure chart exists in `Chart` table
+* If chart is unable to be added to `SetList` table, will throw `UnableToAddToTableException`
+
+// Unsure whether I need a model for PDF if I am storing them in an S3 bucket?
+### 6.10 Convert Chart to PDF Endpoint
+
+* Accepts `GET` request to `/pdf/chart/:id`
+* Accepts chart `ID` and Queries for specific chart and returns PDF of chart content
+* If chart not found, will throw `ChartNotFoundException`
+* 
+
+### 6.11 Convert SetList to PDF Endpoint
+
+* Accepts `GET` request to `/pdf/setList/:id`
+* Accepts setList `ID` and Queries for specific chart and returns PDF of setList charts content
+* If setList not found, will throw `SetListNotFoundException`
 
 // Wasn't sure if this should be an endpoint or not
-### 6.9 Search MusicCharts By name Endpoint 
+### 6.12 Search MusicCharts By name Endpoint 
 
-### 6.10 Search MusicCharts By name Endpoint 
+* Accepts `GET` request to `/chart/:name`
+* Scan `Chart` GSI table and return chart with same name
+* Accepts chart `name` and Queries for specific chart and returns ChartModel
+* If chart not found, will throw `ChartNotFoundException`
+
+### 6.13 Search SetList By name Endpoint 
+
+* Accepts `GET` request to `/setList/:name`
+* Scan `SetList` GSI table and return setList with same name
+* Accepts setList `name` and Queries for specific setList and returns SetListModel
+* If setList not found, will throw `SetListNotFoundException`
 
 ## 7. Tables
 
