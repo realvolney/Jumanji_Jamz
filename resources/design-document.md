@@ -184,7 +184,9 @@ genres // SS: Set of Strings
 
 # 8. Pages
 
+![webPage1.png](Images%2Fdesign_images%2FwebPage1.png)
 
+![webPage2.png](Images%2Fdesign_images%2FwebPage2.png)
  
 
 
