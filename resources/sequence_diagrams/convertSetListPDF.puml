@@ -1,0 +1,16 @@
+@startuml
+
+actor       Client      as Foo #Red
+participant SetLists     as Foo1 #LightBlue
+participant ConvertSetlistToPDFActivity as Foo2 #LightGrey
+database    Database    as Foo3 #Yellow
+
+
+Foo -> Foo1 : click on 'convert to pdf" button
+Foo1 -> Foo2 : Send ConvertSetListToPDF request
+Foo2 -> Foo3 : grab SetList
+Foo3 -> Foo2 : SetList item
+Foo2 -> Foo1 : convert to pdf
+Foo1 -> Foo : present converted pdf
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+
+actor       Client      as Foo #Red
+participant SetLists_or_MyAccount     as Foo1 #LightBlue
+participant CreateSetListActivity as Foo2 #LightGrey
+database    Database    as Foo3 #Yellow
+
+
+Foo -> Foo1 : click on createSetList button
+Foo1 -> Foo2 : Send CreateSetList request
+Foo2 -> Foo3 : Save to SetLists table
+Foo3 -> Foo2 : 400 response
+Foo2 -> Foo1 : 400 response
+Foo1 -> Foo : present "Successfully created setList" response
+
+@enduml
