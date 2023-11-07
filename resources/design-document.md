@@ -14,16 +14,17 @@ Managing music charts during gigs downtown has been a challenge for our band. We
 
 ## 3. Use Cases
 
-U1. _As a user I want to be able to search for music charts_
-U2. _As a user I would Like to be able to change the key of the song_
-U3. _As a user I would like to make a setList_
-U4. _As a user I would like to edit the charts_
-U5. _As a User Log in to save setLists_
+U1. _As a user I would Like to create a music chart_
+U2. _As a user I would Like to be able to change the key of the chart_
+U3. _As a user I'd like to see charts sorted by genre_
+U4. _As a user I'd like to see charts sorted by genre_
+U5. _As a user I would like to edit the charts_
 U6. _As a user I would like to be able to browse available music charts_
-U7. _As a user I would like to add a chart_
-U8. _As a user I'd like to see charts sorted by genre_
-U9. _As a user I'd like to organize how to display the charts_
-U10. _As a user I would like tgo modify setList_
+U7. _As a user I want to be able to search for music charts_
+U8. _As a user I would like to make a setList_
+U9. _As a User Log in to save setLists_
+U10. _As a user I would like to add a chart to setList_
+U11. _As a user I would like to modify setList_
 
 Stretch goal:
 - Link songs to playable versions on youtube/ spotify etc.
@@ -34,8 +35,14 @@ Stretch goal:
 
 ### 4.1 In Scope
 
-- _searching any song at all_
+- _create a chart_
+- _searching any chart by name_
 - _adding and converting to PDF_
+- _edit chart_
+- _create setList_
+- _edit setList_
+- _create account_
+- _save setList and chart to account_
 
 ### 4.2 Out of Scope
 
@@ -63,18 +70,18 @@ String name;
 String artist;
 Integer bpm;
 String content;
-Set<Strings> genres
+Set<Enum> genres
 
 // SetList Model
 UUID id;
 String name;
 Set<String> charts
-Set<String> genres
+Set<Enum> genres
 ```
 
 ### 6.2 Get All Charts Endpoint
 
-* Accepts `GET` request to `/musicCharts`
+* Accepts `GET` request to `/charts`
 * Scan `Charts` table and return all ChartModel
 * If no charts found, will throw `ChartNotFoundException`
 
@@ -82,7 +89,7 @@ Set<String> genres
 
 ### 6.3 Get One Chart Endpoint
 
-* Accepts `GET` request to `/chart/:id`
+* Accepts `GET` request to `/charts/:id`
 * Accepts chart `ID` and Queries for specific chart and returns ChartModel
 * If chart not found, will throw `ChartNotFoundException`
 
@@ -90,7 +97,7 @@ Set<String> genres
 
 ### 6.4 Create Chart Endpoint
 
-* Accepts `POST` request to `/chart/:id` 
+* Accepts `POST` request to `/charts/:id`
 * Will contain optional body to post other fields : "`name`, `artist`, `bpm`, `content`, `genres`"
 * Accepts chart `ID` and adds the chart to the `Charts` table
   * `ID` will be generated using java's `UUID` class
@@ -99,7 +106,7 @@ Set<String> genres
 
 ### 6.5 Update Chart Endpoint
 
-* Accepts `PUT` request to `/chart/:id`
+* Accepts `PUT` request to `/charts/:id`
 * Accepts chart `ID` and overrides old chart on `Charts` table
 * Will contain optional body to update fields : "`name`, `artist`, `bpm`, `content`, `genres`"
 * If chart name/artist/Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
@@ -109,7 +116,7 @@ Set<String> genres
 
 ### 6.6 Create SetList Endpoint
 
-* Accepts `POST` request to `/setList/:id`
+* Accepts `POST` request to `/setLists/:id`
 * Will contain optional body to post other fields : "`name`, `genres`, `charts`"
 * Accepts setList `ID` and adds to `SetLists` table
   * `ID` will be generated using java's `UUID` class
@@ -120,13 +127,13 @@ Set<String> genres
 
 ### 6.7 Get one SetList  Endpoint
 
-* Accepts `GET` request to `/setlist/:id`
+* Accepts `GET` request to `/setlists/:id`
 * Accepts setList `ID` and Queries for specific setList and returns SetListModel
 * If setList not found, will throw `SetListNotFoundException`
 
 ### 6.8 Add to SetList Endpoint
 
-* Accepts `POST` request to `/setList/:id/chart/:chartId`
+* Accepts `DELETE` request to `/setLists/:id/chart/:chartId`
 * Accepts setList `ID` and chart `ID` and adds chart to `SetLists` table
 * Will check to make sure chart exists in `Charts` table
 * If chart is unable to be added to `SetLists` table, will throw `UnableToAddToTableException`
@@ -135,7 +142,7 @@ Set<String> genres
 
 ### 6.9 Remove from SetList Endpoint
 
-* Accepts `PUT` request to `/setList/:id/chart/:chartId`
+* Accepts `PUT` request to `/setLists/:id/chart/:chartId`
 * Accepts setList `ID` and chart `ID` and removes chart from `SetLists` table
 * Will update entry
 * Will check to make sure chart exists in `Charts` table
@@ -144,29 +151,29 @@ Set<String> genres
 // Unsure whether I need a model for PDF if I am storing them in an S3 bucket?
 ### 6.10 Convert Chart to PDF Endpoint
 
-* Accepts `GET` request to `/pdf/chart/:id`
+* Accepts `GET` request to `/charts/:id/pdf`
 * Accepts chart `ID` and Queries for specific chart and returns PDF of chart content
 * If chart not found, will throw `ChartNotFoundException`
 
 ### 6.11 Convert SetList to PDF Endpoint
 
-* Accepts `GET` request to `/pdf/setList/:id`
+* Accepts `GET` request to `/setLists/:id/pdf`
 * Accepts setList `ID` and Queries for specific chart and returns PDF of setList charts content
 * If setList not found, will throw `SetListNotFoundException`
 
 ![convertSetList.png](Images%2Fapi_design_images%2FconvertSetList.png)
 
 // Wasn't sure if this should be an endpoint or not
-### 6.12 Search MusicCharts By name Endpoint 
+### 6.12 Search MusicCharts By name Endpoint
 
-* Accepts `GET` request to `/chart/:name`
+* Accepts `GET` request to `/chart/search/:name`
 * Scan `Charts` GSI table and return chart with same name
 * Accepts chart `name` and Queries for specific chart and returns ChartModel
 * If chart not found, will throw `ChartNotFoundException`
 
-### 6.13 Search SetList By name Endpoint 
+### 6.13 Search SetList By name Endpoint
 
-* Accepts `GET` request to `/setList/:name`
+* Accepts `GET` request to `/setList/search/:name`
 * Scan `SetLists` GSI table and return setList with same name
 * Accepts setList `name` and Queries for specific setList and returns SetListModel
 * If setList not found, will throw `SetListNotFoundException`
@@ -190,6 +197,8 @@ content // S: string
 genres // SS: Set of Strings
 ```
 
+#### 7.1a GSI
+
 ### 7.2 `SetList`
 
 ```
@@ -198,6 +207,9 @@ name // S: string
 charts // SS: set of Strings
 genres // SS: Set of Strings
 ```
+
+#### 7.2a GSI
+
 
 # 8. Pages
 
