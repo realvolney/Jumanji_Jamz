@@ -14,17 +14,17 @@ Managing music charts during gigs downtown has been a challenge for our band. We
 
 ## 3. Use Cases
 
-U1. _As a user I would Like to create a music chart_
-U2. _As a user I would Like to be able to change the key of the chart_
-U3. _As a user I'd like to see charts sorted by genre_
-U4. _As a user I'd like to see charts sorted by genre_
-U5. _As a user I would like to edit the charts_
-U6. _As a user I would like to be able to browse available music charts_
-U7. _As a user I want to be able to search for music charts_
-U8. _As a user I would like to make a setList_
-U9. _As a User Log in to save setLists_
-U10. _As a user I would like to add a chart to setList_
-U11. _As a user I would like to modify setList_
+- U1. _As a user I would Like to create a music chart_
+- U2. _As a user I would Like to be able to change the key of the chart_
+- U3. _As a user I'd like to see charts sorted by genre_
+- U4. _As a user I'd like to see charts sorted by genre_
+- U5. _As a user I would like to edit the charts_
+- U6. _As a user I would like to be able to browse available music charts_
+- U7. _As a user I want to be able to search for music charts_
+- U8. _As a user I would like to make a setList_
+- U9. _As a User Log in to save setLists_
+- U10. _As a user I would like to add a chart to setList_
+- U11. _As a user I would like to modify setList_
 
 Stretch goal:
 - Link songs to playable versions on youtube/ spotify etc.
