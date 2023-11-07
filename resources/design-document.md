@@ -98,7 +98,7 @@ Set<Enum> genres
 ### 6.4 Create Chart Endpoint
 
 * Accepts `POST` request to `/charts/:id`
-* Will contain optional body to post other fields : "`name`, `artist`, `bpm`, `content`, `genres`"
+* Will contain optional body to post other fields : `name`, `artist`, `bpm`, `content`, `genres`
 * Accepts chart `ID` and adds the chart to the `Charts` table
   * `ID` will be generated using java's `UUID` class
 * If chart name/artist/Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
@@ -108,7 +108,7 @@ Set<Enum> genres
 
 * Accepts `PUT` request to `/charts/:id`
 * Accepts chart `ID` and overrides old chart on `Charts` table
-* Will contain optional body to update fields : "`name`, `artist`, `bpm`, `content`, `genres`"
+* Will contain optional body to update fields : `name`, `artist`, `bpm`, `content`, `genres`
 * If chart name/artist/Content contains invalid characters: `" ' \ `, InvalidAttributeException will be thrown
 * If chart is unable to be added to `Charts` table, will throw `UnableToAddToTableException`
 
@@ -166,7 +166,7 @@ Set<Enum> genres
 // Wasn't sure if this should be an endpoint or not
 ### 6.12 Search MusicCharts By name Endpoint
 
-* Accepts `GET` request to `/chart/search/:name`
+* Accepts `GET` request to `/charts/search/:name`
 * Scan `Charts` GSI table and return chart with same name
 * Accepts chart `name` and Queries for specific chart and returns ChartModel
 * If chart not found, will throw `ChartNotFoundException`
@@ -197,7 +197,16 @@ content // S: string
 genres // SS: Set of Strings
 ```
 
-#### 7.1a GSI
+#### 7.1a `GSI-ChartByName`
+
+```
+name // partition key,S: string
+id // S: string
+artist // S: string
+bpm // N: number
+content // S: string
+genres // SS: Set of Strings
+```
 
 ### 7.2 `SetList`
 
@@ -208,14 +217,21 @@ charts // SS: set of Strings
 genres // SS: Set of Strings
 ```
 
-#### 7.2a GSI
+#### 7.2a `GSI-SetListByName`
+
+```
+name // partition key, S: string
+id // S: string
+charts // SS: set of Strings
+genres // SS: Set of Strings
+```
 
 
 # 8. Pages
+![webPage1.png](Images%2Fweb_design_images%2FwebPage1.png)
 
-![webPage1.png](Images%2Fdesign_images%2FwebPage1.png)
+![webPage2.png](Images%2Fweb_design_images%2FwebPage2.png)
 
-![webPage2.png](Images%2Fdesign_images%2FwebPage2.png)
  
 
 
