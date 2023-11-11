@@ -1,0 +1,15 @@
+@startuml
+
+actor       Client      as Foo #Red
+participant Charts      as Foo1 #LightBlue
+participant GetOneChartActivity as Foo2 #LightGrey
+database    Database    as Foo3 #Yellow
+
+
+Foo -> Foo1 : Visit Charts Page
+Foo1 -> Foo2 : Send getChart request
+Foo2 -> Foo3 : query Charts table
+Foo3 -> Foo2 : Chart item
+Foo2 -> Foo1 : GetOneChartResult
+Foo1 -> Foo : present Chart
+@enduml
