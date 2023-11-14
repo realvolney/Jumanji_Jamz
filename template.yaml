@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Vendor Near Me Service
+  Music Chart OrganiZer
 
 Parameters:
 
@@ -235,239 +235,239 @@ Resources:
   #-----------------------------------------------------
   # Lambda Functions Configuration
   #-----------------------------------------------------
-  GetAllVendorsLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.GetAllVendorsLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /vendors
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  GetVendorLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.GetVendorLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /vendors/{id}/{name}
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-              
-  CreateVendorLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.CreateVendorLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /vendor
-            Method: post
-
-  GetOneEventLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.GetOneEventLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /event/{id}/{date}
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  GetPlaylistLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.GetPlaylistLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /playlists/{id}
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  SearchPlaylistsLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.SearchPlaylistsLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /playlists/search
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  GetPlaylistSongsLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.GetPlaylistSongsLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /playlists/{id}/songs
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  CreatePlaylistLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.CreatePlaylistLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /playlists
-            Method: post
-
-  UpdatePlaylistLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.UpdatePlaylistLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /playlists/{id}
-            Method: put
-
-  AddSongToPlaylistLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.AddSongToPlaylistLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /playlists/{id}/songs
-            Method: post
-
-  GetAllEventsLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: VendorNearMeLambda
-      Handler: com.nashss.se.vendornearme.lambda.GetAllEventsLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /events
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
+#  GetAllVendorsLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.GetAllVendorsLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /vendors
+#            Method: get
+#            Auth:
+#              Authorizer: 'NONE'
+#
+#  GetVendorLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.GetVendorLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /vendors/{id}/{name}
+#            Method: get
+#            Auth:
+#              Authorizer: 'NONE'
+#
+#  CreateVendorLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.CreateVendorLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /vendor
+#            Method: post
+#
+#  GetOneEventLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.GetOneEventLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /event/{id}/{date}
+#            Method: get
+#            Auth:
+#              Authorizer: 'NONE'
+#
+#  GetPlaylistLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.GetPlaylistLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /playlists/{id}
+#            Method: get
+#            Auth:
+#              Authorizer: 'NONE'
+#
+#  SearchPlaylistsLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.SearchPlaylistsLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /playlists/search
+#            Method: get
+#            Auth:
+#              Authorizer: 'NONE'
+#
+#  GetPlaylistSongsLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.GetPlaylistSongsLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /playlists/{id}/songs
+#            Method: get
+#            Auth:
+#              Authorizer: 'NONE'
+#
+#  CreatePlaylistLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.CreatePlaylistLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /playlists
+#            Method: post
+#
+#  UpdatePlaylistLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.UpdatePlaylistLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /playlists/{id}
+#            Method: put
+#
+#  AddSongToPlaylistLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.AddSongToPlaylistLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /playlists/{id}/songs
+#            Method: post
+#
+#  GetAllEventsLambda:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      Role: !GetAtt AccessRole.Arn
+#      CodeUri: VendorNearMeLambda
+#      Handler: com.nashss.se.vendornearme.lambda.GetAllEventsLambda::handleRequest
+#      Runtime: java11
+#      Architectures:
+#        - x86_64
+#      MemorySize: 512
+#      Environment:
+#        Variables:
+#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+#      Events:
+#        MusicPlaylistService:
+#          Type: Api
+#          Properties:
+#            Path: /events
+#            Method: get
+#            Auth:
+#              Authorizer: 'NONE'
 
   #-----------------------------------------------------
   # DynamoDB Configuration
