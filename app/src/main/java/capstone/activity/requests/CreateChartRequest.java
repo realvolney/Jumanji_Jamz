@@ -12,14 +12,16 @@ public class CreateChartRequest {
     private final Integer bpm;
     private final String content;
     private final Set<String> genres;
+    private final String madeBy;
 
     private CreateChartRequest(String name, String artist, Integer bpm,
-                              String content, Set<String> genres) {
+                              String content, Set<String> genres, String madeBy) {
         this.name = name;
         this.artist = artist;
         this.bpm = bpm;
         this.content = content;
         this.genres = genres;
+        this.madeBy = madeBy;
     }
 
     public String getName() {
@@ -42,6 +44,8 @@ public class CreateChartRequest {
         return genres;
     }
 
+    public String getMadeBy() { return madeBy; }
+
     @Override
     public String toString() {
         return "CreateChartRequest{" +
@@ -50,6 +54,7 @@ public class CreateChartRequest {
                 ", bpm= " + bpm + '\'' +
                 ", content= " + content + '\'' +
                 ", genres= " + genres + '\'' +
+                ", madeBy= " + madeBy + '\'' +
                 '}';
     }
 
@@ -62,6 +67,7 @@ public class CreateChartRequest {
         private Integer bpm;
         private String content;
         private Set<String> genres;
+        private String madeBy;
 
         public Builder withName(String name) {
             this.name = name;
@@ -88,8 +94,13 @@ public class CreateChartRequest {
             return this;
         }
 
+        public Builder withMadeBy(String madeBy) {
+            this.madeBy = madeBy;
+            return this;
+        }
+
         public CreateChartRequest build() {
-            return new CreateChartRequest(name, artist, bpm, content, genres);
+            return new CreateChartRequest(name, artist, bpm, content, genres, madeBy);
         }
     }
 }

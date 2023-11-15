@@ -15,7 +15,8 @@ public class CreateChartLambda
                     CreateChartRequest unauthenticatedRequest = input.fromBody(CreateChartRequest.class);
                     return input.fromUserClaims(claims ->
                             CreateChartRequest.builder()
-                                    .withName()
+                                    .withName(unauthenticatedRequest.getName()))
+                            .build()
 
                 }
         )
