@@ -1,2 +1,4 @@
-package capstone.dynamodb;public class ChartDaoTest {
+package capstone.dynamodb;
+
+public class ChartDaoTest {
 }

@@ -1,4 +1,4 @@
-package com.nashss.se.vendornearme.metrics;
+package capstone.metrics;
 
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
 import com.amazonaws.services.cloudwatch.model.Dimension;

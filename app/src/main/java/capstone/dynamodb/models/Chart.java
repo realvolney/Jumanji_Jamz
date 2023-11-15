@@ -1,23 +1,25 @@
 package capstone.dynamodb.models;
 
-import capstone.enums.Genre;
+import capstone.converters.IdConverter;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-/** Model for Charts table on DynamoDB
- */
 public class Chart {
-    UUID id;
-    String name;
-    String artist;
-    Integer bpm;
-    String Content;
-    Set<Genre> genres;
+    private UUID id;
+    private String name;
+    private String artist;
+    private Integer bpm;
+    private String content;
+    private Set<String> genres;
 
     @DynamoDBHashKey(attributeName = "id")
+    @DynamoDBTypeConverted(converter = IdConverter.class)
     public UUID getId() {
         return id;
     }
@@ -55,19 +57,23 @@ public class Chart {
 
     @DynamoDBAttribute(attributeName = "content")
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     @DynamoDBAttribute(attributeName = "genres")
-    public Set<Genre> getGenres() {
-        return genres;
+    public Set<String> getGenres() {
+
+        if (genres == null) {
+            return genres;
+        }
+        return new HashSet<>(genres);
     }
 
-    public void setGenres(Set<Genre> genres) {
+    public void setGenres(Set<String> genres) {
         this.genres = genres;
     }
 }

@@ -1,2 +1,4 @@
-package capstone.converters;public class ModelConverterTest {
+package capstone.converters;
+
+public class ModelConverterTest {
 }

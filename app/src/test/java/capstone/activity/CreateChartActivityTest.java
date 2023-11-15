@@ -1,2 +1,4 @@
-package capstone.activity;public class CreateChartActivityTest {
+package capstone.activity;
+
+public class CreateChartActivityTest {
 }
