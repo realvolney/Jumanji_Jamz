@@ -37,6 +37,12 @@ public class CreateChartActivity {
         chart.setContent(request.getContent());
         chart.setGenres(request.getGenres());
 
-        
+        boolean success = dao.createChart(chart);
+
+        return CreateChartResult.builder()
+                .withId(String.valueOf(id))
+                .withName(name)
+                .withSuccess(success)
+                .build();
     }
 }

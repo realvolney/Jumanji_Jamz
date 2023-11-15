@@ -34,7 +34,7 @@ public class CreateChartResult {
     }
 
     //CHECKSTYLE:OFF:Builder
-    public Builder builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
