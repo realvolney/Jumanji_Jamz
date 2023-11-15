@@ -8,7 +8,7 @@ public class CreateChartResult {
 
     private CreateChartResult(boolean success, String name, String id) {
         this.success = success;
-        name = name;
+        this.name = name;
         this.id = id;
     }
 
