@@ -53,7 +53,7 @@ public class CreateChartRequest {
                 '}';
     }
 
-    public static Builder build() {
+    public static Builder builder() {
         return new Builder();
     }
     public static class Builder {
