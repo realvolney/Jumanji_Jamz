@@ -2,7 +2,8 @@ package capstone.utils;
 
 import java.util.*;
 
-import static com.nashss.se.vendornearme.utils.NullUtils.ifNotNull;
+import static capstone.utils.NullUtils.ifNotNull;
+
 
 /**
  * Various helpful utilities for converting collections.
