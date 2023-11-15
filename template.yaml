@@ -473,37 +473,29 @@ Resources:
   # DynamoDB Configuration
   #-----------------------------------------------------
 
-  EventsTable:
+  ChartsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
         - AttributeName: "id"
           AttributeType: "S"
-        - AttributeName: "date"
-          AttributeType: "S"
       KeySchema:
         - AttributeName: "id"
           KeyType: "HASH"
-        - AttributeName: "date"
-          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "events"
-      
-  VendorsTable:
+      TableName: "Charts"
+
+  SetListsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
         - AttributeName: "id"
           AttributeType: "S"
-        - AttributeName: "name"
-          AttributeType: "S"
       KeySchema:
         - AttributeName: "id"
           KeyType: "HASH"
-        - AttributeName: "name"
-          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "Vendors"
+      TableName: "SetLists"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
