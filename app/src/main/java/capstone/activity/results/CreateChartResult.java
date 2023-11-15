@@ -34,9 +34,32 @@ public class CreateChartResult {
     }
 
     //CHECKSTYLE:OFF:Builder
-
+    public Builder builder() {
+        return new Builder();
+    }
 
     public static class Builder {
+        private Boolean success;
+        private String name;
+        private String id;
 
+        public Builder withSuccess(Boolean success) {
+            this.success = success;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public  Builder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public CreateChartResult build() {
+            return new CreateChartResult(success, name, id);
+        }
     }
 }
