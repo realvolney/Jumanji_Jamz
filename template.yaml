@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Music Chart OrganiZer
+  Music Chart Organizer
 
 Parameters:
 
@@ -235,6 +235,26 @@ Resources:
   #-----------------------------------------------------
   # Lambda Functions Configuration
   #-----------------------------------------------------
+  CreateChartLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: JumanjiJamzLambda
+      Handler: capstone.lambda.CreateChartLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        JumanjiJamzService:
+          Type: Api
+          Properties:
+            Path: /charts
+            Method: post
+
 #  GetAllVendorsLambda:
 #    Type: AWS::Serverless::Function
 #    Properties:
@@ -256,7 +276,7 @@ Resources:
 #            Method: get
 #            Auth:
 #              Authorizer: 'NONE'
-#
+
 #  GetVendorLambda:
 #    Type: AWS::Serverless::Function
 #    Properties:

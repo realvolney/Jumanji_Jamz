@@ -7,12 +7,14 @@ import capstone.dynamodb.models.Chart;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import java.util.UUID;
 
 public class CreateChartActivity {
     private final Logger log = LogManager.getLogger();
     private final ChartDAO dao;
 
+    @Inject
     public CreateChartActivity(ChartDAO dao) {
         this.dao = dao;
     }
@@ -36,6 +38,7 @@ public class CreateChartActivity {
         chart.setBpm(request.getBpm());
         chart.setContent(request.getContent());
         chart.setGenres(request.getGenres());
+        chart.setMadeBy(request.getMadeBy());
 
         boolean success = dao.createChart(chart);
 

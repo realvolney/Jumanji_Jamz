@@ -15,10 +15,17 @@ public class CreateChartLambda
                     CreateChartRequest unauthenticatedRequest = input.fromBody(CreateChartRequest.class);
                     return input.fromUserClaims(claims ->
                             CreateChartRequest.builder()
-                                    .withName(unauthenticatedRequest.getName()))
-                            .build()
+                                    .withName(unauthenticatedRequest.getName())
+                                    .withArtist(unauthenticatedRequest.getArtist())
+                                    .withContent(unauthenticatedRequest.getContent())
+                                    .withBpm(unauthenticatedRequest.getBpm())
+                                    .withMadeBy(claims.get("email"))
+                                    .build());
 
-                }
-        )
+                },
+                (request, serviceComponent) ->
+                        serviceComponent.provideCreateCharActivity().handleRequest(request)
+
+        );
     }
 }

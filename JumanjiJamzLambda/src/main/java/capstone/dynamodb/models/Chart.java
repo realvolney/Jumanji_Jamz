@@ -17,6 +17,7 @@ public class Chart {
     private Integer bpm;
     private String content;
     private Set<String> genres;
+    private String madeBy;
 
     @DynamoDBHashKey(attributeName = "id")
     @DynamoDBTypeConverted(converter = IdConverter.class)
@@ -75,5 +76,13 @@ public class Chart {
 
     public void setGenres(Set<String> genres) {
         this.genres = genres;
+    }
+    @DynamoDBAttribute(attributeName = "madeBy")
+    public String getMadeBy() {
+        return madeBy;
+    }
+
+    public void setMadeBy(String madeBy) {
+        this.madeBy = madeBy;
     }
 }

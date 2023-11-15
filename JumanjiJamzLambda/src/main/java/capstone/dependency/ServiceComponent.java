@@ -1,5 +1,6 @@
 package capstone.dependency;
 
+import capstone.activity.CreateChartActivity;
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -13,8 +14,8 @@ public interface ServiceComponent {
 
     /**
      * Provides the relevant activity.
-     * @return AddSongToPlaylistActivity
+     * @return CreateChartActivity
      */
-//    AddSongToPlaylistActivity provideAddSongToPlaylistActivity();
+    CreateChartActivity provideCreateCharActivity();
 
 }
