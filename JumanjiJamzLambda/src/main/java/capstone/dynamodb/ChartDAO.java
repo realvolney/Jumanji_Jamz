@@ -47,7 +47,7 @@ public class ChartDAO {
             mapper.save(chart);
             metricsPublisher.addCount(MetricsConstants.CREATE_CHART_SUCCESS_COUNT, 1);
             return true;
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             log.error("Error creating chart", e);
             metricsPublisher.addCount(MetricsConstants.CREATE_CHART_FAIL_COUNT, 1);
             return false;

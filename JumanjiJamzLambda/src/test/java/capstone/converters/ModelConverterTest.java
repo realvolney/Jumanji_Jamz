@@ -22,7 +22,7 @@ public class ModelConverterTest {
     }
 
     @Test
-    void toChartMode_withAllAttributes_convertsChart() {
+    void toChartModel_withAllAttributes_convertsChart() {
         // GIVEN
         chart = new Chart();
         chart.setId(UUID.randomUUID());
@@ -47,7 +47,7 @@ public class ModelConverterTest {
     }
 
     @Test
-    void toChartMode_withNullAttributes_convertsChart() {
+    void toChartModel_withNullAttributes_convertsChart() {
         // GIVEN
         chart = new Chart();
         chart.setId(UUID.randomUUID());
