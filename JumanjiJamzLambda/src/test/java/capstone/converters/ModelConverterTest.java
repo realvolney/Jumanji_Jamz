@@ -37,13 +37,38 @@ public class ModelConverterTest {
         ChartModel result = modelConverter.toChartModel(chart);
 
         // THEN
-        assertEquals(result.getId(), chart.getId());
-        assertEquals(result.getName(), chart.getName());
-        assertEquals(result.getArtist(), chart.getArtist());
-        assertEquals(result.getBpm(), chart.getBpm());
-        assertEquals(result.getContent(), chart.getContent());
-        assertEquals(result.getGenres(), chart.getGenres());
-        assertEquals(result.getMadeBy(), chart.getMadeBy());
+        assertEquals(result.getId(), chart.getId(), "ids should be equal");
+        assertEquals(result.getName(), chart.getName(), "names should be equal");
+        assertEquals(result.getArtist(), chart.getArtist(), "artists should be equal");
+        assertEquals(result.getBpm(), chart.getBpm(), "bpm should be equal");
+        assertEquals(result.getContent(), chart.getContent(), "content should be equal");
+        assertEquals(result.getGenres(), chart.getGenres(), "genres should be equal");
+        assertEquals(result.getMadeBy(), chart.getMadeBy(), "madeBy should be equal");
+    }
+
+    @Test
+    void toChartMode_withNullAttributes_convertsChart() {
+        // GIVEN
+        chart = new Chart();
+        chart.setId(UUID.randomUUID());
+        chart.setName(null);
+        chart.setArtist(null);
+        chart.setBpm(null);
+        chart.setContent(null);
+        chart.setGenres(null);
+        chart.setMadeBy(null);
+
+        // WHEN
+        ChartModel result = modelConverter.toChartModel(chart);
+
+        // THEN
+        assertEquals(result.getId(), chart.getId(), "ids should be equal");
+        assertEquals(result.getName(), chart.getName(), "names should be equal");
+        assertEquals(result.getArtist(), chart.getArtist(), "artists should be equal");
+        assertEquals(result.getBpm(), chart.getBpm(), "bpm should be equal");
+        assertEquals(result.getContent(), chart.getContent(), "content should be equal");
+        assertEquals(result.getGenres(), chart.getGenres(), "genres should be equal");
+        assertEquals(result.getMadeBy(), chart.getMadeBy(), "madeBy should be equal");
     }
 }
 

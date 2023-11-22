@@ -19,8 +19,9 @@ public class ChartModel {
         this.name = name;
         this.artist = artist;
         this.bpm = bpm;
-        Content = content;
+        this.Content = content;
         this.genres = genres;
+        this.madeBy = madeBy;
     }
 
     public UUID getId() {
