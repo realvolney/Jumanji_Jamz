@@ -42,10 +42,12 @@ public class ModelConverter {
     }
 
     /**
-     * Convert provided Set
+     * Convert provided SetList to SetListModel representation
+     * @param setList the SetList to be converted
+     * @return the converted SetListModel
      */
     public SetListModel toSetListModel(SetList setList) {
-       
+
         return SetListModel.builder()
                .withId(setList.getId())
                .withName(setList.getName())
