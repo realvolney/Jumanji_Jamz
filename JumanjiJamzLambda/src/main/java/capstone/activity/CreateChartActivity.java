@@ -20,7 +20,7 @@ public class CreateChartActivity {
     }
 
     public CreateChartResult handleRequest(final CreateChartRequest request) {
-        log.info("Recieved CreateChartRequest {}", request);
+        log.info("Received CreateChartRequest {}", request);
 
         String name = request.getName();
 
