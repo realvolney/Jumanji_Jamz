@@ -5,13 +5,13 @@ import java.util.Set;
 import java.util.UUID;
 
 public class ChartModel {
-    private UUID id;
-    private String name;
-    private String artist;
-    private Integer bpm;
-    private String Content;
-    private Set<String> genres;
-    private String madeBy;
+    private final UUID id;
+    private final String name;
+    private final String artist;
+    private final Integer bpm;
+    private final String Content;
+    private final Set<String> genres;
+    private final String madeBy;
 
     private ChartModel(UUID id, String name,
                       String artist, Integer bpm, String content, Set<String> genres, String madeBy) {

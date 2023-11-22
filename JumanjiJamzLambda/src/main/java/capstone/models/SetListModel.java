@@ -5,11 +5,11 @@ import java.util.Set;
 import java.util.UUID;
 
 public class SetListModel {
-    private UUID id;
-    private String name;
-    private Set<String> charts;
-    private Set<String> genres;
-    private String madeBy;
+    private final UUID id;
+    private final String name;
+    private final Set<String> charts;
+    private final Set<String> genres;
+    private final String madeBy;
 
     private SetListModel(UUID id, String name, Set<String> charts, Set<String> genres, String madeBy) {
         this.id = id;
