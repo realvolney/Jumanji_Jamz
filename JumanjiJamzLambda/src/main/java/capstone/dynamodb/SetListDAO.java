@@ -9,6 +9,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 import java.util.Objects;
 
 /**
@@ -25,6 +26,7 @@ public class SetListDAO {
      * @param publisher the {@link DynamoDBMapper} used to interact with the Charts table
      * @param mapper the {@link MetricsPublisher} used to record metrics.
      */
+    @Inject
     public SetListDAO(MetricsPublisher publisher, DynamoDBMapper mapper) {
         this.publisher = publisher;
         this.mapper = mapper;
