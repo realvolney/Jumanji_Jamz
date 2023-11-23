@@ -40,7 +40,7 @@ public class CreateChartActivityTest {
         CreateChartResult result = activity.handleRequest(request);
 
         // THEN
-        assertEquals(result.getName(), request.getName(), "name should be the same");
+        assertEquals(result.getName(), request.getName(), "names should be the same");
         assertTrue(result.isSuccess());
     }
 

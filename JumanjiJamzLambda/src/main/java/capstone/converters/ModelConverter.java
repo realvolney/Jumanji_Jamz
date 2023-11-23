@@ -3,8 +3,10 @@ package capstone.converters;
 
 
 import capstone.dynamodb.models.Chart;
+import capstone.dynamodb.models.SetList;
 import capstone.enums.Genre;
 import capstone.models.ChartModel;
+import capstone.models.SetListModel;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -37,6 +39,22 @@ public class ModelConverter {
                 .withGenres(genres)
                 .withMadeBY(chart.getMadeBy())
                 .build();
+    }
+
+    /**
+     * Convert provided SetList to SetListModel representation
+     * @param setList the SetList to be converted
+     * @return the converted SetListModel
+     */
+    public SetListModel toSetListModel(SetList setList) {
+
+        return SetListModel.builder()
+               .withId(setList.getId())
+               .withName(setList.getName())
+               .withCharts(setList.getCharts())
+               .withGenres(setList.getGenres())
+               .withMadeBy(setList.getMadeBy())
+               .build();
     }
 
 
