@@ -35,8 +35,8 @@ public class ChartDAO {
 
     /**
      * Creates a chart in the database.
-     * @param chart
-     * @return
+     * @param chart the chart object to be saved
+     * @return true if it was successful, false if unsuccessful.
      */
     public boolean createChart(Chart chart) {
         if (Objects.isNull(chart)) {
