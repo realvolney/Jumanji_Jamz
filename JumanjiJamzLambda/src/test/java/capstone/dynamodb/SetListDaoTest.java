@@ -7,6 +7,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -64,7 +65,7 @@ public class SetListDaoTest {
         boolean result = dao.createSetList(setList);
 
         // THEN
-        assertTrue(result, "Should have return false");
+        assertFalse(result, "Should have return false");
         verify(mapper, times(1)).save(setList);
         verify(publisher, times(1)).addCount(FAILURE, 1);
     }

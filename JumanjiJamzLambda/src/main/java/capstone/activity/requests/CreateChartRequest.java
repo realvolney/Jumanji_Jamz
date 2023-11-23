@@ -48,7 +48,7 @@ public class CreateChartRequest {
 
     @Override
     public String toString() {
-        return "CreateChartRequest{" +
+        return "CreateSetListRequest{" +
                 "name= " + name + '\'' +
                 ", artist= " + artist + '\'' +
                 ", bpm= " + bpm + '\'' +
