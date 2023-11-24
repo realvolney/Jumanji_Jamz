@@ -10,6 +10,7 @@ import java.util.Set;
  * It is used as part of the UpdateChartActivity
  */
 public class UpdateChartRequest {
+    private final String id;
     private final String name;
     private final String artist;
     private final Integer bpm;
@@ -17,7 +18,7 @@ public class UpdateChartRequest {
     private final Set<String> genres;
     private final String madeBy;
 
-    private UpdateChartRequest(String name, String artist, Integer bpm,
+    private UpdateChartRequest(String id, String name, String artist, Integer bpm,
                               String content, Set<String> genres, String madeBy) {
         this.name = name;
         this.artist = artist;
@@ -25,6 +26,11 @@ public class UpdateChartRequest {
         this.content = content;
         this.genres = genres;
         this.madeBy = madeBy;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -63,10 +69,11 @@ public class UpdateChartRequest {
                 '}';
     }
 
-    public static CreateChartRequest.Builder builder() {
-        return new CreateChartRequest.Builder();
+    public static Builder builder() {
+        return new Builder();
     }
     public static class Builder {
+        private String id;
         private String name;
         private String artist;
         private Integer bpm;
@@ -104,8 +111,13 @@ public class UpdateChartRequest {
             return this;
         }
 
+        public Builder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
         public UpdateChartRequest build() {
-            return new UpdateChartRequest(name, artist, bpm, content, genres, madeBy);
+            return new UpdateChartRequest(id, name, artist, bpm, content, genres, madeBy);
         }
 
     }

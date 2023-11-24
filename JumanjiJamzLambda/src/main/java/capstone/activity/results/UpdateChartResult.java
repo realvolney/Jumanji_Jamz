@@ -2,6 +2,8 @@ package capstone.activity.results;
 
 ;
 
+import capstone.models.ChartModel;
+
 import java.util.Set;
 
 /**
@@ -9,6 +11,34 @@ import java.util.Set;
  * It is used as part of the UpdateChartActivity
  */
 public class UpdateChartResult {
+    private ChartModel chart;
 
+    public UpdateChartResult(ChartModel chart) {
+        this.chart = chart;
+    }
 
+    @Override
+    public String toString() {
+        return "UpdateChartResult{" +
+                "chart=" + chart +
+                '}';
+    }
+
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private ChartModel chart;
+
+        public Builder withChart(ChartModel chart) {
+            this.chart = chart;
+            return this;
+        }
+
+        public UpdateChartResult build() {
+            return new UpdateChartResult(chart);
+        }
+    }
 }
