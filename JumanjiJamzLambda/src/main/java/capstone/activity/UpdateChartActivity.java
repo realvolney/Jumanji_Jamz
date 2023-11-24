@@ -5,7 +5,7 @@ import capstone.activity.results.UpdateChartResult;
 import capstone.dynamodb.ChartDAO;
 import capstone.metrics.MetricsPublisher;
 import capstone.models.ChartModel;
-import capstone.models.SetListModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
