@@ -298,6 +298,26 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
+  UpdateChartLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: JumanjiJamzLambda
+      Handler: capstone.lambda.UpdateChartRequest::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /charts/{id}
+            Method: put
+
 #  GetAllVendorsLambda:
 #    Type: AWS::Serverless::Function
 #    Properties:
@@ -389,25 +409,6 @@ Resources:
 #              Authorizer: 'NONE'
 #
 #
-#  UpdatePlaylistLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: VendorNearMeLambda
-#      Handler: com.nashss.se.vendornearme.lambda.UpdatePlaylistLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /playlists/{id}
-#            Method: put
 #
 #  AddSongToPlaylistLambda:
 #    Type: AWS::Serverless::Function
