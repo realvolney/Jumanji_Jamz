@@ -82,7 +82,14 @@ public class ChartDAO {
      */
     public Chart saveChart(Chart chart) {
         log.info("saving chart: {}", chart);
-        mapper.save(chart);
+        try {
+            mapper.save(chart);
+        } catch (RuntimeException e) {
+            log.error("Unable to save chart {}", chart);
+            metricsPublisher.addCount(MetricsConstants.SAVE_CHART_SUCCESS_COUNT, 0);
+            return chart;
+        }
+        metricsPublisher.addCount(MetricsConstants.SAVE_CHART_SUCCESS_COUNT, 1);
         return chart;
     }
 }
