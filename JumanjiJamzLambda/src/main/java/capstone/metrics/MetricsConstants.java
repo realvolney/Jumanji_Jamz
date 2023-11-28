@@ -15,6 +15,7 @@ public class MetricsConstants {
     public static final String CREATE_SET_LIST_FAIL_COUNT = "CreateSetListFail.Count";
     public static final String GET_CHART_SUCCESS_COUNT = "GetChartSuccess.Count";
     public static final String SAVE_CHART_SUCCESS_COUNT = "SaveChartSuccess.Count";
+    public static final String UPDATE_CHART_SUCCESS_COUNT = "UpdateChartSuccess.Count";
 
 
 

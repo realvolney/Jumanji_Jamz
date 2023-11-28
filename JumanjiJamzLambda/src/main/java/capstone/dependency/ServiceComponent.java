@@ -3,6 +3,7 @@ package capstone.dependency;
 import capstone.activity.CreateChartActivity;
 import capstone.activity.CreateSetListActivity;
 import capstone.activity.GetChartActivity;
+import capstone.activity.UpdateChartActivity;
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -31,5 +32,11 @@ public interface ServiceComponent {
      * @return GetChartActivity
      */
      GetChartActivity provideGetChartActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return UpdateChartActivity
+     */
+    UpdateChartActivity provideUpdateChartActivity();
 
 }
