@@ -4,7 +4,6 @@ package capstone.activity.results;
 
 import capstone.models.ChartModel;
 
-import java.util.Set;
 
 /**
  * This class represents a result to update a chart

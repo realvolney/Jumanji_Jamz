@@ -49,8 +49,26 @@ public class ChartDAO {
             return true;
         } catch (RuntimeException e) {
             log.error("Error creating chart", e);
-            metricsPublisher.addCount(MetricsConstants.CREATE_CHART_FAIL_COUNT, 1);
+            metricsPublisher.addCount(MetricsConstants.CREATE_CHART_SUCCESS_COUNT, 0);
             return false;
         }
+    }
+
+    /**
+     * Gets one chart form the database
+     * @param id is the id of the String to be found
+     */
+
+    public Chart getChart(String id) {
+        log.info(String.format("looking for chart with id: '%s' ", id));
+        Chart chart = mapper.load(Chart.class, id);
+
+        if (chart == null) {
+            metricsPublisher.addCount(MetricsConstants.GET_CHART_SUCCESS_COUNT, 0);
+            throw new IllegalArgumentException(
+                    String.format("Chart with id: '%s' could not be found", id));
+        }
+        metricsPublisher.addCount(MetricsConstants.CREATE_CHART_SUCCESS_COUNT, 1);
+        return chart;
     }
 }
