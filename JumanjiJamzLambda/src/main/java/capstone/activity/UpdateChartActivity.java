@@ -2,7 +2,9 @@ package capstone.activity;
 
 import capstone.activity.requests.UpdateChartRequest;
 import capstone.activity.results.UpdateChartResult;
+import capstone.converters.ModelConverter;
 import capstone.dynamodb.ChartDAO;
+import capstone.dynamodb.models.Chart;
 import capstone.metrics.MetricsPublisher;
 import capstone.models.ChartModel;
 
@@ -16,6 +18,7 @@ public class UpdateChartActivity {
     private ChartDAO dao;
     private MetricsPublisher publisher;
     private Logger log = LogManager.getLogger();
+    private ModelConverter converter = new ModelConverter();
 
     /**
      *
@@ -36,20 +39,24 @@ public class UpdateChartActivity {
         if (!name.matches("[a-zA-Z0-9 ]*")) {
             throw new IllegalArgumentException("Invalid characters in the vendor name.");
         }
+        Chart chart = dao.getChart(request.getId());
 
+        if(!chart.getMadeBy().equals(request.getMadeBy())) {
+            log.error(String.format("User: '%s' does not own chart: '%s'",
+                    request.getMadeBy(), request.getId()));
+            throw new SecurityException("You must own Chart to update it.");
+        }
+        chart.setName(request.getName());
+        chart.setArtist(request.getArtist());
+        chart.setBpm(request.getBpm());
+        chart.setContent(request.getContent());
+        chart.setGenres(request.getGenres());
 
-        ChartModel chart = ChartModel.builder()
-                .withId(UUID.fromString(request.getId()))
-                .withName(request.getName())
-                .withArtist(request.getArtist())
-                .withBpm(request.getBpm())
-                .withContent(request.getContent())
-                .withGenres(request.getGenres())
-                .withMadeBY(request.getMadeBy())
-                .build();
+        ChartModel model = converter.toChartModel(dao.saveChart(chart));
+
 
         return UpdateChartResult.builder()
-                .withChart(chart)
+                .withChart(model)
                 .build();
 
     }

@@ -59,7 +59,7 @@ public class UpdateChartRequest {
 
     @Override
     public String toString() {
-        return "CreateSetListRequest{" +
+        return "UpdateChartRequest{" +
                 "name= " + name + '\'' +
                 ", artist= " + artist + '\'' +
                 ", bpm= " + bpm + '\'' +
