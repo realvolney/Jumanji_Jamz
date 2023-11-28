@@ -21,12 +21,10 @@ public class UpdateChartActivity {
      *
      * @param dao
      * @param publisher
-     * @param log
      */
-    public UpdateChartActivity(ChartDAO dao, MetricsPublisher publisher, Logger log) {
+    public UpdateChartActivity(ChartDAO dao, MetricsPublisher publisher) {
         this.dao = dao;
         this.publisher = publisher;
-        this.log = log;
     }
 
     public UpdateChartResult handleRequest(final UpdateChartRequest request) {
