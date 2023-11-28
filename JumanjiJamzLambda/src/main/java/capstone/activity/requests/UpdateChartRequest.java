@@ -68,7 +68,7 @@ public class UpdateChartRequest {
                 ", madeBy= " + madeBy + '\'' +
                 '}';
     }
-
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
