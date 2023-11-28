@@ -4,19 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="819414f5-9cb6-4dd5-894d-4fa546ee55a3" name="Changes" comment="" />
+    <list default="true" id="5527e858-5609-43ae-963a-a61171a28fe8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2V4WOBJShVBrgb2UW9MT50cJd0p" />
+  <component name="ProjectId" id="2YbNi3kVwagqETldFNEohD6EySH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -25,17 +27,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/get-chart"
+    "git-widget-placeholder": "feature/update-chart"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="819414f5-9cb6-4dd5-894d-4fa546ee55a3" name="Changes" comment="" />
-      <created>1694095798554</created>
+      <changelist id="5527e858-5609-43ae-963a-a61171a28fe8" name="Changes" comment="" />
+      <created>1700790442740</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1694095798554</updated>
+      <updated>1700790442740</updated>
     </task>
     <servers />
   </component>
