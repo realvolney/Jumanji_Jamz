@@ -58,8 +58,9 @@ public class ChartDAO {
     }
 
     /**
-     * Gets one chart form the database
-     * @param id is the id of the String to be found
+     * Gets one chart from the database
+     * @param id is the id of the chart to be found
+     * @return the chart
      */
 
     public Chart getChart(String id) {
@@ -67,9 +68,9 @@ public class ChartDAO {
         Chart chart = mapper.load(Chart.class, id);
 
         if (chart == null) {
+            log.warn("Could not find setList with id: " + id);
             metricsPublisher.addCount(MetricsConstants.GET_CHART_SUCCESS_COUNT, 0);
-            throw new IllegalArgumentException(
-                    String.format("Chart with id: '%s' could not be found", id));
+            return chart;
         }
         metricsPublisher.addCount(MetricsConstants.GET_CHART_SUCCESS_COUNT, 1);
         return chart;

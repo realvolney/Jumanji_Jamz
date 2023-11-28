@@ -4,7 +4,7 @@ import capstone.activity.requests.GetChartRequest;
 import capstone.activity.results.GetChartResult;
 import capstone.dynamodb.ChartDAO;
 import capstone.dynamodb.models.Chart;
-import capstone.models.ChartModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
