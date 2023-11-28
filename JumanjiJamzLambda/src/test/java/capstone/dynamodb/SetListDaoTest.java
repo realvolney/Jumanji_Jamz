@@ -29,7 +29,6 @@ public class SetListDaoTest {
     private DynamoDBMapper mapper;
 
     private String SUCCESS = MetricsConstants.CREATE_SET_LIST_SUCCESS_COUNT;
-    private String FAILURE = MetricsConstants.CREATE_SET_LIST_FAIL_COUNT;
 
     @BeforeEach
     void setUp() { openMocks(this); }
@@ -67,6 +66,6 @@ public class SetListDaoTest {
         // THEN
         assertFalse(result, "Should have return false");
         verify(mapper, times(1)).save(setList);
-        verify(publisher, times(1)).addCount(FAILURE, 1);
+        verify(publisher, times(1)).addCount(SUCCESS, 0);
     }
 }
