@@ -109,7 +109,7 @@ public class ChartDaoTest {
     }
 
     @Test
-    void getChart_chartDoesNotExists_throwsException() {
+    void getChart_chartDoesNotExists_returnsNull() {
         // GIVEN
         String id = String.valueOf(UUID.randomUUID());
 
