@@ -62,7 +62,7 @@ public class ChartDAO {
      * @param id is the id of the String to be found
      */
 
-    public ChartModel getChart(String id) {
+    public Chart getChart(String id) {
         log.info(String.format("looking for chart with id: '%s' ", id));
         Chart chart = mapper.load(Chart.class, id);
 
@@ -72,6 +72,24 @@ public class ChartDAO {
                     String.format("Chart with id: '%s' could not be found", id));
         }
         metricsPublisher.addCount(MetricsConstants.GET_CHART_SUCCESS_COUNT, 1);
-        return converter.toChartModel(chart);
+        return chart;
+    }
+
+    /**
+     *
+     * @param chart the Chart to be saved on Charts
+     * @return Chart that was saved
+     */
+    public Chart saveChart(Chart chart) {
+        log.info("saving chart: {}", chart);
+        try {
+            mapper.save(chart);
+        } catch (RuntimeException e) {
+            log.error("Unable to save chart {}", chart);
+            metricsPublisher.addCount(MetricsConstants.SAVE_CHART_SUCCESS_COUNT, 0);
+            return chart;
+        }
+        metricsPublisher.addCount(MetricsConstants.SAVE_CHART_SUCCESS_COUNT, 1);
+        return chart;
     }
 }

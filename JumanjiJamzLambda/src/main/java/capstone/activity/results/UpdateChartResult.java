@@ -16,6 +16,10 @@ public class UpdateChartResult {
         this.chart = chart;
     }
 
+    public ChartModel getChart() {
+        return chart;
+    }
+
     @Override
     public String toString() {
         return "UpdateChartResult{" +
