@@ -11,10 +11,8 @@ import capstone.models.ChartModel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.mockito.InjectMocks;
 
 import javax.inject.Inject;
-import java.util.UUID;
 
 public class UpdateChartActivity {
 
@@ -24,7 +22,7 @@ public class UpdateChartActivity {
     private ModelConverter converter = new ModelConverter();
 
     /**
-     *
+     * Instantiates UpdateChartActivity
      * @param dao
      * @param publisher
      */
@@ -34,6 +32,11 @@ public class UpdateChartActivity {
         this.publisher = publisher;
     }
 
+    /**
+     * HandleRequest method
+     * @param request UpdateChartRequest to be processed
+     * @return UpdateChartResult with updated chart
+     */
     public UpdateChartResult handleRequest(final UpdateChartRequest request) {
         log.info("Received UpdateChartActivity request", request);
 

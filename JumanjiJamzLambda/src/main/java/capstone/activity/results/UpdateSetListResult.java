@@ -21,7 +21,7 @@ public class UpdateSetListResult {
     }
 
     //CHECKSTYLE:OFF:Builder
-    public Builder builder() { return new Builder(); }
+    public static Builder builder() { return new Builder(); }
     public static class Builder {
         private SetListModel setList;
 
