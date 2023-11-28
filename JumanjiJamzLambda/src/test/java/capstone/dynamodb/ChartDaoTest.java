@@ -30,7 +30,6 @@ public class ChartDaoTest {
     private DynamoDBMapper mapper;
 
     private String SUCCESS = MetricsConstants.CREATE_CHART_SUCCESS_COUNT;
-    private String FAILURE = MetricsConstants.CREATE_CHART_FAIL_COUNT;
 
     @BeforeEach
     void setUp() {
@@ -62,7 +61,7 @@ public class ChartDaoTest {
         Chart chart = new Chart();
         chart.setId(id);
         doThrow(RuntimeException.class).when(mapper).save(chart);
-        doNothing().when(publisher).addCount(FAILURE, 1);
+        doNothing().when(publisher).addCount(SUCCESS, 0);
 
         // WHEN
         boolean result = dao.createChart(chart);
@@ -70,7 +69,7 @@ public class ChartDaoTest {
         // THEN
         assertFalse(result, "Should have failed to save chart");
         verify(mapper, times(1)).save(chart);
-        verify(publisher, times(1)).addCount(FAILURE, 1);
+        verify(publisher, times(1)).addCount(SUCCESS, 0);
     }
 
 
