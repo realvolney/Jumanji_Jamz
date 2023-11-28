@@ -93,7 +93,7 @@ public class ChartDaoTest {
         when(mapper.load(Chart.class, id)).thenReturn(chart);
 
         // WHEN
-        ChartModel result = dao.getChart(id);
+        Chart result = dao.getChart(id);
 
         // THEN
         assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");

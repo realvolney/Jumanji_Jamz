@@ -3,6 +3,7 @@ package capstone.activity;
 import capstone.activity.requests.GetChartRequest;
 import capstone.activity.results.GetChartResult;
 import capstone.dynamodb.ChartDAO;
+import capstone.dynamodb.models.Chart;
 import capstone.models.ChartModel;
 
 import java.util.Arrays;
@@ -40,15 +41,15 @@ public class GetChartActivityTest {
                 .withId(String.valueOf(id))
                 .build();
 
-        ChartModel expectedResult = ChartModel.builder()
-                .withId(UUID.fromString(id))
-                .withName("name")
-                .withArtist("artist")
-                .withBpm(123)
-                .withContent("content")
-                .withGenres(new HashSet<>(Arrays.asList("Funk", "Soul")))
-                .withMadeBY("me")
-                .build();
+        Chart expectedResult = new Chart();
+                expectedResult.setId(UUID.fromString(id));
+                expectedResult.setName("name");
+                expectedResult.setArtist("artist");
+                expectedResult.setBpm(123);
+                expectedResult.setContent("content");
+                expectedResult.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
+                expectedResult.setMadeBy("me");
+
         when(dao.getChart(id)).thenReturn(expectedResult);
 
         // WHEN
