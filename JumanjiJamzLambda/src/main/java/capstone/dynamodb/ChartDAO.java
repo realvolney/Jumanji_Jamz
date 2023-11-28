@@ -71,7 +71,7 @@ public class ChartDAO {
             throw new IllegalArgumentException(
                     String.format("Chart with id: '%s' could not be found", id));
         }
-        metricsPublisher.addCount(MetricsConstants.CREATE_CHART_SUCCESS_COUNT, 1);
+        metricsPublisher.addCount(MetricsConstants.GET_CHART_SUCCESS_COUNT, 1);
         return converter.toChartModel(chart);
     }
 }
