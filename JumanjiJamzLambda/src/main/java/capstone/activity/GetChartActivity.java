@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 /**
  * Implementation of the GetChartActivity for the JumanjiJamz GetChartActivity API
- * this API allows the customer to view one chart.
+ * this API allows the user to view one chart.
  */
 public class GetChartActivity {
     private final Logger log = LogManager.getLogger();
@@ -34,14 +34,14 @@ public class GetChartActivity {
      * @return the result objects containing all the chart item attributes.
      */
     public GetChartResult handleRequest(final GetChartRequest request) {
-        log.info("Received GerChartRequest {}", request);
+        log.info("Received GetChartRequest {}", request);
 
         String id = request.getId();
 
         Chart chart = dao.getChart(id);
 
         return GetChartResult.builder()
-                .withId(String.valueOf(chart.getId()))
+                .withId(id)
                 .withName(chart.getName())
                 .withArtist(chart.getArtist())
                 .withBpm(chart.getBpm())
