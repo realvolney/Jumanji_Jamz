@@ -42,4 +42,9 @@ public interface ServiceComponent {
      */
     GetSetListActivity provideGetSetListActivity();
 
+    /**
+     * Provides the relevant activity.
+     * @return UpdateSetListActivity
+     */
+    UpdateSetListActivity provideUpdateSetListActivity();
 }
