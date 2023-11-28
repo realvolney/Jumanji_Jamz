@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +38,7 @@ public class GetChartActivityTest {
         // GIVEN
         String id = String.valueOf(UUID.randomUUID());
         GetChartRequest request = GetChartRequest.builder()
-                .withId(String.valueOf(id))
+                .withId(id)
                 .build();
 
         Chart expectedResult = new Chart();
@@ -63,6 +63,8 @@ public class GetChartActivityTest {
         assertEquals(result.getContent(), expectedResult.getContent(), "Content should be equal");
         assertEquals(result.getGenres(), expectedResult.getGenres(), "Genres should be equal");
         assertEquals(result.getMadeBy(), expectedResult.getMadeBy(), "MadeBY should be equal");
+
+        verify(dao, times(1)).getChart(id);
     }
 
 }
