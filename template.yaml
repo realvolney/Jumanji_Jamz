@@ -207,15 +207,15 @@ Resources:
             Statement:
             - Effect: Allow
               Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Charts"
+              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/charts"
                 
-        - PolicyName: 'AccessSetListsTable'
+        - PolicyName: 'AccessSetlistsTable'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
             - Effect: Allow
               Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/SetLists"
+              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/setlists"
 
         - PolicyName: 'AccessEventsTable'
           PolicyDocument:
@@ -273,7 +273,7 @@ Resources:
         JumanjiJamzService:
           Type: Api
           Properties:
-            Path: /setLists
+            Path: /setlists
             Method: post
 
   GetChartLambda:
@@ -281,7 +281,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: JumanjiJamzLambda
-      Handler: capstone.lambda.GetChartRequest::handleRequest
+      Handler: capstone.lambda.GetChartLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -303,7 +303,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: JumanjiJamzLambda
-      Handler: capstone.lambda.UpdateChartRequest::handleRequest
+      Handler: capstone.lambda.UpdateChartLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -318,6 +318,28 @@ Resources:
             Path: /charts/{id}
             Method: put
 
+  GetSetListLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: JumanjiJamzLambda
+      Handler: capstone.lambda.GetSetListLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        JumanjiJamzService:
+          Type: Api
+          Properties:
+            Path: /setlists/{id}
+            Method: get
+            Auth:
+              Authorizer: 'NONE'
+              
 #  GetAllVendorsLambda:
 #    Type: AWS::Serverless::Function
 #    Properties:
@@ -466,7 +488,7 @@ Resources:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "Charts"
+      TableName: "charts"
 
   SetListsTable:
     Type: AWS::DynamoDB::Table
@@ -478,7 +500,7 @@ Resources:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "SetLists"
+      TableName: "setlists"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed

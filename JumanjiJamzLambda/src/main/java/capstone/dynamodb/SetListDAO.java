@@ -48,8 +48,26 @@ public class SetListDAO {
             return true;
         } catch (RuntimeException e) {
             log.error("Error creating setList", e);
-            publisher.addCount(MetricsConstants.CREATE_SET_LIST_FAIL_COUNT, 1);
+            publisher.addCount(MetricsConstants.CREATE_SET_LIST_SUCCESS_COUNT, 0);
         }
         return false;
+    }
+
+    /**
+     * Gets one setList from the database
+     * @param id is the id of the setList to be found
+     * @return the setList
+     */
+    public SetList getSetList(String id) {
+        log.info(String.format("looking for chart with id: '%s' ", id));
+        SetList setList = mapper.load(SetList.class, id);
+
+        if(setList == null) {
+            log.warn("Could not find setList with id: " + id);
+            publisher.addCount(MetricsConstants.GET_SET_LIST_SUCCESS_COUNT, 0);
+            return setList;
+        }
+        publisher.addCount(MetricsConstants.GET_SET_LIST_SUCCESS_COUNT, 1);
+        return setList;
     }
 }

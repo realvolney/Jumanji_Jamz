@@ -109,15 +109,17 @@ public class ChartDaoTest {
     }
 
     @Test
-    void getChart_chartDoesNotExists_throwsException() {
+    void getChart_chartDoesNotExists_returnsNull() {
         // GIVEN
         String id = String.valueOf(UUID.randomUUID());
 
         when(mapper.load(Chart.class, id)).thenReturn(null);
 
-        // WHEN + THEN
-        assertThrows(IllegalArgumentException.class, () -> dao.getChart(id));
+        // WHEN
+        Chart result = dao.getChart(id);
 
+        // THEN
+        assertNull(result, "should return null");
         verify(mapper, times(1)).load(Chart.class, id);
         verify(publisher, (times(1))).addCount(MetricsConstants.GET_CHART_SUCCESS_COUNT, 0);
     }
