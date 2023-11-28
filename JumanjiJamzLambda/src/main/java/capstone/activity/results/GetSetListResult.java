@@ -50,6 +50,43 @@ public class GetSetListResult {
     }
 
     //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+    public static class Builder {
+        private String id;
+        private String name;
+        private Set<String> charts;
+        private Set<String> genres;
+        private String madeBy;
 
-    public static
+        public Builder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withCharts(Set<String> charts) {
+            this.charts = charts;
+            return this;
+        }
+
+        public Builder withGenres(Set<String> genres) {
+            this.genres = genres;
+            return this;
+        }
+
+        public Builder withMadeBy(String madeBy) {
+            this.madeBy = madeBy;
+            return this;
+        }
+
+        public GetSetListResult build() {
+            return new GetSetListResult(id, name, charts, genres, madeBy);
+        }
+    }
 }
