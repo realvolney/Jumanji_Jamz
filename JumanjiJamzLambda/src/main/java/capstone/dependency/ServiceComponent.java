@@ -39,4 +39,10 @@ public interface ServiceComponent {
      */
     UpdateChartActivity provideUpdateChartActivity();
 
+    /**
+     * Provides the relevant activity.
+     * @return GetSetListActivity
+     */
+    UpdateChartActivity provideGetSetListActivity();
+
 }
