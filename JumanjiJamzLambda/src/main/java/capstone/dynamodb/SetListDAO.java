@@ -73,7 +73,7 @@ public class SetListDAO {
 
     /**
      * Saves setList to dataBase
-     * @param setList the Setlist to be saved to setlists
+     * @param setList the Setlist to be saved to Setlists
      * @return SetList that was saved
      */
     public SetList saveSetList(SetList setList) {

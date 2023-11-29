@@ -168,6 +168,7 @@ public class ChartDaoTest {
         chart.setContent("content");
         chart.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         chart.setMadeBy("me");
+
         doThrow(RuntimeException.class).when(mapper).save(chart);
 
         // WHEN
