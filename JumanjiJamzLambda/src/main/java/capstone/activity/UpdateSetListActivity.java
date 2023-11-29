@@ -1,7 +1,6 @@
 package capstone.activity;
 
 import capstone.activity.requests.UpdateSetListRequest;
-import capstone.activity.results.UpdateChartResult;
 import capstone.activity.results.UpdateSetListResult;
 import capstone.converters.ModelConverter;
 import capstone.dynamodb.SetListDAO;
@@ -9,6 +8,7 @@ import capstone.dynamodb.models.SetList;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 import capstone.models.SetListModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
