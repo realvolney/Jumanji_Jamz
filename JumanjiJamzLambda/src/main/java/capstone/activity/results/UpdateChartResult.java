@@ -12,7 +12,7 @@ import capstone.models.ChartModel;
 public class UpdateChartResult {
     private ChartModel chart;
 
-    public UpdateChartResult(ChartModel chart) {
+    private UpdateChartResult(ChartModel chart) {
         this.chart = chart;
     }
 

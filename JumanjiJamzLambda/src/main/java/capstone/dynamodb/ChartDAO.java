@@ -77,12 +77,12 @@ public class ChartDAO {
     }
 
     /**
-     *
+     * Saves chart to the dataBase
      * @param chart the Chart to be saved on Charts
      * @return Chart that was saved
      */
     public Chart saveChart(Chart chart) {
-        log.info("saving chart: {}", chart);
+        log.info("Saving chart: {}", chart);
         try {
             mapper.save(chart);
         } catch (RuntimeException e) {

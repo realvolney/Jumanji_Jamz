@@ -70,4 +70,22 @@ public class SetListDAO {
         publisher.addCount(MetricsConstants.GET_SET_LIST_SUCCESS_COUNT, 1);
         return setList;
     }
+
+    /**
+     * Saves setList to dataBase
+     * @param setList the Setlist to be saved to Setlists
+     * @return SetList that was saved
+     */
+    public SetList saveSetList(SetList setList) {
+        log.info("Saving setList {}", setList);
+        try {
+            mapper.save(setList);
+        } catch (RuntimeException e) {
+            log.error("Unable to save setList {}", setList);
+            publisher.addCount(MetricsConstants.SAVE_SET_LIST_SUCCESS_COUNT, 0);
+            return  setList;
+        }
+        publisher.addCount(MetricsConstants.SAVE_SET_LIST_SUCCESS_COUNT, 1);
+        return setList;
+    }
 }

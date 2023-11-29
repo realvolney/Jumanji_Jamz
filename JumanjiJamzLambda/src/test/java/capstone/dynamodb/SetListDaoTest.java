@@ -72,7 +72,7 @@ public class SetListDaoTest {
     }
 
     @Test
-    void getChart_chartExists_returnsChart() {
+    void getSetList_setListExists_returnsSetList() {
         // GIVEN
         String id = String.valueOf(UUID.randomUUID());
 
@@ -114,5 +114,60 @@ public class SetListDaoTest {
         assertNull(result, "should return null");
         verify(mapper, times(1)).load(SetList.class, id);
         verify(publisher, (times(1))).addCount(MetricsConstants.GET_SET_LIST_SUCCESS_COUNT, 0);
+    }
+
+    @Test
+    void saveSetList_validSave_returnsSetList() {
+        // GIVEN
+        String id = String.valueOf(UUID.randomUUID());
+
+        SetList setList = new SetList();
+        setList.setId(UUID.fromString(id));
+        setList.setName("name");
+        setList.setCharts(new HashSet<>(Arrays.asList("Hey", "Now")));
+        setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
+        setList.setMadeBy("me");
+        doNothing().when(mapper).save(setList);
+
+        // WHEN
+        SetList result = dao.saveSetList(setList);
+
+        // THEN
+        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getName(), setList.getName(), "names should be equal");
+        assertEquals(result.getCharts(), setList.getCharts(), "Charts should be equal");
+        assertEquals(result.getGenres(), setList.getGenres(), "Genres should be equal");
+        assertEquals(result.getMadeBy(), setList.getMadeBy(), "MadeBY should be equal");
+
+        verify(mapper, times(1)).save(setList);
+        verify(publisher, (times(1))).addCount(MetricsConstants.SAVE_SET_LIST_SUCCESS_COUNT, 1);
+    }
+
+    @Test
+    void saveSetList_errorSaving_returnsSetList() {
+        // GIVEN
+        String id = String.valueOf(UUID.randomUUID());
+
+        SetList setList = new SetList();
+        setList.setId(UUID.fromString(id));
+        setList.setName("name");
+        setList.setCharts(new HashSet<>(Arrays.asList("Hey", "Now")));
+        setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
+        setList.setMadeBy("me");
+
+        doThrow(RuntimeException.class).when(mapper).save(setList);
+
+        // WHEN
+        SetList result = dao.saveSetList(setList);
+
+        // THEN
+        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getName(), setList.getName(), "names should be equal");
+        assertEquals(result.getCharts(), setList.getCharts(), "Charts should be equal");
+        assertEquals(result.getGenres(), setList.getGenres(), "Genres should be equal");
+        assertEquals(result.getMadeBy(), setList.getMadeBy(), "MadeBY should be equal");
+
+        verify(mapper, times(1)).save(setList);
+        verify(publisher, (times(1))).addCount(MetricsConstants.SAVE_SET_LIST_SUCCESS_COUNT, 0);
     }
 }
