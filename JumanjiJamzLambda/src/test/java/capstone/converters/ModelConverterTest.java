@@ -2,6 +2,7 @@ package capstone.converters;
 
 import capstone.dynamodb.models.Chart;
 import capstone.dynamodb.models.SetList;
+import capstone.helper.ChartTestHelper;
 import capstone.models.ChartModel;
 import capstone.models.SetListModel;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -113,6 +115,36 @@ public class ModelConverterTest {
         assertEquals(result.getCharts(), setList.getCharts(), "charts should be the same");
         assertEquals(result.getGenres(), setList.getGenres(), "genres should equal");
         assertEquals(result.getMadeBy(), setList.getMadeBy(), "madeby should be same person");
+    }
+
+    @Test
+    void toChartModelList_givenListCharts_returnsConvertedList() {
+        // GIVEN
+        List<Chart> chartList = ChartTestHelper.generateChartList(10);
+
+        // WHEN
+        List<ChartModel> result = modelConverter.toChartModelList(chartList);
+
+        // THEN
+        for (int i = 0; i < chartList.size(); i++) {
+            ChartModel model = result.get(i);
+            Chart chart = chartList.get(i);
+            assertEquals(chart.getId(), model.getId(),
+                    String.format("chart: '%s' and model: '%s' should be equal", chart.getId(), model.getId()));
+            assertEquals(chart.getName(), model.getName(),
+                    String.format("chart: '%s' and model: '%s' should be equal", chart.getName(), model.getName()));
+            assertEquals(chart.getArtist(), model.getArtist(),
+                    String.format("chart: '%s' and model: '%s' should be equal", chart.getArtist(), model.getArtist()));
+            assertEquals(chart.getBpm(), model.getBpm(),
+                    String.format("chart: '%s' and model: '%s' should be equal", chart.getBpm(), model.getBpm()));
+            assertEquals(chart.getContent(), model.getContent(),
+                    String.format("chart: '%s' and model: '%s' should be equal", chart.getContent(), model.getContent()));
+            assertEquals(chart.getGenres(), model.getGenres(),
+                    String.format("chart: '%s' and model: '%s' should be equal", chart.getGenres(), model.getGenres()));
+            assertEquals(chart.getMadeBy(), model.getMadeBy(),
+                    String.format("chart: '%s' and model: '%s' should be equal", chart.getMadeBy(), model.getMadeBy()));
+        }
+
     }
 }
 
