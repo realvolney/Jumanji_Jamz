@@ -207,7 +207,9 @@ Resources:
             Statement:
             - Effect: Allow
               Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/charts"
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/charts"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/charts/index/ChartNameIndex"
                 
         - PolicyName: 'AccessSetlistsTable'
           PolicyDocument:
@@ -215,23 +217,10 @@ Resources:
             Statement:
             - Effect: Allow
               Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/setlists"
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/setlists"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/setlists/index/SetListNameIndex"
 
-        - PolicyName: 'AccessEventsTable'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/events"
-
-        - PolicyName: 'AccessVendorsTable'
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Vendors"
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
@@ -481,11 +470,20 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "id"
           AttributeType: "S"
+        - AttributeName: "name"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "charts"
+      GlobalSecondaryIndexes:
+        - IndexName: "ChartNameIndex"
+          KeySchema:
+            - AttributeName: "name"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
 
   SetListsTable:
     Type: AWS::DynamoDB::Table
@@ -493,11 +491,20 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "id"
           AttributeType: "S"
+        - AttributeName: "name"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "setlists"
+      GlobalSecondaryIndexes:
+        - IndexName: "SetListNameIndex"
+          KeySchema:
+            - AttributeName: "name"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
