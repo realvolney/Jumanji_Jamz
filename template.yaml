@@ -360,27 +360,27 @@ Resources:
             Path: /setlists/{id}
             Method: put
 
-#  GetAllVendorsLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: VendorNearMeLambda
-#      Handler: com.nashss.se.vendornearme.lambda.GetAllVendorsLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /vendors
-#            Method: get
-#            Auth:
-#              Authorizer: 'NONE'
+  GetAllChartsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: JumanjiJamzLambda
+      Handler: capstone.lambda.GetAllChartsLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /all/charts/{id}
+            Method: get
+            Auth:
+              Authorizer: 'NONE'
 
 
 #  SearchPlaylistsLambda:

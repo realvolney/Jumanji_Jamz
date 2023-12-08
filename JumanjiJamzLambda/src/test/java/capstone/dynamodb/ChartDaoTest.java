@@ -1,6 +1,7 @@
 package capstone.dynamodb;
 
 import capstone.dynamodb.models.Chart;
+import capstone.helper.ChartTestHelper;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 
@@ -9,6 +10,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,8 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.ScanResultPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
@@ -186,4 +192,47 @@ public class ChartDaoTest {
         verify(mapper, times(1)).save(chart);
         verify(publisher, (times(1))).addCount(MetricsConstants.SAVE_CHART_SUCCESS_COUNT, 0);
     }
+
+    @Test
+    void getAllCharts_validId_returnsList() {
+        // GIVEN
+        String id = "id";
+        List<Chart> expectedResult = ChartTestHelper.generateChartList(4);
+        ArgumentCaptor<DynamoDBScanExpression> captor = ArgumentCaptor.forClass(DynamoDBScanExpression.class);
+
+        ScanResultPage<Chart> resultPage = new ScanResultPage<>();
+        resultPage.setResults(expectedResult);
+        when(mapper.scanPage(eq(Chart.class), captor.capture())).thenReturn(resultPage);
+
+        // WHEN
+        List<Chart> result = dao.getAllCharts(id);
+        System.out.println(captor);
+        // THEN
+        assertEquals(result, resultPage.getResults(), "Lists should contain same elements");
+
+        verify(mapper, times(1)).scanPage(eq(Chart.class), captor.capture());
+        int limit = captor.getValue().getLimit();
+
+        assertTrue(limit >= result.size());
+    }
+
+    @Test
+    void getAllCharts_tableContainsNoItems_returnsList() {
+        // GIVEN
+        String id = "invalid";
+        List<Chart> expectedResult = ChartTestHelper.generateChartList(4);
+        ArgumentCaptor<DynamoDBScanExpression> captor = ArgumentCaptor.forClass(DynamoDBScanExpression.class);
+
+        when(mapper.scanPage(eq(Chart.class), captor.capture())).thenReturn(null);
+
+        // WHEN
+        List<Chart> result = dao.getAllCharts(id);
+        System.out.println(captor);
+        // THEN
+        assertNull(result, "result should be null");
+
+        verify(mapper, times(1)).scanPage(eq(Chart.class), captor.capture());
+
+    }
+
 }
