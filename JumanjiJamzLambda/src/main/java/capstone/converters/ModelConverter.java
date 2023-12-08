@@ -42,6 +42,17 @@ public class ModelConverter {
                 .build();
     }
 
+    /**
+     * Convert provided List of charts to a List of ChartModels
+     * @param charts the List of charts to be converted
+     * @return the converted chartModels
+     */
+    public List<ChartModel> toChartModelList(List<Chart> charts) {
+        List<ChartModel> modelList = new ArrayList<>();
+        charts.forEach(chart -> modelList.add(toChartModel(chart)));
+        return modelList;
+    }
+
 
     /**
      * Convert provided SetList to SetListModel representation
