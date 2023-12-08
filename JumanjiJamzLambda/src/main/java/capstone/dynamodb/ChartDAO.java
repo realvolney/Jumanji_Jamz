@@ -6,11 +6,17 @@ import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 import capstone.models.ChartModel;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.ScanResultPage;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -24,6 +30,7 @@ public class ChartDAO {
     private final DynamoDBMapper mapper;
     private final Logger log = LogManager.getLogger();
     private final ModelConverter converter = new ModelConverter();
+    private static final int PAGINATION_LIMIT = 4;
 
     /**
      * Instantiates ChartDao object
@@ -92,5 +99,27 @@ public class ChartDAO {
         }
         metricsPublisher.addCount(MetricsConstants.SAVE_CHART_SUCCESS_COUNT, 1);
         return chart;
+    }
+
+    public List<Chart> getAllCharts(String id) {
+        Map<String, AttributeValue> valueMap = null;
+
+        if(id != null && !id.isBlank()) {
+            valueMap = new HashMap<>();
+            valueMap.put("id", new AttributeValue().withS(id));
+        }
+
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+                .withExclusiveStartKey(valueMap)
+                .withLimit(PAGINATION_LIMIT);
+
+        ScanResultPage<Chart> resultPage = mapper.scanPage(Chart.class, scanExpression);
+
+        if (resultPage == null) {
+            metricsPublisher.addCount(MetricsConstants.GET_ALL_CHARTS_SUCCESS_COUNT, 0);
+            return null;
+        }
+        metricsPublisher.addCount(MetricsConstants.GET_ALL_CHARTS_SUCCESS_COUNT, 1);
+        return resultPage.getResults();
     }
 }
