@@ -45,6 +45,10 @@ public class GetAllChartsResult {
             return this;
         }
 
+        public GetAllChartsResult build() {
+            return new GetAllChartsResult(id, charts);
+        }
+
 
     }
 }
