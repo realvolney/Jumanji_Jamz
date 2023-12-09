@@ -78,7 +78,7 @@ export default class JumanjiJamzClient extends BindingClass {
         }
     }
 
-    // Method to call createChart APi 
+    // Method to call createChart APi
     async createChart(chartDetails, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create charts");
@@ -98,6 +98,29 @@ export default class JumanjiJamzClient extends BindingClass {
 
             return response.data;
         } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+    // Method to call createSetList API
+    async createSetList(setListDetails, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can create setList");
+
+            const payload = {
+                name: setListDetails.name,
+                charts: charts,
+                genres: genres
+            };
+
+            const response = await this.axiosClient.post(`setlists`, payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            return response.data;
+        } catch(error) {
             this.handleError(error, errorCallback);
         }
     }
