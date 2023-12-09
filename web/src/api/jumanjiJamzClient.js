@@ -5,8 +5,8 @@ import Authenticator from "./authenticator";
 export default class JumanjiJamzClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
-            'handleError', 'getChart', 'getSetList', 'createChart', 'createSetList', ''];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow', 'handleError',
+            'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList', 'updateChart'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();
