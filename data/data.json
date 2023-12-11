@@ -3,7 +3,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId1" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440000" },
           "name": { "S": "ChartName1" },
           "artist": { "S": "ChartArtist1" },
           "bpm": { "N": "123" },
@@ -16,7 +16,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId2" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440001" },
           "name": { "S": "ChartName2" },
           "artist": { "S": "ChartArtist2" },
           "bpm": { "N": "123" },
@@ -29,7 +29,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId3" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440002" },
           "name": { "S": "ChartName3" },
           "artist": { "S": "ChartArtist3" },
           "bpm": { "N": "123" },
@@ -42,7 +42,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId4" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440003" },
           "name": { "S": "ChartName4" },
           "artist": { "S": "ChartArtist4" },
           "bpm": { "N": "123" },
@@ -55,7 +55,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId5" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440004" },
           "name": { "S": "ChartName5" },
           "artist": { "S": "ChartArtist5" },
           "bpm": { "N": "123" },
@@ -68,7 +68,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId6" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440005" },
           "name": { "S": "ChartName6" },
           "artist": { "S": "ChartArtist6" },
           "bpm": { "N": "123" },
@@ -81,7 +81,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId7" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440006" },
           "name": { "S": "ChartName7" },
           "artist": { "S": "ChartArtist7" },
           "bpm": { "N": "123" },
@@ -94,7 +94,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId8" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440007" },
           "name": { "S": "ChartName8" },
           "artist": { "S": "ChartArtist8" },
           "bpm": { "N": "123" },
@@ -107,7 +107,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId9" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440008" },
           "name": { "S": "ChartName9" },
           "artist": { "S": "ChartArtist9" },
           "bpm": { "N": "123" },
@@ -120,7 +120,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId10" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440009" },
           "name": { "S": "ChartName10" },
           "artist": { "S": "ChartArtist10" },
           "bpm": { "N": "123" },
@@ -133,7 +133,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId11" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440010" },
           "name": { "S": "ChartName11" },
           "artist": { "S": "ChartArtist11" },
           "bpm": { "N": "123" },
@@ -146,7 +146,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "ChartId12" },
+          "id": { "S": "220e8400-e29b-41d4-a716-446655440011" },
           "name": { "S": "ChartName12" },
           "artist": { "S": "ChartArtist12" },
           "bpm": { "N": "123" },
