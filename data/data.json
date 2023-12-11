@@ -1,0 +1,160 @@
+{
+  "charts": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId1" },
+          "name": { "S": "ChartName1" },
+          "artist": { "S": "ChartArtist1" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId2" },
+          "name": { "S": "ChartName2" },
+          "artist": { "S": "ChartArtist2" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId3" },
+          "name": { "S": "ChartName3" },
+          "artist": { "S": "ChartArtist3" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId4" },
+          "name": { "S": "ChartName4" },
+          "artist": { "S": "ChartArtist4" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId5" },
+          "name": { "S": "ChartName5" },
+          "artist": { "S": "ChartArtist5" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId6" },
+          "name": { "S": "ChartName6" },
+          "artist": { "S": "ChartArtist6" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId7" },
+          "name": { "S": "ChartName7" },
+          "artist": { "S": "ChartArtist7" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId8" },
+          "name": { "S": "ChartName8" },
+          "artist": { "S": "ChartArtist8" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId9" },
+          "name": { "S": "ChartName9" },
+          "artist": { "S": "ChartArtist9" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId10" },
+          "name": { "S": "ChartName10" },
+          "artist": { "S": "ChartArtist10" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId11" },
+          "name": { "S": "ChartName11" },
+          "artist": { "S": "ChartArtist11" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "ChartId12" },
+          "name": { "S": "ChartName12" },
+          "artist": { "S": "ChartArtist12" },
+          "bpm": { "N": 123 },
+          "content": { "S": "Eflat, BfLat" },
+          "madeBy": { "S": "Henry" },
+          "genres": { "SS": [ "Funk", "Soul" ] }
+        }
+      }
+    }
+  ]
+}
