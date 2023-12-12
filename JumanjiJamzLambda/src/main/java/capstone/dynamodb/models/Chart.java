@@ -5,6 +5,7 @@ import capstone.converters.IdConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.amazonaws.services.dynamodbv2.model.Update;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +19,6 @@ public class Chart {
     private String content;
     private Set<String> genres;
     private String madeBy;
-
     @DynamoDBHashKey(attributeName = "id")
     @DynamoDBTypeConverted(converter = IdConverter.class)
     public UUID getId() {

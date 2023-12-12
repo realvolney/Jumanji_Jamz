@@ -2,6 +2,7 @@ package capstone.dynamodb;
 
 import capstone.converters.ModelConverter;
 import capstone.dynamodb.models.Chart;
+import capstone.lambda.GetChartLambda;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 import capstone.models.ChartModel;
