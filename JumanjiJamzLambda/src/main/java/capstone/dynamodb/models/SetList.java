@@ -3,12 +3,13 @@ package capstone.dynamodb.models;
 import capstone.converters.IdConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-
+@DynamoDBTable(tableName = "setlists")
 public class SetList {
     private String id;
     private String name;
