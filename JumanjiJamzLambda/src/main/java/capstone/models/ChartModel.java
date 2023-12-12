@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class ChartModel {
-    private final UUID id;
+    private final String id;
     private final String name;
     private final String artist;
     private final Integer bpm;
@@ -13,7 +13,7 @@ public class ChartModel {
     private final Set<String> genres;
     private final String madeBy;
 
-    private ChartModel(UUID id, String name,
+    private ChartModel(String id, String name,
                       String artist, Integer bpm, String content, Set<String> genres, String madeBy) {
         this.id = id;
         this.name = name;
@@ -24,7 +24,7 @@ public class ChartModel {
         this.madeBy = madeBy;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ public class ChartModel {
     }
 
     public static class Builder {
-        private UUID id;
+        private String id;
         private String name;
         private String artist;
         private Integer bpm;
@@ -76,7 +76,7 @@ public class ChartModel {
         private Set<String> genres;
         private String madeBy;
 
-        public Builder withId(UUID id) {
+        public Builder withId(String id) {
             this.id = id;
             return this;
         }

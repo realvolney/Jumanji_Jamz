@@ -29,7 +29,7 @@ public class ModelConverterTest {
     void toChartModel_withAllAttributes_convertsChart() {
         // GIVEN
         chart = new Chart();
-        chart.setId(UUID.randomUUID());
+        chart.setId(String.valueOf(UUID.randomUUID()));
         chart.setName("name");
         chart.setArtist("artist");
         chart.setBpm(123);
@@ -54,7 +54,7 @@ public class ModelConverterTest {
     void toChartModel_withNullAttributes_convertsChart() {
         // GIVEN
         chart = new Chart();
-        chart.setId(UUID.randomUUID());
+        chart.setId(String.valueOf(UUID.randomUUID()));
         chart.setName(null);
         chart.setArtist(null);
         chart.setBpm(null);
@@ -79,7 +79,7 @@ public class ModelConverterTest {
     void toSetListModel_withAttributes_ConvertsSetList() {
         // GIVEN
         setList = new SetList();
-        setList.setId(UUID.randomUUID());
+        setList.setId(String.valueOf(UUID.randomUUID()));
         setList.setName("name");
         setList.setCharts(new HashSet<>(Arrays.asList("Yes", "No")));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
@@ -100,7 +100,7 @@ public class ModelConverterTest {
     void toSetListModel_withNullAttributes_ConvertsSetList() {
         // GIVEN
         setList = new SetList();
-        setList.setId(UUID.randomUUID());
+        setList.setId(String.valueOf(UUID.randomUUID()));
         setList.setName(null);
         setList.setCharts(null);
         setList.setGenres(null);

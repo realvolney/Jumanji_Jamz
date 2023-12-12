@@ -42,7 +42,7 @@ public class UpdateChartActivityTest {
         // GIVEN
         String id = String.valueOf(UUID.randomUUID());
         Chart expectedResult = new Chart();
-        expectedResult.setId(UUID.fromString(id));
+        expectedResult.setId(id);
         expectedResult.setName("name");
         expectedResult.setArtist("artist");
         expectedResult.setBpm(123);
@@ -67,7 +67,7 @@ public class UpdateChartActivityTest {
         ChartModel result = activity.handleRequest(request).getChart();
 
         // THEN
-        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), expectedResult.getName(), "names should be equal");
         assertEquals(result.getArtist(), expectedResult.getArtist(), "Artists should be equal");
         assertEquals(result.getBpm(), expectedResult.getBpm(), "BPM should be equal");

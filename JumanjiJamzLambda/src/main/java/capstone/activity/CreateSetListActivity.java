@@ -42,7 +42,7 @@ public class CreateSetListActivity {
         UUID id = UUID.randomUUID();
 
         SetList setList = new SetList();
-        setList.setId(id);
+        setList.setId(String.valueOf(id));
         setList.setName(name);
         setList.setCharts(request.getCharts());
         setList.setGenres(request.getGenres());

@@ -19,7 +19,7 @@ public class ChartTestHelper {
 
     public static Chart generateChart(int sequence) {
         Chart chart = new Chart();
-        chart.setId(UUID.randomUUID());
+        chart.setId(String.valueOf(UUID.randomUUID()));
         chart.setName("name" + sequence);
         chart.setArtist("artist" + sequence);
         chart.setBpm(sequence);

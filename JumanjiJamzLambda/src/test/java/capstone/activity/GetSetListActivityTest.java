@@ -38,7 +38,7 @@ public class GetSetListActivityTest {
                 .build();
 
         SetList setList = new SetList();
-        setList.setId(UUID.fromString(id));
+        setList.setId(id);
         setList.setName("name");
         setList.setCharts(new HashSet<>(Arrays.asList("New", "Sland")));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));

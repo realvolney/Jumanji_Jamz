@@ -51,7 +51,7 @@ public class ChartDaoTest {
         // GIVEN
         UUID id = UUID.randomUUID();
         Chart chart = new Chart();
-        chart.setId(id);
+        chart.setId(String.valueOf(id));
         doNothing().when(mapper).save(chart);
         doNothing().when(publisher).addCount(MetricsConstants.CREATE_CHART_SUCCESS_COUNT, 1);
 
@@ -69,7 +69,7 @@ public class ChartDaoTest {
         // GIVEN
         UUID id = UUID.randomUUID();
         Chart chart = new Chart();
-        chart.setId(id);
+        chart.setId(String.valueOf(id));
         doThrow(RuntimeException.class).when(mapper).save(chart);
         doNothing().when(publisher).addCount(MetricsConstants.CREATE_CHART_SUCCESS_COUNT, 0);
 
@@ -88,7 +88,7 @@ public class ChartDaoTest {
         String id = String.valueOf(UUID.randomUUID());
 
         Chart chart = new Chart();
-                chart.setId(UUID.fromString(id));
+                chart.setId(String.valueOf(UUID.fromString(id)));
                 chart.setName("name");
                 chart.setArtist("artist");
                 chart.setBpm(123);
@@ -102,7 +102,7 @@ public class ChartDaoTest {
         Chart result = dao.getChart(id);
 
         // THEN
-        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), chart.getName(), "names should be equal");
         assertEquals(result.getArtist(), chart.getArtist(), "Artists should be equal");
         assertEquals(result.getBpm(), chart.getBpm(), "BPM should be equal");
@@ -136,7 +136,7 @@ public class ChartDaoTest {
         String id = String.valueOf(UUID.randomUUID());
 
         Chart chart = new Chart();
-        chart.setId(UUID.fromString(id));
+        chart.setId(String.valueOf(UUID.fromString(id)));
         chart.setName("name");
         chart.setArtist("artist");
         chart.setBpm(123);
@@ -149,7 +149,7 @@ public class ChartDaoTest {
         Chart result = dao.saveChart(chart);
 
         // THEN
-        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), chart.getName(), "names should be equal");
         assertEquals(result.getArtist(), chart.getArtist(), "Artists should be equal");
         assertEquals(result.getBpm(), chart.getBpm(), "BPM should be equal");
@@ -167,7 +167,7 @@ public class ChartDaoTest {
         String id = String.valueOf(UUID.randomUUID());
 
         Chart chart = new Chart();
-        chart.setId(UUID.fromString(id));
+        chart.setId(String.valueOf(UUID.fromString(id)));
         chart.setName("name");
         chart.setArtist("artist");
         chart.setBpm(123);
@@ -181,7 +181,7 @@ public class ChartDaoTest {
         Chart result = dao.saveChart(chart);
 
         // THEN
-        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), chart.getName(), "names should be equal");
         assertEquals(result.getArtist(), chart.getArtist(), "Artists should be equal");
         assertEquals(result.getBpm(), chart.getBpm(), "BPM should be equal");

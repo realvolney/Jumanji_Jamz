@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Chart {
-    private UUID id;
+    private String id;
     private String name;
     private String artist;
     private Integer bpm;
@@ -20,12 +20,12 @@ public class Chart {
     private Set<String> genres;
     private String madeBy;
     @DynamoDBHashKey(attributeName = "id")
-    @DynamoDBTypeConverted(converter = IdConverter.class)
-    public UUID getId() {
+//    @DynamoDBTypeConverted(converter = IdConverter.class)
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -32,7 +32,7 @@ public class CreateChartActivity {
         UUID id = UUID.randomUUID();
 
         Chart chart = new Chart();
-        chart.setId(id);
+        chart.setId(String.valueOf(id));
         chart.setName(name);
         chart.setArtist(request.getArtist());
         chart.setBpm(request.getBpm());

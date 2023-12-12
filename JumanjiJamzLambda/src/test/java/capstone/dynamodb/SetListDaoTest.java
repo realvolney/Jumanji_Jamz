@@ -40,7 +40,7 @@ public class SetListDaoTest {
         // GIVEN
         UUID id = UUID.randomUUID();
         SetList setList = new SetList();
-        setList.setId(id);
+        setList.setId(String.valueOf(id));
         doNothing().when(mapper).save(setList);
         doNothing().when(publisher).addCount(SUCCESS, 1);
 
@@ -58,7 +58,7 @@ public class SetListDaoTest {
         // GIVEN
         UUID id = UUID.randomUUID();
         SetList setList = new SetList();
-        setList.setId(id);
+        setList.setId(String.valueOf(id));
         doThrow(RuntimeException.class).when(mapper).save(setList);
         doNothing().when(publisher).addCount(SUCCESS, 1);
 
@@ -77,7 +77,7 @@ public class SetListDaoTest {
         String id = String.valueOf(UUID.randomUUID());
 
         SetList setList = new SetList();
-        setList.setId(UUID.fromString(id));
+        setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
         setList.setCharts(new HashSet<>(Arrays.asList("New", "Sland")));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
@@ -89,7 +89,7 @@ public class SetListDaoTest {
         SetList result = dao.getSetList(id);
 
         // THEN
-        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
 
         assertEquals(result.getCharts(), setList.getCharts(), "Charts should be equal");
@@ -122,7 +122,7 @@ public class SetListDaoTest {
         String id = String.valueOf(UUID.randomUUID());
 
         SetList setList = new SetList();
-        setList.setId(UUID.fromString(id));
+        setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
         setList.setCharts(new HashSet<>(Arrays.asList("Hey", "Now")));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
@@ -133,7 +133,7 @@ public class SetListDaoTest {
         SetList result = dao.saveSetList(setList);
 
         // THEN
-        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
         assertEquals(result.getCharts(), setList.getCharts(), "Charts should be equal");
         assertEquals(result.getGenres(), setList.getGenres(), "Genres should be equal");
@@ -149,7 +149,7 @@ public class SetListDaoTest {
         String id = String.valueOf(UUID.randomUUID());
 
         SetList setList = new SetList();
-        setList.setId(UUID.fromString(id));
+        setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
         setList.setCharts(new HashSet<>(Arrays.asList("Hey", "Now")));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
@@ -161,7 +161,7 @@ public class SetListDaoTest {
         SetList result = dao.saveSetList(setList);
 
         // THEN
-        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
         assertEquals(result.getCharts(), setList.getCharts(), "Charts should be equal");
         assertEquals(result.getGenres(), setList.getGenres(), "Genres should be equal");
