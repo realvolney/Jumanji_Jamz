@@ -26,13 +26,6 @@ module.exports = {
     createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
     viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
-    viewAllEvents: path.resolve(__dirname, 'src', 'pages', 'viewAllEvents.js'),
-    viewAllVendors: path.resolve(__dirname, 'src', 'pages', 'viewAllVendors.js'),
-    oneEvent: path.resolve(__dirname, 'src', 'pages', 'oneEvent.js'),
-    viewVendor: path.resolve(__dirname, 'src', 'pages', 'viewVendor.js'),
-    index: path.resolve(__dirname, 'src', 'pages', 'index.js'),
-    createVendor: path.resolve(__dirname, 'src', 'pages', 'createVendor.js'),
-    VendorAccount: path.resolve(__dirname, 'src', 'pages', 'VendorAccount.js'),
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

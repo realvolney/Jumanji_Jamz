@@ -1,6 +1,6 @@
 {
-  "name": "JumanjiJamz",
-  "description": "Website for the SE3 Capstone",
+  "name": "u5-project-template-static-website",
+  "description": "Website for the NSS Unit 5 Project",
   "version": "1.0.0",
   "license": "UNLICENSED",
   "main": "js/index.js",

@@ -1,4 +1,4 @@
-import vendorEventClient from '../api/vendorEventClient';
+import MusicPlaylistClient from '../api/musicPlaylistClient';
 import BindingClass from "../util/bindingClass";
 
 /**
@@ -10,11 +10,11 @@ export default class Header extends BindingClass {
 
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLogoutButton','createMyAccountButton'
+            'createLoginButton', 'createLoginButton', 'createLogoutButton'
         ];
         this.bindClassMethods(methodsToBind, this);
 
-        this.client = new vendorEventClient();
+        this.client = new MusicPlaylistClient();
     }
 
     /**
@@ -35,7 +35,7 @@ export default class Header extends BindingClass {
         const homeButton = document.createElement('a');
         homeButton.classList.add('header_home');
         homeButton.href = 'index.html';
-        homeButton.innerText = 'JumanjiJamz';
+        homeButton.innerText = 'Playlists';
 
         const siteTitle = document.createElement('div');
         siteTitle.classList.add('site-title');
@@ -44,27 +44,18 @@ export default class Header extends BindingClass {
         return siteTitle;
     }
 
-createUserInfoForHeader(currentUser) {
-    const userInfo = document.createElement('div');
-    userInfo.classList.add('user');
+    createUserInfoForHeader(currentUser) {
+        const userInfo = document.createElement('div');
+        userInfo.classList.add('user');
 
-    if (currentUser) {
-        const logoutButton = this.createLogoutButton(currentUser);
-        userInfo.appendChild(logoutButton);
-        const createButton = this.createAccountButton(currentUser);
-                        userInfo.appendChild(createButton);
-  const myAccountButton = this.createMyAccountButton();
-        userInfo.appendChild(myAccountButton);
+        const childContent = currentUser
+            ? this.createLogoutButton(currentUser)
+            : this.createLoginButton();
 
-    } else {
+        userInfo.appendChild(childContent);
 
-        const loginButton = this.createLoginButton();
-        userInfo.appendChild(loginButton);
+        return userInfo;
     }
-
-    return userInfo;
-}
-
 
     createLoginButton() {
         return this.createButton('Login', this.client.login);
@@ -73,22 +64,6 @@ createUserInfoForHeader(currentUser) {
     createLogoutButton(currentUser) {
         return this.createButton(`Logout: ${currentUser.name}`, this.client.logout);
     }
-createMyAccountButton() {
-    const button = document.createElement('a');
-    button.classList.add('button');
-    button.href = 'VendorAccount.html';
-    button.innerText = 'My Account';
-
-    return button;
-}
-createAccountButton() {
-    const button = document.createElement('a');
-    button.classList.add('button');
-    button.href = 'createVendor.html';
-    button.innerText = 'Become a Vendor';
-
-    return button;
-}
 
     createButton(text, clickHandler) {
         const button = document.createElement('a');
