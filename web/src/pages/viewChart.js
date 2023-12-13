@@ -28,7 +28,6 @@ class ViewChart extends BindingClass {
 
         const chart = await this.client.getChart(chartId);
         this.dataStore.set('chart', chart);
-        document.getElementById()
         
     }
 
