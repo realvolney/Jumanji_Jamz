@@ -33,4 +33,17 @@ class ViewChart extends BindingClass {
     /**
      * Add the header to the page
      */
+
+
+
 }
+
+/**
+ * Main method to run when the page contents have loaded.
+ */
+const main = async () => {
+    const viewChart = new ViewChart();
+    viewPlaylist.mount();
+};
+
+window.addEventListener('DOMContentLoaded', main);

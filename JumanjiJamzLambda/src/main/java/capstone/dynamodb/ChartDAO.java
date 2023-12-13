@@ -15,10 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Accesses data for a chart using {@Link Chart} to represent the model in DynamoDB
@@ -78,7 +75,7 @@ public class ChartDAO {
         if (chart == null) {
             log.warn("Could not find setList with id: " + id);
             metricsPublisher.addCount(MetricsConstants.GET_CHART_SUCCESS_COUNT, 0);
-            return chart;
+            return null;
         }
         metricsPublisher.addCount(MetricsConstants.GET_CHART_SUCCESS_COUNT, 1);
         return chart;
