@@ -53,6 +53,7 @@ class ViewChart extends BindingClass {
 
         document.getElementById('chart-name').innerText = chart.name;
         document.getElementById('chart-owner').innerText = chart.madeBy;
+        document.getElementById('content').innerText = chart.content;
 
         let tagHtml = '';
         let tag;
