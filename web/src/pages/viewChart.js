@@ -9,7 +9,9 @@ import DataStore from "../util/DataStore";
 class ViewChart extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount']);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage']);
+        this.dataStore = new DataStore();
+        this.dataStore.addChangeListener(this.addChartToPage);
         this.header = new Header(this.dataStore);
         console.log("viewChart constructor");
 
@@ -33,9 +35,33 @@ class ViewChart extends BindingClass {
     /**
      * Add the header to the page
      */
+    mount() {
+        document.getElementById('update-chart').addEventListener('click', this.updateChart);
+        this.header.addHeaderToPage();
 
+        this.clientLoaded();
+    }
 
+    /**
+     * when chart is uupdated in datastore, it displays on page.
+     */
 
+    async addChartToPage() {
+        const chart = this.dataStore.get('chart')
+        if (chart == null) {
+            return;
+        }
+
+        document.getElementById('chart-name').innerText = chart.name;
+        document.getElementById('chart-owner').innerText = chart.madeBy;
+
+        let tagHtml = '';
+        let tag;
+        for( tag  of chart.genres) {
+            tagHtml += '<div class="tag">' + tag + '</div>';
+        }
+        document.getElementById('tags').innerHTML = tagHtml;
+    }
 }
 
 /**
@@ -43,7 +69,7 @@ class ViewChart extends BindingClass {
  */
 const main = async () => {
     const viewChart = new ViewChart();
-    viewPlaylist.mount();
+    viewChart.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

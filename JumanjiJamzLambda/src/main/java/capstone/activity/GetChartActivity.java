@@ -41,11 +41,7 @@ public class GetChartActivity {
         Chart chart = dao.getChart(id);
         log.info("Received id {}", id);
 
-        if (chart == null) {
-            return GetChartResult.builder()
-                    .withId(id)
-                    .build();
-        }
+
         return GetChartResult.builder()
                 .withId(id)
                 .withName(chart.getName())
