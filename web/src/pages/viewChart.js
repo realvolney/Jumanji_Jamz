@@ -1,4 +1,4 @@
-
+import JumanjiJamzClient from '../api/JumanjiJamzClient';
 import Header from "../components/header";
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
@@ -9,7 +9,7 @@ import DataStore from "../util/DataStore";
 class ViewChart extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage']);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addChartToPage);
         this.header = new Header(this.dataStore);
