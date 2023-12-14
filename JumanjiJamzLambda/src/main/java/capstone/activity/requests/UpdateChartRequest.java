@@ -1,14 +1,19 @@
 package capstone.activity.requests;
 
 import capstone.activity.requests.CreateChartRequest;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 
 import java.util.Set;
+
+import static capstone.utils.CollectionUtils.copyToSet;
 
 /**
  * This class represents a request to update a chart
  * It is used as part of the UpdateChartActivity
  */
+@JsonDeserialize(builder = UpdateChartRequest.Builder.class)
 public class UpdateChartRequest {
     private final String id;
     private final String name;
@@ -69,9 +74,11 @@ public class UpdateChartRequest {
                 '}';
     }
     //CHECKSTYLE:OFF:Builder
+
     public static Builder builder() {
         return new Builder();
     }
+    @JsonPOJOBuilder
     public static class Builder {
         private String id;
         private String name;
@@ -102,7 +109,7 @@ public class UpdateChartRequest {
         }
 
         public Builder withGenres(Set<String> genres) {
-            this.genres = genres;
+            this.genres = copyToSet(genres);
             return this;
         }
 
