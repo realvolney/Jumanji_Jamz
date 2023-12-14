@@ -5,12 +5,17 @@ import capstone.activity.results.CreateSetListResult;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 public class CreateSetListLambda
     extends LambdaActivityRunner<CreateSetListRequest, CreateSetListResult>
     implements RequestHandler<AuthenticatedLambdaRequest<CreateSetListRequest>, LambdaResponse> {
 
+    private final URLDecoder decoder = new URLDecoder();
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<CreateSetListRequest> input, Context context) {
+
         return super.runActivity(
                 () -> {
                     CreateSetListRequest unauthenticatedRequest = input.fromBody(CreateSetListRequest.class);
@@ -19,7 +24,7 @@ public class CreateSetListLambda
                                     .withName(unauthenticatedRequest.getName())
                                     .withCharts(unauthenticatedRequest.getCharts())
                                     .withGenres(unauthenticatedRequest.getGenres())
-                                    .withMadeBy(claims.get("email"))
+                                    .withMadeBy(decoder.decode(claims.get("id"), StandardCharsets.UTF_8))
                                     .build());
                 },
                 (request, serviceComponent) ->

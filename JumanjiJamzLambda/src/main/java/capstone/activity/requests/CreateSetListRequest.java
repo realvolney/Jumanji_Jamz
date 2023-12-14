@@ -1,12 +1,16 @@
 package capstone.activity.requests;
 
-import java.util.Set;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+import java.util.Set;
+@JsonDeserialize(builder = CreateSetListRequest.Builder.class)
 public class CreateSetListRequest {
     private final String name;
     private final Set<String> charts;
     private final Set<String> genres;
     private final String madeBy;
+
 
     private CreateSetListRequest(String name, Set<String> charts, Set<String> genres, String madeBy) {
         this.name = name;
@@ -44,6 +48,8 @@ public class CreateSetListRequest {
     public static Builder builder() {
         return new Builder();
     }
+
+    @JsonPOJOBuilder
     public static class Builder {
         private String name;
         private Set<String> charts;
@@ -66,7 +72,7 @@ public class CreateSetListRequest {
         }
 
         public Builder withMadeBy(String name) {
-            this.madeBy = madeBy;
+            this.name = name;
             return this;
         }
 

@@ -8,7 +8,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
+
 @DynamoDBTable(tableName = "setlists")
 public class SetList {
     private String id;
