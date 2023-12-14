@@ -160,7 +160,7 @@ export default class JumanjiJamzClient extends BindingClass {
     // Method for accessing the updateChart API
     async updateChart(id, chartDetails, errorCallback) {
         try {
-            const token = await this.getTokenOrThrow("Only authenticated users can update a chart");
+            const token = await this.getTokenOrThrow("Only owners can modify chart");
             const payload = {
                 name: chartDetails.name,
                 artist: chartDetails.artist,

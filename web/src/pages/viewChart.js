@@ -9,7 +9,7 @@ import DataStore from "../util/DataStore";
 class ViewChart extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage', 'redirectToUpdateChart'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addChartToPage);
         this.header = new Header(this.dataStore);
@@ -35,7 +35,7 @@ class ViewChart extends BindingClass {
      * Add the header to the page
      */
     mount() {
-        document.getElementById('update-chart').addEventListener('click', this.updateChart);
+        document.getElementById('update-chart').addEventListener('click', this.redirectToUpdateChart);
         this.header.addHeaderToPage();
 
         this.clientLoaded();
@@ -62,6 +62,16 @@ class ViewChart extends BindingClass {
             tagHtml += '<div class="tag">' + tag + '</div>';
         }
         document.getElementById('tags').innerHTML = tagHtml;
+    }
+
+    /**
+     * When the update is selected, redirect to the view chart page.
+     */
+    redirectToUpdateChart() {
+        const id = this.dataStore.get('id');
+        if (id != null) {
+            window.location.href = `/updateChart.html?id=${id}`;
+        }
     }
 }
 

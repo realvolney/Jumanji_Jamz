@@ -5,8 +5,13 @@ import capstone.activity.results.UpdateChartResult;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 public class UpdateChartLambda extends LambdaActivityRunner<UpdateChartRequest, UpdateChartResult>
         implements RequestHandler<AuthenticatedLambdaRequest<UpdateChartRequest>, LambdaResponse> {
+
+    private final URLDecoder decoder = new URLDecoder();
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<UpdateChartRequest> input, Context context) {
         return super.runActivity(
@@ -20,7 +25,7 @@ public class UpdateChartLambda extends LambdaActivityRunner<UpdateChartRequest, 
                         .withBpm(unauthenticatedRequest.getBpm())
                         .withContent(unauthenticatedRequest.getContent())
                         .withGenres(unauthenticatedRequest.getGenres())
-                        .withMadeBy(claims.get("email"))
+                        .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
                         .build());
 
                 },
