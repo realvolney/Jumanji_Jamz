@@ -28,6 +28,8 @@ module.exports = {
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
     viewChart: path.resolve(__dirname, 'src', 'pages', 'viewChart.js'),
     viewSetList: path.resolve(__dirname, 'src', 'pages', 'viewSetList.js'),
+    createChart: path.resolve(__dirname, 'src', 'pages', 'createChart.js'),
+    createSetList: path.resolve(__dirname, 'src', 'pages', 'createSetList.js'),
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),
