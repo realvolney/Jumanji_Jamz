@@ -1,5 +1,6 @@
 package capstone.lambda;
 
+import capstone.lambda.UpdateChartLambda;
 import capstone.activity.requests.UpdateChartRequest;
 import capstone.activity.results.UpdateChartResult;
 import com.amazonaws.services.lambda.runtime.Context;
