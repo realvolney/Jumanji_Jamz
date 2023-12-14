@@ -42,7 +42,7 @@ public class UpdateSetListActivityTest {
         String id = String.valueOf(UUID.randomUUID());
 
         SetList setList = new SetList();
-        setList.setId(UUID.fromString(id));
+        setList.setId(id);
         setList.setName("name");
         setList.setCharts(new HashSet<>(Arrays.asList("Hey", "Now")));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
@@ -62,7 +62,7 @@ public class UpdateSetListActivityTest {
         SetListModel result = activity.handleRequest(request).getSetList();
 
         // THEN
-        assertEquals(result.getId(), UUID.fromString(id), "Ids should be equal");
+        assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
         assertEquals(result.getCharts(), setList.getCharts(), "Charts should be equal");
         assertEquals(result.getGenres(), setList.getGenres(), "Genres should be equal");

@@ -4,14 +4,14 @@ import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
 /**
- * Logic needed for the create playlist page of the website.
+ * Logic needed for the create setList page of the website.
  */
-class CreatePlaylist extends BindingClass {
+class CreateSetList extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewPlaylist'], this);
+        this.bindClassMethods(['mount', 'submit', 'redirectToViewSetList'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToViewPlaylist);
+        this.dataStore.addChangeListener(this.redirectToViewSetList);
         this.header = new Header(this.dataStore);
     }
 
@@ -41,8 +41,9 @@ class CreatePlaylist extends BindingClass {
         const origButtonText = createButton.innerText;
         createButton.innerText = 'Loading...';
 
-        const playlistName = document.getElementById('playlist-name').value;
+        const setListName = document.getElementById('setList-name').value;
         const tagsText = document.getElementById('tags').value;
+    
 
         let tags;
         if (tagsText.length < 1) {
@@ -51,21 +52,29 @@ class CreatePlaylist extends BindingClass {
             tags = tagsText.split(/\s*,\s*/);
         }
 
-        const playlist = await this.client.createPlaylist(playlistName, tags, (error) => {
+        const setListDetails = {
+            name: setListName,
+            charts: null,
+            genres: tags
+        };
+
+        console.log("payload {}", setListDetails);
+        
+        const setList = await this.client.createSetList(setListDetails, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
-        this.dataStore.set('playlist', playlist);
+        this.dataStore.set('setList', setList);
     }
 
     /**
      * When the playlist is updated in the datastore, redirect to the view playlist page.
      */
-    redirectToViewPlaylist() {
-        const playlist = this.dataStore.get('playlist');
-        if (playlist != null) {
-            window.location.href = `/playlist.html?id=${playlist.id}`;
+    redirectToViewSetList() {
+        const setList = this.dataStore.get('setList');
+        if (setList != null) {
+            window.location.href = `/setList.html?id=${setList.id}`;
         }
     }
 }
@@ -74,8 +83,8 @@ class CreatePlaylist extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const createPlaylist = new CreatePlaylist();
-    createPlaylist.mount();
+    const createSetList = new CreateSetList();
+    createSetList.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

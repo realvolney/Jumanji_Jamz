@@ -1,4 +1,4 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
+import JumanjiJamzClient from '../api/JumanjiJamzClient';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
@@ -29,6 +29,7 @@ class ViewPlaylist extends BindingClass {
         document.getElementById('songs').innerText = "(loading songs...)";
         const songs = await this.client.getPlaylistSongs(playlistId);
         this.dataStore.set('songs', songs);
+        
     }
 
     /**
@@ -39,7 +40,7 @@ class ViewPlaylist extends BindingClass {
 
         this.header.addHeaderToPage();
 
-        this.client = new MusicPlaylistClient();
+        this.client = new JumanjiJamzClient();
         this.clientLoaded();
     }
 

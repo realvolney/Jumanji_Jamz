@@ -1,11 +1,17 @@
 package capstone.activity.requests;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import java.util.Set;
+
+import static capstone.utils.CollectionUtils.copyToSet;
 
 /**
  * This class represents a request to create a chart
  * It is used as part of the CreateChartActivity API
  */
+@JsonDeserialize(builder = CreateChartRequest.Builder.class)
 public class CreateChartRequest {
     private final String name;
     private final String artist;
@@ -61,6 +67,7 @@ public class CreateChartRequest {
     public static Builder builder() {
         return new Builder();
     }
+    @JsonPOJOBuilder
     public static class Builder {
         private String name;
         private String artist;
@@ -90,7 +97,7 @@ public class CreateChartRequest {
         }
 
         public Builder withGenres(Set<String> genres) {
-            this.genres = genres;
+            this.genres = copyToSet(genres);
             return this;
         }
 

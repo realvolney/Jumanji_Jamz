@@ -5,13 +5,13 @@ import java.util.Set;
 import java.util.UUID;
 
 public class SetListModel {
-    private final UUID id;
+    private final String id;
     private final String name;
     private final Set<String> charts;
     private final Set<String> genres;
     private final String madeBy;
 
-    private SetListModel(UUID id, String name, Set<String> charts, Set<String> genres, String madeBy) {
+    private SetListModel(String id, String name, Set<String> charts, Set<String> genres, String madeBy) {
         this.id = id;
         this.name = name;
         this.charts = charts;
@@ -19,7 +19,7 @@ public class SetListModel {
         this.madeBy = madeBy;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -54,13 +54,13 @@ public class SetListModel {
 
     public static Builder builder() { return new Builder(); }
     public static class Builder {
-        private UUID id;
+        private String id;
         private String name;
         private Set<String> charts;
         private Set<String> genres;
         private String madeBy;
 
-        public Builder withId(UUID id) {
+        public Builder withId(String id) {
             this.id = id;
             return this;
         }

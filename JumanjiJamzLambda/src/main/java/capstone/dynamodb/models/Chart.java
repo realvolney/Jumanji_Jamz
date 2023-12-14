@@ -4,28 +4,28 @@ import capstone.converters.IdConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-
+@DynamoDBTable(tableName = "charts")
 public class Chart {
-    private UUID id;
+    private String id;
     private String name;
     private String artist;
     private Integer bpm;
     private String content;
     private Set<String> genres;
     private String madeBy;
-
     @DynamoDBHashKey(attributeName = "id")
-    @DynamoDBTypeConverted(converter = IdConverter.class)
-    public UUID getId() {
+//    @DynamoDBTypeConverted(converter = IdConverter.class)
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

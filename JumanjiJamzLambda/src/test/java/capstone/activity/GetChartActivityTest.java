@@ -42,7 +42,7 @@ public class GetChartActivityTest {
                 .build();
 
         Chart expectedResult = new Chart();
-                expectedResult.setId(UUID.fromString(id));
+                expectedResult.setId(id);
                 expectedResult.setName("name");
                 expectedResult.setArtist("artist");
                 expectedResult.setBpm(123);

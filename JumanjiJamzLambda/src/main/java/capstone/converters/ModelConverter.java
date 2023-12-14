@@ -4,10 +4,9 @@ package capstone.converters;
 
 import capstone.dynamodb.models.Chart;
 import capstone.dynamodb.models.SetList;
-import capstone.enums.Genre;
+
 import capstone.models.ChartModel;
 import capstone.models.SetListModel;
-import com.amazonaws.services.dynamodbv2.xspec.S;
 
 import java.util.ArrayList;
 import java.util.HashSet;

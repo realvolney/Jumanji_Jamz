@@ -33,6 +33,8 @@ public class GetSetListActivity {
 
         SetList setList = dao.getSetList(id);
 
+
+
         return GetSetListResult.builder()
                 .withId(id)
                 .withName(setList.getName())

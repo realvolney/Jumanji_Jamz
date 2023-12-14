@@ -1,0 +1,304 @@
+{
+  "setlists": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440000" },
+          "name": { "S": "ColdStone" },
+          "madeBy": { "S": "I scream for Ice Cream" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440000", "220e8400-e29b-41d4-a716-446655440001", "220e8400-e29b-41d4-a716-446655440002", "220e8400-e29b-41d4-a716-446655440003" ] },
+          "genres": { "SS": [ "ice cream", "cones", "jimmies" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440001" },
+          "name": { "S": "Nintendo" },
+          "madeBy": { "S": "Give me money" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440000", "220e8400-e29b-41d4-a716-446655440001", "220e8400-e29b-41d4-a716-446655440002", "220e8400-e29b-41d4-a716-446655440003" ] },
+          "genres": { "SS": [ "cartridges", "Mario", "console" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440002" },
+          "name": { "S": "Uncle Dave's" },
+          "madeBy": { "S": "I'm more like a family friend" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440000", "220e8400-e29b-41d4-a716-446655440001", "220e8400-e29b-41d4-a716-446655440002", "220e8400-e29b-41d4-a716-446655440003" ] },
+          "genres": { "SS": [ "Holidays", "cookouts", "Sports" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440003" },
+          "name": { "S": "The Pacifier" },
+          "madeBy": { "S": "Best earplugs in the world" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440000", "220e8400-e29b-41d4-a716-446655440001", "220e8400-e29b-41d4-a716-446655440002", "220e8400-e29b-41d4-a716-446655440003" ] },
+          "genres": { "SS": [ "Loud", "noisy neighbors", "sleeping" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440004" },
+          "name": { "S": "Three Blind Rice" },
+          "madeBy": { "S": "Killer rice that overloads the senses" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440000", "220e8400-e29b-41d4-a716-446655440001", "220e8400-e29b-41d4-a716-446655440002", "220e8400-e29b-41d4-a716-446655440003" ] },
+          "genres": { "SS": [ "brown rice", "white rice", "sticky rice" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440005" },
+          "name": { "S": "Carrot Toppings" },
+          "madeBy": { "S": "Best carrot cake in town" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "carrots", "cake", "frosting" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440006" },
+          "name": { "S": "Steal Her Peel" },
+          "madeBy": { "S": "never again" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "bananas", "stand", "saw" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440007" },
+          "name": { "S": "Ice Cream Paint Job" },
+          "madeBy": { "S": "Fast like a nascar pit stop" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "Fresh", "Nascar pitStop", "Paint" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440008" },
+          "name": { "S": "Old friend" },
+          "madeBy": { "S": "hello" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "Been", "long", "time" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440009" },
+          "name": { "S": "The Farm" },
+          "madeBy": { "S": "Nectar of the Earth" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "everything", "mud", "vegetables" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440010" },
+          "name": { "S": "Clarence's Parents" },
+          "madeBy": { "S": "Polite but judgemental" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "banjo", "triangle", "saw" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440011" },
+          "name": { "S": "Sad Taco" },
+          "madeBy": { "S": "No matter how you are feeling you ca always enjoy a taco" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "beans", "cheese", "tears" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440012" },
+          "name": { "S": "Betty's Baskets" },
+          "madeBy": { "S": "Mostly made underwater" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "baskets", "weaving", "hand-maid" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440013" },
+          "name": { "S": "Corn" },
+          "madeBy": { "S": "It has the juice" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "corn", "Nebraska", "Husk" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440014" },
+          "name": { "S": "Barry's Choppers" },
+          "madeBy": { "S": "Revving up the savings" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "motorcycle", "Harley-Davidson", "serial killers" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440015" },
+          "name": { "S": "Garrett's FreakOut" },
+          "madeBy": { "S": "Fun for the whole gang" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "Violent", "Sad", "Misunderstood" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440016" },
+          "name": { "S": "Paws And Talons" },
+          "madeBy": { "S": "only mammals and avians" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440004", "220e8400-e29b-41d4-a716-446655440005", "220e8400-e29b-41d4-a716-446655440006", "220e8400-e29b-41d4-a716-446655440007" ] },
+          "genres": { "SS": [ "birds", "tigers", "dogs" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440017" },
+          "name": { "S": "Forward Pass" },
+          "madeBy": { "S": "See all your favorite passes here" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440008", "220e8400-e29b-41d4-a716-446655440009", "220e8400-e29b-41d4-a716-446655440010", "220e8400-e29b-41d4-a716-446655440011" ] },
+          "genres": { "SS": [ "sportsBar", "gambling", "chicken wings" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440018" },
+          "name": { "S": "Just Burgers" },
+          "madeBy": { "S": "We only sell burgers" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440008", "220e8400-e29b-41d4-a716-446655440009", "220e8400-e29b-41d4-a716-446655440010", "220e8400-e29b-41d4-a716-446655440011" ] },
+          "genres": { "SS": [ "burgers", "pattie", "bun" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440019" },
+          "name": { "S": "Sports Cave" },
+          "madeBy": { "S": "Best cave in sports" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440008", "220e8400-e29b-41d4-a716-446655440009", "220e8400-e29b-41d4-a716-446655440010", "220e8400-e29b-41d4-a716-446655440011" ] },
+          "genres": { "SS": [ "jerseys", "athletic ware", "football" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440020" },
+          "name": { "S": "Shoots and Ladders" },
+          "madeBy": { "S": "Most vertical shooting range you've ever seen" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440008", "220e8400-e29b-41d4-a716-446655440009", "220e8400-e29b-41d4-a716-446655440010", "220e8400-e29b-41d4-a716-446655440011" ] },
+          "genres": { "SS": [ "USA", "eat lead", "zombies are real" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440021" },
+          "name": { "S": "The Blue Crab" },
+          "madeBy": { "S": "Your neighborhood favorite dive" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440008", "220e8400-e29b-41d4-a716-446655440009", "220e8400-e29b-41d4-a716-446655440010", "220e8400-e29b-41d4-a716-446655440011" ] },
+          "genres": { "SS": [ "cheap drinks", "billiards", "dirty bathrooms" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440022" },
+          "name": { "S": "Helena's Sanctuary" },
+          "madeBy": { "S": "We aren't anything like tiger king I assure you that" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440008", "220e8400-e29b-41d4-a716-446655440009", "220e8400-e29b-41d4-a716-446655440010", "220e8400-e29b-41d4-a716-446655440011" ] },
+          "genres": { "SS": [ "tigers", "lions", "bears" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440023" },
+          "name": { "S": "Strawberry Fields" },
+          "madeBy": { "S": "Closing Sale soon" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440008", "220e8400-e29b-41d4-a716-446655440009", "220e8400-e29b-41d4-a716-446655440010", "220e8400-e29b-41d4-a716-446655440011" ] },
+          "genres": { "SS": [ "everything", "must", "go" ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "550e8400-e29b-41d4-a716-446655440024" },
+          "name": { "S": "Pink Flamingo" },
+          "madeBy": { "S": "I wish I was in Miami" },
+          "charts": { "SS": [ "220e8400-e29b-41d4-a716-446655440008", "220e8400-e29b-41d4-a716-446655440009", "220e8400-e29b-41d4-a716-446655440010", "220e8400-e29b-41d4-a716-446655440011" ] },
+          "genres": { "SS": [ "Sun", "Cocktails", "Water" ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -39,6 +39,8 @@ public class GetChartActivity {
         String id = request.getId();
 
         Chart chart = dao.getChart(id);
+        log.info("Received id {}", id);
+
 
         return GetChartResult.builder()
                 .withId(id)
