@@ -43,8 +43,16 @@ class CreateChart extends BindingClass {
 
         const chartName = document.getElementById('chart-name').value;
         const artist = document.getElementById('artist').value;
-        // need to check to make sure it is a number
+
+        // need to check to make sure to style this later 
         const bpm = document.getElementById('bpm').value;
+        if (isNaN(bpm)) {
+            // The value is not numeric
+            this.displayWarning('BPM must be a numeric value.');
+            createButton.innerText = 'Create Chart';
+        }
+        else {
+
         const content = document.getElementById('content').value;
         const tagsText = document.getElementById('tags').value;
     
@@ -72,6 +80,7 @@ class CreateChart extends BindingClass {
             errorMessageDisplay.classList.remove('hidden');
         });
         this.dataStore.set('data', data);
+        }   
     }
 
     /**
@@ -82,6 +91,13 @@ class CreateChart extends BindingClass {
         if (chart != null) {
             window.location.href = `/chart.html?id=${chart.id}`;
         }
+    }
+    
+    displayWarning(message) {
+        const warningDiv = document.createElement('div');
+        warningDiv.textContent = message;
+        warningDiv.classList.add('warning');
+        document.body.appendChild(warningDiv);
     }
 }
 
