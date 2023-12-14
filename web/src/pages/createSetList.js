@@ -16,7 +16,7 @@ class CreateSetList extends BindingClass {
     }
 
     /**
-     * Add the header to the page and load the MusicPlaylistClient.
+     * Add the header to the page and load the JumanjiJamzClient.
      */
     mount() {
         document.getElementById('create').addEventListener('click', this.submit);
@@ -27,8 +27,8 @@ class CreateSetList extends BindingClass {
     }
 
     /**
-     * Method to run when the create playlist submit button is pressed. Call the MusicPlaylistService to create the
-     * playlist.
+     * Method to run when the create setList submit button is pressed. Call the JumanjiJamzService to create the
+     * setlist.
      */
     async submit(evt) {
         evt.preventDefault();
@@ -69,7 +69,7 @@ class CreateSetList extends BindingClass {
     }
 
     /**
-     * When the playlist is updated in the datastore, redirect to the view playlist page.
+     * When the setlist is updated in the datastore, redirect to the view setList page.
      */
     redirectToViewSetList() {
         const setList = this.dataStore.get('data');

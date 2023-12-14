@@ -100,13 +100,14 @@ export default class JumanjiJamzClient extends BindingClass {
     // Method to call createChart APi
     async createChart(chartDetails, errorCallback) {
         try {
-            const token = await this.getTokenOrThrow("Only authenticated users can create charts");
+            const token = await this.getTokenOrThrow("Must be logged in to cerate chart");
 
             const payload = {
                 name: chartDetails.name,
                 artist: chartDetails.artist,
                 content: chartDetails.content,
-                bpm: chartDetails.bpm
+                bpm: chartDetails.bpm,
+                genres: chartDetails.genres,
             };
 
             const response = await this.axiosClient.post(`charts/`, payload, {
@@ -124,14 +125,14 @@ export default class JumanjiJamzClient extends BindingClass {
     // Method to call createSetList API
     async createSetList(setListDetails, errorCallback) {
         try {
-            const token = await this.getTokenOrThrow("Only authenticated users can create setList");
+            const token = await this.getTokenOrThrow("Must be logged in to create setlis");
             console.log("token {}", token);
             const payload = {
                 name: setListDetails.name,
                 charts: setListDetails.charts,
                 genres: setListDetails.genres
             };
-            console.log("payload {}", payload);
+           
 
             const response = await this.axiosClient.post(`setlists`, payload, {
                 headers: {
