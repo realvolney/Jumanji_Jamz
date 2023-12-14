@@ -5,7 +5,7 @@ import Authenticator from "./authenticator";
 export default class JumanjiJamzClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow', 'handleError',
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'handleError',
             'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList', 'updateChart'];
         this.bindClassMethods(methodsToBind, this);
 
@@ -131,7 +131,11 @@ export default class JumanjiJamzClient extends BindingClass {
                 genres: setListDetails.genres
             };
 
-            const response = await this.axiosClient.post(`setlists`, payload, {
+            const response = await this.axiosClient.post(`setlists`, {
+                name: setListDetails.name,
+                charts: setListDetails.charts,
+                genres: setListDetails.genres
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -139,6 +143,7 @@ export default class JumanjiJamzClient extends BindingClass {
 
             return response.data;
         } catch(error) {
+          
             this.handleError(error, errorCallback);
         }
     }
@@ -170,7 +175,7 @@ export default class JumanjiJamzClient extends BindingClass {
                     Authorization: `Bearer ${token}`
                 }
             });
-            return response.data;
+            return response
         } catch (error) {
             this.handleError(error, errorCallback);
         }

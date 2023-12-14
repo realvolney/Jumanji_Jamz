@@ -59,13 +59,13 @@ class CreateSetList extends BindingClass {
         };
 
         console.log("payload {}", setListDetails);
-        
-        const setList = await this.client.createSetList(setListDetails, (error) => {
+
+        const data = await this.client.createSetList(setListDetails, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
-        this.dataStore.set('setList', setList);
+        this.dataStore.set('data', data);
     }
 
     /**
