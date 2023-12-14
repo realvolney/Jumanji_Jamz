@@ -41,7 +41,11 @@ class CreateChart extends BindingClass {
         const origButtonText = createButton.innerText;
         createButton.innerText = 'Loading...';
 
-        const chartName = document.getElementById('setList-name').value;
+        const chartName = document.getElementById('chart-name').value;
+        const artist = document.getElementById('artist').value;
+        // need to check to make sure it is a number
+        const bpm = document.getElementById('bpm').value;
+        const content = document.getElementById('content').value;
         const tagsText = document.getElementById('tags').value;
     
 
@@ -52,15 +56,17 @@ class CreateChart extends BindingClass {
             tags = tagsText.split(/\s*,\s*/);
         }
 
-        const setListDetails = {
-            name: setListName,
-            charts: null,
-            genres: tags
+        const chartDetails = {
+            name: chartName,
+            artist: artist,
+            bpm: bpm,
+            content: content,
+            genres: tags,
         };
 
-        console.log("payload {}", setListDetails);
+        console.log("payload {}", chartDetails);
         
-        const data = await this.client.createSetList(setListDetails, (error) => {
+        const data = await this.client.createChart(chartDetails, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
@@ -83,7 +89,7 @@ class CreateChart extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const ccreateChart = new CreateChart();
+    const createChart = new CreateChart();
     createChart.mount();
 };
 

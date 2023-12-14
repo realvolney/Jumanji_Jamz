@@ -106,7 +106,8 @@ export default class JumanjiJamzClient extends BindingClass {
                 name: chartDetails.name,
                 artist: chartDetails.artist,
                 content: chartDetails.content,
-                bpm: chartDetails.bpm
+                bpm: chartDetails.bpm,
+                genres: chartDetails.genres,
             };
 
             const response = await this.axiosClient.post(`charts/`, payload, {
@@ -131,7 +132,7 @@ export default class JumanjiJamzClient extends BindingClass {
                 charts: setListDetails.charts,
                 genres: setListDetails.genres
             };
-            console.log("payload {}", payload);
+           
 
             const response = await this.axiosClient.post(`setlists`, payload, {
                 headers: {
