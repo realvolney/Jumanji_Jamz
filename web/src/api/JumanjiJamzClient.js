@@ -1,6 +1,7 @@
 import axios from "axios";
 import BindingClass from "../util/bindingClass";
 import Authenticator from "./authenticator";
+import Header from "../components/header";
 
 export default class JumanjiJamzClient extends BindingClass {
     constructor(props = {}) {
@@ -130,12 +131,8 @@ export default class JumanjiJamzClient extends BindingClass {
                 charts: setListDetails.charts,
                 genres: setListDetails.genres
             };
-
-            const response = await this.axiosClient.post(`setlists`, {
-                name: setListDetails.name,
-                charts: setListDetails.charts,
-                genres: setListDetails.genres
-            }, {
+            
+            const response = await this.axiosClient.post(`setlists`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -202,5 +199,4 @@ export default class JumanjiJamzClient extends BindingClass {
         }
     }
 }
-
 
