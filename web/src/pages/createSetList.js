@@ -60,19 +60,19 @@ class CreateSetList extends BindingClass {
 
         console.log("payload {}", setListDetails);
         
-        const setList = await this.client.createSetList(setListDetails, (error) => {
+        const data = await this.client.createSetList(setListDetails, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
-        this.dataStore.set('setList', setList);
+        this.dataStore.set('data', data);
     }
 
     /**
      * When the playlist is updated in the datastore, redirect to the view playlist page.
      */
     redirectToViewSetList() {
-        const setList = this.dataStore.get('setList');
+        const setList = this.dataStore.get('data');
         if (setList != null) {
             window.location.href = `/setList.html?id=${setList.id}`;
         }

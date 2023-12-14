@@ -1,11 +1,12 @@
 import axios from "axios";
 import BindingClass from "../util/bindingClass";
 import Authenticator from "./authenticator";
+import Header from "../components/header";
 
 export default class JumanjiJamzClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow', 'handleError',
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'handleError',
             'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList', 'updateChart'];
         this.bindClassMethods(methodsToBind, this);
 
@@ -108,12 +109,12 @@ export default class JumanjiJamzClient extends BindingClass {
                 bpm: chartDetails.bpm
             };
 
-            const response = await this.axiosClient.post(`charts`, payload, {
+            const response = await this.axiosClient.post(`charts/`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-
+            console.log("response {}", response);
             return response.data;
         } catch (error) {
             this.handleError(error, errorCallback);
@@ -124,12 +125,13 @@ export default class JumanjiJamzClient extends BindingClass {
     async createSetList(setListDetails, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create setList");
-
+            console.log("token {}", token);
             const payload = {
                 name: setListDetails.name,
                 charts: setListDetails.charts,
                 genres: setListDetails.genres
             };
+            console.log("payload {}", payload);
 
             const response = await this.axiosClient.post(`setlists`, payload, {
                 headers: {
@@ -139,6 +141,7 @@ export default class JumanjiJamzClient extends BindingClass {
 
             return response.data;
         } catch(error) {
+          
             this.handleError(error, errorCallback);
         }
     }
@@ -170,7 +173,7 @@ export default class JumanjiJamzClient extends BindingClass {
                     Authorization: `Bearer ${token}`
                 }
             });
-            return response.data;
+            return response
         } catch (error) {
             this.handleError(error, errorCallback);
         }
@@ -197,5 +200,4 @@ export default class JumanjiJamzClient extends BindingClass {
         }
     }
 }
-
 

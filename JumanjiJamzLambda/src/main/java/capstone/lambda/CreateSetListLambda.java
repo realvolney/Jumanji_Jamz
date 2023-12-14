@@ -14,7 +14,7 @@ public class CreateSetListLambda
     extends LambdaActivityRunner<CreateSetListRequest, CreateSetListResult>
     implements RequestHandler<AuthenticatedLambdaRequest<CreateSetListRequest>, LambdaResponse> {
 
-    private final URLDecoder decoder = new URLDecoder();
+    private URLDecoder decoder = new URLDecoder();
     private Logger log = LogManager.getLogger();
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<CreateSetListRequest> input, Context context) {
