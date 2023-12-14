@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/createChart.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body class="background">
+    <header class="header" id="header"></header>
+    <div class="card">
+        <h2>Create Chart</h2>
+        <form class="card-content" id="create-chart-form">
+            <p class="hidden error" id="error-message"> </p>
+            <p class="form-field">
+                <label>Chart Name</label>
+                <input type="text" required class="validated-field" id="chart-name" placeholder="jumanji-jamz"
+                    autofocus>
+            </p>
+            <p class="form-field">
+                <label>Artist</label>
+                <input type="text" id="artist" class="tags" placeholder="artist-name"
+                    data-tip="Must be a comma separated list of tags">
+            </p>
+            <p class="form-field">
+                <label>BPM</label>
+                <input type="text" id="bpm" class="tags" placeholder="beats-per-minute"
+                    data-tip="Must be a comma separated list of tags">
+            </p>
+            <p class="form-field">
+                <label>Content</label>
+                <input type="text" id="content" class="tags" placeholder="chords"
+                    data-tip="Must be a comma separated list of tags">
+            </p>
+            <p class="form-field">
+                <label>Genres</label>
+                <input type="text" id="tags" class="tags" placeholder="genre1, genre2"
+                    data-tip="Must be a comma separated list of tags">
+            </p>
+            <p>
+                <a href="#" class="button" id="create">Create Chart</a>
+            </p>
+        </form>
+    </div>
+</body>
+
+</html>

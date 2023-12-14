@@ -100,7 +100,7 @@ export default class JumanjiJamzClient extends BindingClass {
     // Method to call createChart APi
     async createChart(chartDetails, errorCallback) {
         try {
-            const token = await this.getTokenOrThrow("Only authenticated users can create charts");
+            const token = await this.getTokenOrThrow("Must be logged in to cerate chart");
 
             const payload = {
                 name: chartDetails.name,
@@ -124,7 +124,7 @@ export default class JumanjiJamzClient extends BindingClass {
     // Method to call createSetList API
     async createSetList(setListDetails, errorCallback) {
         try {
-            const token = await this.getTokenOrThrow("Only authenticated users can create setList");
+            const token = await this.getTokenOrThrow("Must be logged in to create setlis");
             console.log("token {}", token);
             const payload = {
                 name: setListDetails.name,
