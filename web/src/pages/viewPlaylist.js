@@ -29,6 +29,7 @@ class ViewPlaylist extends BindingClass {
         document.getElementById('songs').innerText = "(loading songs...)";
         const songs = await this.client.getPlaylistSongs(playlistId);
         this.dataStore.set('songs', songs);
+        
     }
 
     /**
