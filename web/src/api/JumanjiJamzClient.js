@@ -109,12 +109,12 @@ export default class JumanjiJamzClient extends BindingClass {
                 bpm: chartDetails.bpm
             };
 
-            const response = await this.axiosClient.post(`charts`, payload, {
+            const response = await this.axiosClient.post(`charts/`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-
+            console.log("response {}", response);
             return response.data;
         } catch (error) {
             this.handleError(error, errorCallback);
@@ -125,13 +125,14 @@ export default class JumanjiJamzClient extends BindingClass {
     async createSetList(setListDetails, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create setList");
-
+            console.log("token {}", token);
             const payload = {
                 name: setListDetails.name,
                 charts: setListDetails.charts,
                 genres: setListDetails.genres
             };
-            
+            console.log("payload {}", payload);
+
             const response = await this.axiosClient.post(`setlists`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`

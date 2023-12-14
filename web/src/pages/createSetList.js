@@ -72,7 +72,7 @@ class CreateSetList extends BindingClass {
      * When the playlist is updated in the datastore, redirect to the view playlist page.
      */
     redirectToViewSetList() {
-        const setList = this.dataStore.get('setList');
+        const setList = this.dataStore.get('data');
         if (setList != null) {
             window.location.href = `/setList.html?id=${setList.id}`;
         }
