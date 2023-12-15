@@ -6,7 +6,7 @@ import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 
 import capstone.models.ChartModel;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,14 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.ScanResultPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import javax.accessibility.AccessibleText;
 
@@ -39,7 +37,6 @@ public class ChartDaoTest {
     @Mock
     private DynamoDBMapper mapper;
 
-    private String CREATE_SUCCESS = MetricsConstants.CREATE_CHART_SUCCESS_COUNT;
 
     @BeforeEach
     void setUp() {
@@ -233,6 +230,31 @@ public class ChartDaoTest {
 
         verify(mapper, times(1)).scanPage(eq(Chart.class), captor.capture());
 
+    }
+
+    @Test
+    void searchCharts_validArray_returnsList() {
+        // GIVEN
+        String[] criteria = {"hello", "governor"};
+        Chart chart1 = new Chart();
+        chart1.setName("hello");
+        Chart chart2 = new Chart();
+
+        chart2.setName("governor");
+        ArgumentCaptor<DynamoDBScanExpression> captor = ArgumentCaptor.forClass(DynamoDBScanExpression.class);
+        PaginatedScanList<Chart> expectedCharts = mock(PaginatedScanList.class);
+        expectedCharts.add(chart1);
+        expectedCharts.add(chart2);
+
+        when(mapper.scan(eq(Chart.class), captor.capture())).thenReturn(expectedCharts);
+
+        //WHEN
+        List<Chart> result = dao.searchCharts(criteria);
+        //THEN
+        for (int i = 0; i < result.size(); i++) {
+            assertEquals(expectedCharts.get(i).getName(), result.get(i).getName(), "Names should be equal");
+        }
+        verify(mapper, times(1)).scan(eq(Chart.class), captor.capture());
     }
 
 }

@@ -126,4 +126,54 @@ public class ChartDAO {
         metricsPublisher.addCount(MetricsConstants.GET_ALL_CHARTS_SUCCESS_COUNT, 1);
         return resultPage.getResults();
     }
+
+    /**
+     * Perform a search (via a "scan") of the charts table for charts matching the given criteria.
+     *
+     * Both "name" and "genres" attributes are searched.
+     * The criteria are an array of Strings. Each element of the array is search individually.
+     * ALL elements of the criteria array must appear in the name or the genres (or both).
+     * Searches are CASE SENSITIVE.
+     *
+     * @param criteria an array of String containing search criteria.
+     * @return a List of Playlist objects that match the search criteria.
+     */
+    public List<Chart> searchCharts(String[] criteria) {
+        DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();
+
+        if (criteria.length > 0) {
+            Map<String, AttributeValue> valueMap = new HashMap<>();
+            String valueMapNamePrefix = ":c";
+
+            StringBuilder nameFilter = new StringBuilder();
+            StringBuilder genresFilter = new StringBuilder();
+
+            for (int i = 0; i < criteria.length; i++) {
+                valueMap.put(valueMapNamePrefix + i,
+                        new AttributeValue().withS(criteria[i]));
+                nameFilter.append(
+                        filterExpressionPart("name", valueMapNamePrefix, i));
+                genresFilter.append(
+                        filterExpressionPart("genres", valueMapNamePrefix, i));
+            }
+
+            dynamoDBScanExpression.setExpressionAttributeValues(valueMap);
+            dynamoDBScanExpression.setFilterExpression(
+                    "(" + nameFilter + ") or (" + genresFilter + ")");
+        }
+
+        return this.mapper.scan(Chart.class, dynamoDBScanExpression);
+    }
+
+    private StringBuilder filterExpressionPart(String target, String valueMapNamePrefix, int position) {
+        String possiblyAnd = position == 0 ? "" : "and ";
+        return new StringBuilder()
+                .append(possiblyAnd)
+                .append("contains(")
+                .append(target)
+                .append(", ")
+                .append(valueMapNamePrefix).append(position)
+                .append(") ");
+    }
 }
+
