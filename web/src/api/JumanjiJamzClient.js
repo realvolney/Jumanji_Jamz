@@ -148,9 +148,9 @@ export default class JumanjiJamzClient extends BindingClass {
     }
 
     // Method for accessing the getAllCharts API
-    async getAllCharts(id, errorCallback) {
+    async getAllCharts(id, limit, errorCallback) {
         try {
-            const response = await this.axiosClient.get (`all/charts/${id}`);
+            const response = await this.axiosClient.get (`all/charts/${id}`, limit);
             return response.data;
         } catch (error) {
             this.handleError(error, errorCallback);
