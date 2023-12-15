@@ -74,7 +74,7 @@ class UpdateChart extends BindingClass {
         const content = document.getElementById('content').value;
         const tagsText = document.getElementById('tags').value;
     
-
+        
         let tags;
         if (tagsText.length < 1) {
             tags = null;

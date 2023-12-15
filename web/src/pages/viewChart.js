@@ -58,8 +58,13 @@ class ViewChart extends BindingClass {
 
         let tagHtml = '';
         let tag;
-        for( tag  of chart.genres) {
-            tagHtml += '<div class="tag">' + tag + '</div>';
+        if (!chart.genres) {
+            tag = null;
+        }
+        else {
+            for( tag  of chart.genres) {
+                tagHtml += '<div class="tag">' + tag + '</div>';
+            }
         }
         document.getElementById('tags').innerHTML = tagHtml;
     }

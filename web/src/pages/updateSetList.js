@@ -9,7 +9,7 @@ import DataStore from '../util/DataStore';
 class UpdateSetList extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'clientLoaded', 'submit', 'redirectToViewChart'], this);
+        this.bindClassMethods(['mount', 'clientLoaded', 'submit', 'redirectToViewSetList'], this);
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
     }
@@ -19,10 +19,10 @@ class UpdateSetList extends BindingClass {
      async clientLoaded() {
         this.client = new JumanjiJamzClient();
         const urlParams = new URLSearchParams(window.location.search);
-        const chartId = urlParams.get('id');
+        const setListId = urlParams.get('id');
         
-        document.getElementById('chart-name').innerText = "Loading Chart ..."
-        this.dataStore.set('id', chartId); 
+        document.getElementById('setList-name').innerText = "Loading Chart ..."
+        this.dataStore.set('id', setListId); 
     }
 
 
@@ -54,27 +54,15 @@ class UpdateSetList extends BindingClass {
         const origButtonText = updateButton.innerText;
         updateButton.innerText = 'Loading...';
 
-        const chartName = document.getElementById('chart-name').value;
-        if (!chartName) {
+        const setListName = document.getElementById('setList-name').value;
+        if (!setListName) {
             this.displayWarning('name must not be blank.');
-            updateButton.innerText = 'Update Chart';
-            return;
-        }
-        const artist = document.getElementById('artist').value;
-
-        // need to check to make sure to style this later 
-        const bpm = document.getElementById('bpm').value;
-        if (isNaN(bpm)) {
-            // The value is not numeric
-            this.displayWarning('BPM must be a numeric value.');
-            updateButton.innerText = 'Update Chart';
+            updateButton.innerText = 'Update SetList';
             return;
         }
         
-        const content = document.getElementById('content').value;
         const tagsText = document.getElementById('tags').value;
     
-
         let tags;
         if (tagsText.length < 1) {
             tags = null;
@@ -82,18 +70,15 @@ class UpdateSetList extends BindingClass {
             tags = tagsText.split(/\s*,\s*/);
         }
 
-        const chartDetails = {
-            name: chartName,
-            artist: artist,
-            bpm: bpm,
-            content: content,
+        const setListDetails = {
+            name: setListName,
             genres: tags,
         };
 
-        console.log("payload {}", chartDetails);
+        console.log("payload {}", setListDetails);
         const id = this.dataStore.get('id');
         
-        const data = await this.client.updateChart(id, chartDetails, (error) => {
+        const data = await this.client.updateSetList(id, setListDetails, (error) => {
             updateButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
@@ -105,10 +90,10 @@ class UpdateSetList extends BindingClass {
     /**
      * When the chart is updated in the datastore, redirect to the view chart page.
      */
-    redirectToViewChart() {
+    redirectToViewSetList() {
         const id = this.dataStore.get('id');
         if (id != null) {
-            window.location.href = `/chart.html?id=${id}`;
+            window.location.href = `/setlist.html?id=${id}`;
         }
     }
     
