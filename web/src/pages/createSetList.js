@@ -79,7 +79,7 @@ class CreateSetList extends BindingClass {
     redirectToViewSetList() {
         const setList = this.dataStore.get('data');
         if (setList != null) {
-            window.location.href = `/setList.html?id=${setList.id}`;
+            window.location.href = `/setlist.html?id=${setList.id}`;
         }
     }
     displayWarning(message) {

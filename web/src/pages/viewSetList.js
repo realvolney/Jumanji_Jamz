@@ -23,7 +23,7 @@ class ViewSetList extends BindingClass {
     async clientLoaded() {
         this.client = new JumanjiJamzClient();
         const urlParams = new URLSearchParams(window.location.search);
-        const setListId = urlParams.get('id');
+        const setListId = encodeURI(urlParams.get('id'));
         document.getElementById('setList-name').innerText = "Loading SetList ..."
         console.log(process.env.API_LOCATION);
 
