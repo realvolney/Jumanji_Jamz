@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ModelConverterTest {
     private ModelConverter modelConverter;
@@ -81,7 +81,7 @@ public class ModelConverterTest {
         setList = new SetList();
         setList.setId(String.valueOf(UUID.randomUUID()));
         setList.setName("name");
-        setList.setCharts(new HashSet<>(Arrays.asList("Yes", "No")));
+        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartList(4)));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
 
@@ -91,7 +91,12 @@ public class ModelConverterTest {
         // THEN
         assertEquals(result.getId(), setList.getId(), "ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
-        assertEquals(result.getCharts(), setList.getCharts(), "charts should be the same");
+
+        for (Chart chart : setList.getCharts()) {
+            ChartModel chartModel = modelConverter.toChartModel(chart);
+            assertTrue(result.getCharts().contains(chartModel));
+        }
+
         assertEquals(result.getGenres(), setList.getGenres(), "genres should equal");
         assertEquals(result.getMadeBy(), setList.getMadeBy(), "madeby should be same person");
     }
@@ -112,7 +117,7 @@ public class ModelConverterTest {
         // THEN
         assertEquals(result.getId(), setList.getId(), "ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
-        assertEquals(result.getCharts(), setList.getCharts(), "charts should be the same");
+        assertNull(result.getCharts(), "charts should be null");
         assertEquals(result.getGenres(), setList.getGenres(), "genres should equal");
         assertEquals(result.getMadeBy(), setList.getMadeBy(), "madeby should be same person");
     }

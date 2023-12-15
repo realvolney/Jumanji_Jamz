@@ -1,15 +1,17 @@
 package capstone.activity.results;
 
+import capstone.dynamodb.models.Chart;
+
 import java.util.Set;
 
 public class GetSetListResult {
     private String id;
     private String name;
-    private Set<String> charts;
+    private Set<Chart> charts;
     private Set<String> genres;
     private String madeBy;
 
-    private GetSetListResult(String id, String name, Set<String> charts,
+    private GetSetListResult(String id, String name, Set<Chart> charts,
                             Set<String> genres, String madeBy) {
         this.id = id;
         this.name = name;
@@ -26,7 +28,7 @@ public class GetSetListResult {
         return name;
     }
 
-    public Set<String> getCharts() {
+    public Set<Chart> getCharts() {
         return charts;
     }
 
@@ -56,7 +58,7 @@ public class GetSetListResult {
     public static class Builder {
         private String id;
         private String name;
-        private Set<String> charts;
+        private Set<Chart> charts;
         private Set<String> genres;
         private String madeBy;
 
@@ -70,7 +72,7 @@ public class GetSetListResult {
             return this;
         }
 
-        public Builder withCharts(Set<String> charts) {
+        public Builder withCharts(Set<Chart> charts) {
             this.charts = charts;
             return this;
         }

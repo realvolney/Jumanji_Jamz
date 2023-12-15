@@ -5,7 +5,6 @@ import capstone.helper.ChartTestHelper;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 
-import capstone.models.ChartModel;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.Arrays;
