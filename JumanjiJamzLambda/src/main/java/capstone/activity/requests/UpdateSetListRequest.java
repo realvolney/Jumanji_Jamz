@@ -1,7 +1,11 @@
 package capstone.activity.requests;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import java.util.Set;
 
+@JsonDeserialize(builder = UpdateSetListRequest.Builder.class)
 public class UpdateSetListRequest {
     private final String id;
     private final String name;
@@ -52,6 +56,8 @@ public class UpdateSetListRequest {
     //CHECKSTYLE:OFF:Builder
 
     public static Builder builder() { return new Builder(); }
+
+    @JsonPOJOBuilder
     public static class Builder {
         private String id;
         private String name;

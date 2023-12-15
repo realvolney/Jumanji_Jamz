@@ -4,7 +4,7 @@ import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
 /**
- * Logic needed for the create setList page of the website.
+ * Logic needed for the create Chart page of the website.
  */
 class CreateChart extends BindingClass {
     constructor() {
@@ -43,6 +43,12 @@ class CreateChart extends BindingClass {
 
         const chartName = document.getElementById('chart-name').value;
         const artist = document.getElementById('artist').value;
+
+        if (!chartName) {
+            this.displayWarning('name must not be blank.');
+            createButton.innerText = 'Create Chart';
+            return;
+        }
 
         // need to check to make sure to style this later 
         const bpm = document.getElementById('bpm').value;

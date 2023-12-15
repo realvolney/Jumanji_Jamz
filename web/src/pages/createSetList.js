@@ -43,6 +43,11 @@ class CreateSetList extends BindingClass {
 
         const setListName = document.getElementById('setList-name').value;
         const tagsText = document.getElementById('tags').value;
+        if (!setListName) {
+            this.displayWarning('name must not be blank.');
+            createButton.innerText = 'Create Setlist';
+            return;
+        }
     
 
         let tags;
@@ -76,6 +81,12 @@ class CreateSetList extends BindingClass {
         if (setList != null) {
             window.location.href = `/setList.html?id=${setList.id}`;
         }
+    }
+    displayWarning(message) {
+        const warningDiv = document.createElement('div');
+        warningDiv.textContent = message;
+        warningDiv.classList.add('warning');
+        document.body.appendChild(warningDiv);
     }
 }
 

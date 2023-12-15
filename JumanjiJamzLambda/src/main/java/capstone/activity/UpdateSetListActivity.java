@@ -61,12 +61,11 @@ public class UpdateSetListActivity {
         setList.setCharts(request.getCharts());
         setList.setGenres(request.getGenres());
         setList.setMadeBy(request.getMadeBy());
-
-        SetListModel model = converter.toSetListModel(dao.saveSetList(setList));
+        setList = dao.saveSetList(setList);
 
         publisher.addCount(MetricsConstants.UPDATE_SET_LIST_SUCCESS_COUNT, 1);
         return UpdateSetListResult.builder()
-                .withSetList(model)
+                .withSetList(converter.toSetListModel(setList))
                 .build();
     }
 }
