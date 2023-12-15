@@ -1,6 +1,7 @@
 package capstone.dynamodb.models;
 
-import capstone.converters.ListStringConverter;
+import capstone.converters.SetStringConverter;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
@@ -56,7 +57,7 @@ public class SetList {
      * Getter for charts.
      * @return charts
      */
-    @DynamoDBTypeConverted(converter = ListStringConverter.class)
+    @DynamoDBTypeConverted(converter = SetStringConverter.class)
     @DynamoDBAttribute(attributeName = "charts")
     public Set<Chart> getCharts() {
         return copyToSet(charts);
