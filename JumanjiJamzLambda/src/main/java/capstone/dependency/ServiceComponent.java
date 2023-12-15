@@ -5,8 +5,10 @@ import capstone.activity.CreateSetListActivity;
 import capstone.activity.GetAllChartsActivity;
 import capstone.activity.GetChartActivity;
 import capstone.activity.GetSetListActivity;
+import capstone.activity.SearchChartActivity;
 import capstone.activity.UpdateChartActivity;
 import capstone.activity.UpdateSetListActivity;
+
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -60,4 +62,10 @@ public interface ServiceComponent {
       * @return GetAllChartsActivity
       */
      GetAllChartsActivity provideGetAllChartsActivity();
+
+     /**
+      * Provides the relevant activity.
+      * @return SearchChartActivity
+      */
+     SearchChartActivity provideSearchChartActivity();
 }

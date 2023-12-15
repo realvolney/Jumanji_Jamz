@@ -9,17 +9,20 @@ import capstone.models.ChartModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Inject;
-
 import java.util.List;
 
-import static capstone.utils.NullUtils.ifNull;
+import javax.inject.Inject;
 
+import static capstone.utils.NullUtils.ifNull;
 public class SearchChartActivity {
 
     private final Logger log = LogManager.getLogger();
     private final ChartDAO dao;
 
+    /**
+     * Instantiates activity.
+     * @param dao ChartDao to access Charts table
+     */
     @Inject
     public SearchChartActivity(ChartDAO dao) {
         this.dao = dao;
