@@ -14,7 +14,7 @@ class UpdateSetList extends BindingClass {
         this.header = new Header(this.dataStore);
     }
      /**
-     * Once client is loaded, get the Chart and its metaData
+     * Once client is loaded, get the SetList Id 
      */
      async clientLoaded() {
         this.client = new JumanjiJamzClient();
@@ -40,7 +40,7 @@ class UpdateSetList extends BindingClass {
     }
 
     /**
-     * Method to run when the create chart submit button is pressed. Call the JumanjiJamzService to create the
+     * Method to run when the Update Setlist submit button is pressed. Call the JumanjiJamzService to create the
      * chart.
      */
     async submit(evt) {
@@ -88,7 +88,7 @@ class UpdateSetList extends BindingClass {
     }
 
     /**
-     * When the chart is updated in the datastore, redirect to the view chart page.
+     * When the setlist is updated in the datastore, redirect to the view setlist page.
      */
     redirectToViewSetList() {
         const id = this.dataStore.get('id');

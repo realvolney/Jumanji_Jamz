@@ -4,7 +4,7 @@ import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
 /**
- * Logic needed for the create setList page of the website.
+ * Logic needed for the create Chart page of the website.
  */
 class CreateChart extends BindingClass {
     constructor() {

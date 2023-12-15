@@ -42,7 +42,7 @@ class ViewChart extends BindingClass {
     }
 
     /**
-     * when chart is uupdated in datastore, it displays on page.
+     * when chart is updated in datastore, it displays on page.
      */
 
     async addChartToPage() {

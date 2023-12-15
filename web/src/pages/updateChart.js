@@ -4,7 +4,7 @@ import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
 /**
- * Logic needed for the create setList page of the website.
+ * Logic needed for the update chart page of the website.
  */
 class UpdateChart extends BindingClass {
     constructor() {
@@ -14,7 +14,7 @@ class UpdateChart extends BindingClass {
         this.header = new Header(this.dataStore);
     }
      /**
-     * Once client is loaded, get the Chart and its metaData
+     * Once client is loaded, get the Chart id
      */
      async clientLoaded() {
         this.client = new JumanjiJamzClient();
@@ -40,7 +40,7 @@ class UpdateChart extends BindingClass {
     }
 
     /**
-     * Method to run when the create chart submit button is pressed. Call the JumanjiJamzService to create the
+     * Method to run when the update chart submit button is pressed. Call the JumanjiJamzService to create the
      * chart.
      */
     async submit(evt) {

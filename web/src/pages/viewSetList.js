@@ -18,7 +18,7 @@ class ViewSetList extends BindingClass {
     }
 
     /**
-     * Once client is loaded, get the Chart and its metaData
+     * Once client is loaded, get the Setlist and its metaData
      */
     async clientLoaded() {
         this.client = new JumanjiJamzClient();
@@ -46,7 +46,7 @@ class ViewSetList extends BindingClass {
     }
 
     /**
-     * when chart is uupdated in datastore, it displays on page.
+     * when setList is uupdated in datastore, it displays on page.
      */
 
     async addSetListToPage() {
@@ -68,7 +68,7 @@ class ViewSetList extends BindingClass {
     }
 
     /**
-     * When the update is selected, redirect to the view chart page.
+     * When the update is selected, redirect to the view Setlist page.
      */
     redirectToUpdateSetList() {
         const id = this.dataStore.get('setList').id;
