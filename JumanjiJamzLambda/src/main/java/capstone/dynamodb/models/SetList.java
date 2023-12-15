@@ -1,12 +1,12 @@
 package capstone.dynamodb.models;
 
-import static capstone.utils.CollectionUtils.copyToSet;
-
-import java.util.Set;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+import java.util.Set;
+
+import static capstone.utils.CollectionUtils.copyToSet;
 
 
 /**

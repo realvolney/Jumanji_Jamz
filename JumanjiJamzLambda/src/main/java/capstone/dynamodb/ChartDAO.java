@@ -26,11 +26,10 @@ import javax.inject.Singleton;
 @Singleton
 public class ChartDAO {
 
-
+    private static final int PAGINATION_LIMIT = 4;
     private final DynamoDBMapper mapper;
     private final Logger log = LogManager.getLogger();
     private final MetricsPublisher metricsPublisher;
-    private final static int PAGINATION_LIMIT = 4;
 
     /**
      * Instantiates ChartDao object.
