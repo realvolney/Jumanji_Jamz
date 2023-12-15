@@ -45,7 +45,7 @@ class CreateSetList extends BindingClass {
         const tagsText = document.getElementById('tags').value;
         if (!setListName) {
             this.displayWarning('name must not be blank.');
-            updateButton.innerText = 'Create Setlist';
+            createButton.innerText = 'Create Setlist';
             return;
         }
     
@@ -81,6 +81,12 @@ class CreateSetList extends BindingClass {
         if (setList != null) {
             window.location.href = `/setList.html?id=${setList.id}`;
         }
+    }
+    displayWarning(message) {
+        const warningDiv = document.createElement('div');
+        warningDiv.textContent = message;
+        warningDiv.classList.add('warning');
+        document.body.appendChild(warningDiv);
     }
 }
 

@@ -46,7 +46,7 @@ class CreateChart extends BindingClass {
 
         if (!chartName) {
             this.displayWarning('name must not be blank.');
-            updateButton.innerText = 'Create Chart';
+            createButton.innerText = 'Create Chart';
             return;
         }
 

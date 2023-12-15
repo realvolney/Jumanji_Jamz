@@ -36,7 +36,7 @@ class UpdateSetList extends BindingClass {
 
         this.client = new JumanjiJamzClient();
         this.clientLoaded();
-        this.dataStore.addChangeListener(this.redirectToViewChart);
+        this.dataStore.addChangeListener(this.redirectToViewSetList);
     }
 
     /**
