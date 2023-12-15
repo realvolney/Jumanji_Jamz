@@ -73,9 +73,9 @@ class ViewChart extends BindingClass {
      * When the update is selected, redirect to the view chart page.
      */
     redirectToUpdateChart() {
-        const id = this.dataStore.get('chart').id;
-        if (id != null) {
-            window.location.href = `/updateChart.html?id=${id}`;
+        const chart = this.dataStore.get('chart');
+        if (chart != null) {
+            window.location.href = `/updateChart.html?id=${chart.id}`;
         }
     }
 }

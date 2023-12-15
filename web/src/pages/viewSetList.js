@@ -71,9 +71,9 @@ class ViewSetList extends BindingClass {
      * When the update is selected, redirect to the view Setlist page.
      */
     redirectToUpdateSetList() {
-        const id = this.dataStore.get('setList').id;
-        if (id != null) {
-            window.location.href = `/updateSetList.html?id=${id}`;
+        const setList = this.dataStore.get('setList');
+        if (setList != null) {
+            window.location.href = `/updateSetList.html?id=${setList.id}`;
         }
     }
 }
