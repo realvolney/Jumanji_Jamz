@@ -25,7 +25,7 @@ const EMPTY_DATASTORE_STATE = {
 /**
  * Logic needed for the view Chart page of the website.
  */
-class SearchPlaylists extends BindingClass {
+class SearchCharts extends BindingClass {
     constructor() {
         super();
 
@@ -104,11 +104,11 @@ class SearchPlaylists extends BindingClass {
 
     /**
      * Create appropriate HTML for displaying searchResults on the page.
-     * @param searchResults An array of playlists objects to be displayed on the page.
+     * @param searchResults An array of chart objects to be displayed on the page.
      * @returns A string of HTML suitable for being dropped on the page.
      */
     getHTMLForSearchResults(searchResults) {
-        if (searchResults.length === 0) {
+        if (!searchResults) {
             return '<h4>No results found</h4>';
         }
 
@@ -134,7 +134,7 @@ class SearchPlaylists extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const searchChart = new SearchChart();
+    const searchChart = new SearchCharts();
     searchChart.mount();
 };
 

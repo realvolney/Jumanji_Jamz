@@ -30,6 +30,7 @@ module.exports = {
     createSetList: path.resolve(__dirname, 'src', 'pages', 'createSetList.js'),
     updateChart: path.resolve(__dirname, 'src', 'pages', 'updateChart.js'),
     updateSetList: path.resolve(__dirname,'src', 'pages','updateSetList.js'),
+    searchCharts: path.resolve(__dirname,'src', 'pages','searchCharts.js'),
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),
