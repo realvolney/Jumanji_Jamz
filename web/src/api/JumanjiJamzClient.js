@@ -200,5 +200,20 @@ export default class JumanjiJamzClient extends BindingClass {
             this.handleError(error, errorCallback);
         }
     }
+
+    // Method for searching by CHart name and genres
+    async search(criteria, errorCallback) {
+        try {
+            const queryParams = new URLSearchParams({ q: criteria })
+            const queryString = queryParams.toString();
+
+            const response = await this.axiosClient.get(`chart/search?${queryString}`);
+
+            return response.data.charts;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+
+    }
 }
 
