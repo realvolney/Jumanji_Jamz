@@ -2,6 +2,7 @@ package capstone.dynamodb;
 
 import capstone.dynamodb.models.Chart;
 import capstone.dynamodb.models.SetList;
+import capstone.helper.ChartTestHelper;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
@@ -79,7 +80,7 @@ public class SetListDaoTest {
         SetList setList = new SetList();
         setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
-        setList.setCharts(new HashSet<>(Arrays.asList("New", "Sland")));
+        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartList(4)));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
 
@@ -124,7 +125,7 @@ public class SetListDaoTest {
         SetList setList = new SetList();
         setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
-        setList.setCharts(new HashSet<>(Arrays.asList("Hey", "Now")));
+        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartList(4)));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
         doNothing().when(mapper).save(setList);
@@ -151,7 +152,7 @@ public class SetListDaoTest {
         SetList setList = new SetList();
         setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
-        setList.setCharts(new HashSet<>(Arrays.asList("Hey", "Now")));
+        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartList(4)));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
 

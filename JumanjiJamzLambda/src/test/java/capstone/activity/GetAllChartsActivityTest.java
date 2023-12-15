@@ -37,10 +37,11 @@ public class GetAllChartsActivityTest {
         String id = "id";
         GetAllChartsRequest request = GetAllChartsRequest.builder()
                 .withId(id)
+                .withLimit(4)
                 .build();
         List<Chart> chartList = ChartTestHelper.generateChartList(4);
 
-        when(dao.getAllCharts(id)).thenReturn(chartList);
+        when(dao.getAllCharts(id, request.getLimit())).thenReturn(chartList);
         // WHEN
         GetAllChartsResult result = activity.handleRequest(request);
 

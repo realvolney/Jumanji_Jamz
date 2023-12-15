@@ -17,9 +17,10 @@ public class GetChartLambda extends LambdaActivityRunner<GetChartRequest, GetCha
     @Override
     public LambdaResponse handleRequest(LambdaRequest<GetChartRequest> input, Context context) {
         log.info("handleRequest");
+
         return super.runActivity(
             () -> input.fromPath(path ->
-                GetChartRequest.builder()
+                     GetChartRequest.builder()
                     .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
                     .build()),
             (getChartRequest, serviceComponent) ->

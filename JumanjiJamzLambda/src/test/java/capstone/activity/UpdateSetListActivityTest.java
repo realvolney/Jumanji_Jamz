@@ -1,11 +1,15 @@
 package capstone.activity;
 
 import capstone.activity.requests.UpdateSetListRequest;
+import capstone.converters.ModelConverter;
 import capstone.dynamodb.SetListDAO;
+import capstone.dynamodb.models.Chart;
 import capstone.dynamodb.models.SetList;
+import capstone.helper.ChartTestHelper;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 
+import capstone.models.ChartModel;
 import capstone.models.SetListModel;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -15,9 +19,11 @@ import org.mockito.Mock;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
@@ -40,18 +46,18 @@ public class UpdateSetListActivityTest {
     void handleRequest_validRequest_returnsResult (){
         // GIVEN
         String id = String.valueOf(UUID.randomUUID());
-
+        Set<Chart> expectedCharts = new HashSet<>(ChartTestHelper.generateChartList(4));
         SetList setList = new SetList();
         setList.setId(id);
         setList.setName("name");
-        setList.setCharts(new HashSet<>(Arrays.asList("Hey", "Now")));
+        setList.setCharts(expectedCharts);
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
 
         UpdateSetListRequest request = UpdateSetListRequest.builder()
                 .withId(id)
                 .withName("name")
-                .withCharts(new HashSet<>(Arrays.asList("Hey", "Now")))
+                .withCharts(expectedCharts)
                 .withGenres(new HashSet<>(Arrays.asList("Funk", "Soul")))
                 .withMadeBy("me")
                 .build();
@@ -64,7 +70,11 @@ public class UpdateSetListActivityTest {
         // THEN
         assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
-        assertEquals(result.getCharts(), setList.getCharts(), "Charts should be equal");
+        for (Chart chart : setList.getCharts()) {
+            ChartModel chartModel = new ModelConverter().toChartModel(chart);
+            assertTrue(result.getCharts().contains(chartModel));
+        }
+
         assertEquals(result.getGenres(), setList.getGenres(), "Genres should be equal");
         assertEquals(result.getMadeBy(), setList.getMadeBy(), "MadeBY should be equal");
 

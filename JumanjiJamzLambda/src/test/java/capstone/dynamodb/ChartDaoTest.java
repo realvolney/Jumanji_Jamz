@@ -5,7 +5,6 @@ import capstone.helper.ChartTestHelper;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 
-import capstone.models.ChartModel;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.Arrays;
@@ -36,6 +35,8 @@ public class ChartDaoTest {
 
     @Mock
     private DynamoDBMapper mapper;
+
+    private static final int PAGINIATION_LIMIT = 4;
 
 
     @BeforeEach
@@ -194,7 +195,7 @@ public class ChartDaoTest {
     void getAllCharts_validId_returnsList() {
         // GIVEN
         String id = "id";
-        List<Chart> expectedResult = ChartTestHelper.generateChartList(4);
+        List<Chart> expectedResult = ChartTestHelper.generateChartList(PAGINIATION_LIMIT);
         ArgumentCaptor<DynamoDBScanExpression> captor = ArgumentCaptor.forClass(DynamoDBScanExpression.class);
 
         ScanResultPage<Chart> resultPage = new ScanResultPage<>();
@@ -202,7 +203,7 @@ public class ChartDaoTest {
         when(mapper.scanPage(eq(Chart.class), captor.capture())).thenReturn(resultPage);
 
         // WHEN
-        List<Chart> result = dao.getAllCharts(id);
+        List<Chart> result = dao.getAllCharts(id, PAGINIATION_LIMIT );
         System.out.println(captor);
         // THEN
         assertEquals(result, resultPage.getResults(), "Lists should contain same elements");
@@ -217,13 +218,13 @@ public class ChartDaoTest {
     void getAllCharts_tableContainsNoItems_returnsList() {
         // GIVEN
         String id = "invalid";
-        List<Chart> expectedResult = ChartTestHelper.generateChartList(4);
+        List<Chart> expectedResult = ChartTestHelper.generateChartList(PAGINIATION_LIMIT);
         ArgumentCaptor<DynamoDBScanExpression> captor = ArgumentCaptor.forClass(DynamoDBScanExpression.class);
 
         when(mapper.scanPage(eq(Chart.class), captor.capture())).thenReturn(null);
 
         // WHEN
-        List<Chart> result = dao.getAllCharts(id);
+        List<Chart> result = dao.getAllCharts(id, PAGINIATION_LIMIT);
         System.out.println(captor);
         // THEN
         assertNull(result, "result should be null");

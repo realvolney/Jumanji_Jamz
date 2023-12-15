@@ -1,5 +1,6 @@
 package capstone.activity.requests;
 
+import capstone.dynamodb.models.Chart;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import org.apache.logging.log4j.LogManager;
@@ -12,12 +13,12 @@ import static capstone.utils.CollectionUtils.copyToSet;
 @JsonDeserialize(builder = CreateSetListRequest.Builder.class)
 public class CreateSetListRequest {
     private final String name;
-    private final Set<String> charts;
+    private final Set<Chart> charts;
     private final Set<String> genres;
     private final String madeBy;
     private Logger log = LogManager.getLogger();
 
-    private CreateSetListRequest(String name, Set<String> charts, Set<String> genres, String madeBy) {
+    private CreateSetListRequest(String name, Set<Chart> charts, Set<String> genres, String madeBy) {
 
         this.name = name;
         log.info("name {}", name);
@@ -35,7 +36,7 @@ public class CreateSetListRequest {
         return name;
     }
 
-    public Set<String> getCharts() {
+    public Set<Chart> getCharts() {
         return charts;
     }
 
@@ -65,7 +66,7 @@ public class CreateSetListRequest {
     @JsonPOJOBuilder
     public static class Builder {
         private String name;
-        private Set<String> charts;
+        private Set<Chart> charts;
         private Set<String> genres;
         private String madeBy;
 
@@ -74,7 +75,7 @@ public class CreateSetListRequest {
             return this;
         }
 
-        public Builder withCharts(Set<String> charts) {
+        public Builder withCharts(Set<Chart> charts) {
             this.charts = copyToSet(charts);
             return this;
         }
