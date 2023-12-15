@@ -44,6 +44,12 @@ class CreateChart extends BindingClass {
         const chartName = document.getElementById('chart-name').value;
         const artist = document.getElementById('artist').value;
 
+        if (!chartName) {
+            this.displayWarning('name must not be blank.');
+            updateButton.innerText = 'Create Chart';
+            return;
+        }
+
         // need to check to make sure to style this later 
         const bpm = document.getElementById('bpm').value;
         if (isNaN(bpm)) {

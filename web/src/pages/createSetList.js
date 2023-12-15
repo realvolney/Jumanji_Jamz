@@ -43,6 +43,11 @@ class CreateSetList extends BindingClass {
 
         const setListName = document.getElementById('setList-name').value;
         const tagsText = document.getElementById('tags').value;
+        if (!setListName) {
+            this.displayWarning('name must not be blank.');
+            updateButton.innerText = 'Create Setlist';
+            return;
+        }
     
 
         let tags;

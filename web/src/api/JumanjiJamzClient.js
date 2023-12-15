@@ -169,7 +169,7 @@ export default class JumanjiJamzClient extends BindingClass {
                 genres: chartDetails.genres
             };
 
-            const response = await this.put(`charts/${id}`, payload, {
+            const response = await this.axiosClient.put(`charts/${id}`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -190,7 +190,7 @@ export default class JumanjiJamzClient extends BindingClass {
                 genres: setListDetails.genres
             };
 
-            const response = await this.put(`setlists/${id}`, payload, {
+            const response = await this.axiosClient.put(`setlists/${id}`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

@@ -50,11 +50,16 @@ class UpdateChart extends BindingClass {
         errorMessageDisplay.innerText = ``;
         errorMessageDisplay.classList.add('hidden');
 
-        const createButton = document.getElementById('create');
-        const origButtonText = createButton.innerText;
-        createButton.innerText = 'Loading...';
+        const updateButton = document.getElementById('update');
+        const origButtonText = updateButton.innerText;
+        updateButton.innerText = 'Loading...';
 
         const chartName = document.getElementById('chart-name').value;
+        if (!chartName) {
+            this.displayWarning('name must not be blank.');
+            updateButton.innerText = 'Update Chart';
+            return;
+        }
         const artist = document.getElementById('artist').value;
 
         // need to check to make sure to style this later 
@@ -62,10 +67,10 @@ class UpdateChart extends BindingClass {
         if (isNaN(bpm)) {
             // The value is not numeric
             this.displayWarning('BPM must be a numeric value.');
-            createButton.innerText = 'Create Chart';
+            updateButton.innerText = 'Update Chart';
+            return;
         }
-        else {
-
+        
         const content = document.getElementById('content').value;
         const tagsText = document.getElementById('tags').value;
     
@@ -89,12 +94,12 @@ class UpdateChart extends BindingClass {
         const id = this.dataStore.get('id');
         
         const data = await this.client.updateChart(id, chartDetails, (error) => {
-            createButton.innerText = origButtonText;
+            updateButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
         this.dataStore.set('data', data);
-        }   
+         
     }
 
     /**
