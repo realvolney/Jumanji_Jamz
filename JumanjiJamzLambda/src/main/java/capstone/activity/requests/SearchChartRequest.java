@@ -1,4 +1,4 @@
-package capstone.activity.results;
+package capstone.activity.requests;
 
 public class SearchChartRequest {
     private final String criteria;
