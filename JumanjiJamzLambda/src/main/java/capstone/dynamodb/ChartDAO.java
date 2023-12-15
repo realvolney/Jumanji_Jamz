@@ -103,6 +103,7 @@ public class ChartDAO {
     /**
      * Gets a list of charts for chart  table.
      * @param id exclusiveKey to start the paginated list
+     * @param limit the pagination limit of the List returned
      * @return List of charts
      */
     public List<Chart> getAllCharts(String id, int limit) {
