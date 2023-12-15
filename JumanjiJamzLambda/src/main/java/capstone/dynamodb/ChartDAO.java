@@ -26,7 +26,7 @@ import javax.inject.Singleton;
 @Singleton
 public class ChartDAO {
 
-    private static final int PAGINATION_LIMIT = 4;
+
     private final DynamoDBMapper mapper;
     private final Logger log = LogManager.getLogger();
     private final MetricsPublisher metricsPublisher;
@@ -105,7 +105,7 @@ public class ChartDAO {
      * @param id exclusiveKey to start the paginated list
      * @return List of charts
      */
-    public List<Chart> getAllCharts(String id) {
+    public List<Chart> getAllCharts(String id, int limit) {
         Map<String, AttributeValue> valueMap = null;
 
         if (id != null && !id.isBlank()) {
@@ -115,7 +115,7 @@ public class ChartDAO {
 
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
                 .withExclusiveStartKey(valueMap)
-                .withLimit(PAGINATION_LIMIT);
+                .withLimit(limit);
 
         ScanResultPage<Chart> resultPage = mapper.scanPage(Chart.class, scanExpression);
 
