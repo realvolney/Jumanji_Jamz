@@ -1,10 +1,11 @@
 package capstone.lambda;
 
-import capstone.lambda.UpdateChartLambda;
 import capstone.activity.requests.UpdateChartRequest;
 import capstone.activity.results.UpdateChartResult;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,11 +25,11 @@ public class UpdateChartLambda extends LambdaActivityRunner<UpdateChartRequest, 
                 UpdateChartRequest unauthenticatedRequest = input.fromBody(UpdateChartRequest.class);
                 log.info("unauthenticateRequest {}", unauthenticatedRequest);
 
-                UpdateChartRequest claimsRequest = input.fromUserClaims((claims) -> UpdateChartRequest.builder()
+                UpdateChartRequest claimsRequest = input.fromUserClaims(claims -> UpdateChartRequest.builder()
                         .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
                         .build());
                 log.info("claimsRequest {}", claimsRequest);
-                return input.fromPath((path) ->
+                return input.fromPath(path ->
                     UpdateChartRequest.builder()
                         .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
                         .withName(unauthenticatedRequest.getName())
@@ -39,9 +40,9 @@ public class UpdateChartLambda extends LambdaActivityRunner<UpdateChartRequest, 
                         .withMadeBy(claimsRequest.getMadeBy())
                         .build());
 
-                },
-                ((updateChartRequest, serviceComponent) ->
-                        serviceComponent.provideUpdateChartActivity().handleRequest(updateChartRequest))
+            },
+            (updateChartRequest, serviceComponent) ->
+                serviceComponent.provideUpdateChartActivity().handleRequest(updateChartRequest)
         );
     }
 }

@@ -29,9 +29,9 @@ public class GetChartActivity {
     }
 
     /**
-     * Handles incoming request to retrieve one chart by id
-     * @param request the request object
-     * @return the result objects containing all the chart item attributes.
+     * Handles incoming request to retrieve one chart by id.
+     * @param request GetChartRequest object containing key.
+     * @return GetChartResult object containing all the chart item attributes.
      */
     public GetChartResult handleRequest(final GetChartRequest request) {
         log.info("Received GetChartRequest {}", request);

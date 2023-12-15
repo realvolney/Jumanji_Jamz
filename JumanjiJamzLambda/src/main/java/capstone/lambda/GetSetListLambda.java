@@ -21,12 +21,12 @@ public class GetSetListLambda extends LambdaActivityRunner<GetSetListRequest, Ge
     public LambdaResponse handleRequest(LambdaRequest<GetSetListRequest> input, Context context) {
         log.info("handleRequest");
         return super.runActivity(
-                () -> input.fromPath(path ->
-                        GetSetListRequest.builder()
-                                .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
-                                .build()),
-                (request, serviceComponent) ->
-                        serviceComponent.provideGetSetListActivity().handleRequest(request)
+            () -> input.fromPath(path ->
+                GetSetListRequest.builder()
+                    .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
+                    .build()),
+            (request, serviceComponent) ->
+                serviceComponent.provideGetSetListActivity().handleRequest(request)
         );
     }
 }

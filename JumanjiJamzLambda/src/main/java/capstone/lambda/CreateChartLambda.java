@@ -16,21 +16,20 @@ public class CreateChartLambda
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<CreateChartRequest> input, Context context) {
         return super.runActivity(
-                () -> {
-                    CreateChartRequest unauthenticatedRequest = input.fromBody(CreateChartRequest.class);
-                    return input.fromUserClaims(claims ->
-                            CreateChartRequest.builder()
-                                    .withName(unauthenticatedRequest.getName())
-                                    .withArtist(unauthenticatedRequest.getArtist())
-                                    .withContent(unauthenticatedRequest.getContent())
-                                    .withBpm(unauthenticatedRequest.getBpm())
-                                    .withGenres(unauthenticatedRequest.getGenres())
-                                    .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
-                                    .build());
-
-                },
-                (request, serviceComponent) ->
-                        serviceComponent.provideCreateCharActivity().handleRequest(request)
+            () -> {
+                CreateChartRequest unauthenticatedRequest = input.fromBody(CreateChartRequest.class);
+                return input.fromUserClaims(claims ->
+                    CreateChartRequest.builder()
+                        .withName(unauthenticatedRequest.getName())
+                        .withArtist(unauthenticatedRequest.getArtist())
+                        .withContent(unauthenticatedRequest.getContent())
+                        .withBpm(unauthenticatedRequest.getBpm())
+                        .withGenres(unauthenticatedRequest.getGenres())
+                        .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
+                        .build());
+            },
+            (request, serviceComponent) ->
+                serviceComponent.provideCreateCharActivity().handleRequest(request)
 
         );
     }

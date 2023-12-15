@@ -1,37 +1,39 @@
 package capstone.dynamodb;
 
-import capstone.converters.ModelConverter;
 import capstone.dynamodb.models.Chart;
-import capstone.lambda.GetChartLambda;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
-import capstone.models.ChartModel;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.ScanResultPage;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.*;
 
 /**
- * Accesses data for a chart using {@Link Chart} to represent the model in DynamoDB
+ * Accesses data for a chart using {@Link Chart} to represent the model in DynamoDB.
  */
-
 @Singleton
 public class ChartDAO {
 
-    private final MetricsPublisher metricsPublisher;
+
     private final DynamoDBMapper mapper;
     private final Logger log = LogManager.getLogger();
-    private final ModelConverter converter = new ModelConverter();
-    private static final int PAGINATION_LIMIT = 4;
+    private final MetricsPublisher metricsPublisher;
+    private final static int PAGINATION_LIMIT = 4;
 
     /**
-     * Instantiates ChartDao object
+     * Instantiates ChartDao object.
      * @param metricsPublisher the {@link DynamoDBMapper} used to interact with the Charts table
      * @param mapper the {@link MetricsPublisher} used to record metrics.
      */
@@ -63,7 +65,7 @@ public class ChartDAO {
     }
 
     /**
-     * Gets one chart from the database
+     * Gets one chart from the database.
      * @param id is the id of the chart to be found
      * @return the chart
      */
@@ -82,7 +84,7 @@ public class ChartDAO {
     }
 
     /**
-     * Saves chart to the dataBase
+     * Saves chart to the dataBase.
      * @param chart the Chart to be saved on Charts
      * @return Chart that was saved
      */
@@ -99,10 +101,15 @@ public class ChartDAO {
         return chart;
     }
 
+    /**
+     * Gets a list of charts for chart  table.
+     * @param id exclusiveKey to start the paginated list
+     * @return List of charts
+     */
     public List<Chart> getAllCharts(String id) {
         Map<String, AttributeValue> valueMap = null;
 
-        if(id != null && !id.isBlank()) {
+        if (id != null && !id.isBlank()) {
             valueMap = new HashMap<>();
             valueMap.put("id", new AttributeValue().withS(id));
         }

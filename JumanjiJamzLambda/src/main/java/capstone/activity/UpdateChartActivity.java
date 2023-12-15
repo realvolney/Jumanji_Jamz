@@ -22,9 +22,9 @@ public class UpdateChartActivity {
     private ModelConverter converter = new ModelConverter();
 
     /**
-     * Instantiates UpdateChartActivity
-     * @param dao
-     * @param publisher
+     * Instantiates UpdateChartActivity.
+     * @param dao ChartDao to access Charts table.
+     * @param publisher MetricsPublisher for publishing metrics.
      */
     @Inject
     public UpdateChartActivity(ChartDAO dao, MetricsPublisher publisher) {
@@ -33,9 +33,9 @@ public class UpdateChartActivity {
     }
 
     /**
-     * HandleRequest method
-     * @param request UpdateChartRequest to be processed
-     * @return UpdateChartResult with updated chart
+     * HandleRequest method for UpdateChartActivity.
+     * @param request UpdateChartRequest to be processed.
+     * @return UpdateChartResult with updated chart.
      */
     public UpdateChartResult handleRequest(final UpdateChartRequest request) {
         log.info("Received UpdateChartActivity request", request);
@@ -49,7 +49,7 @@ public class UpdateChartActivity {
         }
         Chart chart = dao.getChart(request.getId());
 
-        if(!chart.getMadeBy().equals(request.getMadeBy())) {
+        if (!chart.getMadeBy().equals(request.getMadeBy())) {
             log.error(String.format("User: '%s' does not own chart: '%s'",
                     request.getMadeBy(), request.getId()));
             publisher.addCount(MetricsConstants.UPDATE_CHART_SUCCESS_COUNT, 0);

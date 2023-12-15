@@ -8,18 +8,27 @@ import capstone.dynamodb.models.Chart;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Inject;
 import java.util.UUID;
 
+import javax.inject.Inject;
 public class CreateChartActivity {
     private final Logger log = LogManager.getLogger();
     private final ChartDAO dao;
 
+    /**
+     * Instantiates CreateChartActivity.
+     * @param dao ChartDAO to access Charts table.
+     */
     @Inject
     public CreateChartActivity(ChartDAO dao) {
         this.dao = dao;
     }
 
+    /**
+     * HandleRequest method.
+     * @param request CreateChartRequest with necessary fields to create chart.
+     * @return CreateChartResult with a boolean if it was successful, the id and person who made it.
+     */
     public CreateChartResult handleRequest(final CreateChartRequest request) {
         log.info("Received CreateChartRequest {}", request);
 

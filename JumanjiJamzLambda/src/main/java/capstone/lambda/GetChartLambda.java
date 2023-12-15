@@ -18,12 +18,12 @@ public class GetChartLambda extends LambdaActivityRunner<GetChartRequest, GetCha
     public LambdaResponse handleRequest(LambdaRequest<GetChartRequest> input, Context context) {
         log.info("handleRequest");
         return super.runActivity(
-                () -> input.fromPath(path ->
-                        GetChartRequest.builder()
-                                .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
-                                .build()),
-                ((getChartRequest, serviceComponent) ->
-                        serviceComponent.provideGetChartActivity().handleRequest(getChartRequest))
+            () -> input.fromPath(path ->
+                GetChartRequest.builder()
+                    .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
+                    .build()),
+            (getChartRequest, serviceComponent) ->
+                serviceComponent.provideGetChartActivity().handleRequest(getChartRequest)
         );
     }
 }

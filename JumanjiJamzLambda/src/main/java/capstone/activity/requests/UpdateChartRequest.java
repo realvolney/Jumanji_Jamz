@@ -1,17 +1,15 @@
 package capstone.activity.requests;
 
-import capstone.activity.requests.CreateChartRequest;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-
 
 import java.util.Set;
 
 import static capstone.utils.CollectionUtils.copyToSet;
 
 /**
- * This class represents a request to update a chart
- * It is used as part of the UpdateChartActivity
+ * This class represents a request to update a chart.
+ * It is used as part of the UpdateChartActivity.
  */
 @JsonDeserialize(builder = UpdateChartRequest.Builder.class)
 public class UpdateChartRequest {
