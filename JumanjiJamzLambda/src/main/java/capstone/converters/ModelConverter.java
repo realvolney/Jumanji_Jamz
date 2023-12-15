@@ -11,6 +11,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static capstone.utils.CollectionUtils.copyToList;
+import static capstone.utils.CollectionUtils.copyToSet;
+
 /**
  * Converts between Data and API models.
  */
@@ -61,7 +64,7 @@ public class ModelConverter {
         return SetListModel.builder()
                .withId(setList.getId())
                .withName(setList.getName())
-               .withCharts(setList.getCharts())
+               .withCharts(toChartModelList(new ArrayList<>(setList.getCharts())))
                .withGenres(setList.getGenres())
                .withMadeBy(setList.getMadeBy())
                .build();

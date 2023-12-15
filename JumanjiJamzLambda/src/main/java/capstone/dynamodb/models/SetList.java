@@ -16,7 +16,7 @@ import static capstone.utils.CollectionUtils.copyToSet;
 public class SetList {
     private String id;
     private String name;
-    private Set<String> charts;
+    private Set<Chart> charts;
     private Set<String> genres;
     private String madeBy;
 
@@ -55,7 +55,7 @@ public class SetList {
      * @return charts
      */
     @DynamoDBAttribute(attributeName = "charts")
-    public Set<String> getCharts() {
+    public Set<Chart> getCharts() {
         return copyToSet(charts);
     }
 
@@ -63,7 +63,7 @@ public class SetList {
      * Setter for charts.
      * @param charts to be set
      */
-    public void setCharts(Set<String> charts) {
+    public void setCharts(Set<Chart> charts) {
         this.charts = charts; }
 
     /**

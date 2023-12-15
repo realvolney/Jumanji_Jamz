@@ -6,11 +6,11 @@ import java.util.Set;
 public class SetListModel {
     private final String id;
     private final String name;
-    private final Set<String> charts;
+    private final Set<ChartModel> charts;
     private final Set<String> genres;
     private final String madeBy;
 
-    private SetListModel(String id, String name, Set<String> charts, Set<String> genres, String madeBy) {
+    private SetListModel(String id, String name, Set<ChartModel> charts, Set<String> genres, String madeBy) {
         this.id = id;
         this.name = name;
         this.charts = charts;
@@ -26,7 +26,7 @@ public class SetListModel {
         return name;
     }
 
-    public Set<String> getCharts() {
+    public Set<ChartModel> getCharts() {
         return charts;
     }
 
@@ -61,7 +61,7 @@ public class SetListModel {
     public static class Builder {
         private String id;
         private String name;
-        private Set<String> charts;
+        private Set<ChartModel> charts;
         private Set<String> genres;
         private String madeBy;
 
@@ -75,7 +75,7 @@ public class SetListModel {
             return this;
         }
 
-        public Builder withCharts(Set<String> charts) {
+        public Builder withCharts(Set<ChartModel> charts) {
             this.charts = charts;
             return this;
         }
