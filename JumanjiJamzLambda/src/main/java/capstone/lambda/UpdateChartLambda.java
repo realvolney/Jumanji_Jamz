@@ -18,27 +18,25 @@ public class UpdateChartLambda extends LambdaActivityRunner<UpdateChartRequest, 
     private final Logger log = LogManager.getLogger();
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<UpdateChartRequest> input, Context context) {
+        log.info("Recieved input {}", input);
         return super.runActivity(
             () -> {
                 UpdateChartRequest unauthenticatedRequest = input.fromBody(UpdateChartRequest.class);
-//                log.info("id {}", unauthenticatedRequest.getId());
-//                log.info("name {}", unauthenticatedRequest.getName());
-//                log.info("artist {}", unauthenticatedRequest.getArtist());
-//                log.info("BPM {}", unauthenticatedRequest.getBpm());
-//                log.info("content {}", unauthenticatedRequest.getContent());
-//                log.info("genres {}", unauthenticatedRequest.getGenres());
-//                log.info("madeBy {}", unauthenticatedRequest.getMadeBy());
+                log.info("unauthenticateRequest {}", unauthenticatedRequest);
 
-//                log.info("Raw JSON payload: {}", input.getBody());
-                return input.fromUserClaims(claims ->
+                UpdateChartRequest claimsRequest = input.fromUserClaims((claims) -> UpdateChartRequest.builder()
+                        .withMadeBy(claims.get("email"))
+                        .build());
+                log.info("claimsRequest {}", claimsRequest);
+                return input.fromPath((path) ->
                     UpdateChartRequest.builder()
-                        .withId(unauthenticatedRequest.getId())
+                        .withId(path.get("id"))
                         .withName(unauthenticatedRequest.getName())
                         .withArtist(unauthenticatedRequest.getArtist())
                         .withBpm(unauthenticatedRequest.getBpm())
                         .withContent(unauthenticatedRequest.getContent())
                         .withGenres(unauthenticatedRequest.getGenres())
-                        .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
+                        .withMadeBy(claimsRequest.getMadeBy())
                         .build());
 
                 },
