@@ -37,7 +37,7 @@ public class CreateSetListActivity {
 
         // Check for invalid characters in the name
         if (!name.matches("[a-zA-Z0-9 ]*")) {
-            throw new IllegalArgumentException("Invalid characters in the vendor name.");
+            throw new IllegalArgumentException("Invalid characters in the setlist name.");
         }
         UUID id = UUID.randomUUID();
 
