@@ -25,12 +25,12 @@ public class UpdateChartLambda extends LambdaActivityRunner<UpdateChartRequest, 
                 log.info("unauthenticateRequest {}", unauthenticatedRequest);
 
                 UpdateChartRequest claimsRequest = input.fromUserClaims((claims) -> UpdateChartRequest.builder()
-                        .withMadeBy(claims.get("email"))
+                        .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
                         .build());
                 log.info("claimsRequest {}", claimsRequest);
                 return input.fromPath((path) ->
                     UpdateChartRequest.builder()
-                        .withId(path.get("id"))
+                        .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
                         .withName(unauthenticatedRequest.getName())
                         .withArtist(unauthenticatedRequest.getArtist())
                         .withBpm(unauthenticatedRequest.getBpm())
