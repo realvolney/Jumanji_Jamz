@@ -80,7 +80,7 @@ public class SetListDaoTest {
         SetList setList = new SetList();
         setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
-        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartList(4)));
+        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartModelList(4)));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
 
@@ -125,7 +125,7 @@ public class SetListDaoTest {
         SetList setList = new SetList();
         setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
-        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartList(4)));
+        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartModelList(4)));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
         doNothing().when(mapper).save(setList);
@@ -152,7 +152,7 @@ public class SetListDaoTest {
         SetList setList = new SetList();
         setList.setId(String.valueOf(UUID.fromString(id)));
         setList.setName("name");
-        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartList(4)));
+        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartModelList(4)));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
 

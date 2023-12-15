@@ -2,6 +2,7 @@ package capstone.dynamodb.models;
 
 import capstone.converters.SetStringConverter;
 
+import capstone.models.ChartModel;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
@@ -19,7 +20,7 @@ import static capstone.utils.CollectionUtils.copyToSet;
 public class SetList {
     private String id;
     private String name;
-    private Set<Chart> charts;
+    private Set<ChartModel> charts;
     private Set<String> genres;
     private String madeBy;
 
@@ -59,7 +60,7 @@ public class SetList {
      */
     @DynamoDBTypeConverted(converter = SetStringConverter.class)
     @DynamoDBAttribute(attributeName = "charts")
-    public Set<Chart> getCharts() {
+    public Set<ChartModel> getCharts() {
         return copyToSet(charts);
     }
 
@@ -67,7 +68,7 @@ public class SetList {
      * Setter for charts.
      * @param charts to be set
      */
-    public void setCharts(Set<Chart> charts) {
+    public void setCharts(Set<ChartModel> charts) {
         this.charts = charts; }
 
     /**

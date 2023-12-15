@@ -81,7 +81,7 @@ public class ModelConverterTest {
         setList = new SetList();
         setList.setId(String.valueOf(UUID.randomUUID()));
         setList.setName("name");
-        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartList(4)));
+        setList.setCharts(new HashSet<>(ChartTestHelper.generateChartModelList(4)));
         setList.setGenres(new HashSet<>(Arrays.asList("Funk", "Soul")));
         setList.setMadeBy("me");
 
@@ -91,12 +91,7 @@ public class ModelConverterTest {
         // THEN
         assertEquals(result.getId(), setList.getId(), "ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
-
-        for (Chart chart : setList.getCharts()) {
-            ChartModel chartModel = modelConverter.toChartModel(chart);
-            assertTrue(result.getCharts().contains(chartModel));
-        }
-
+        assertEquals(result.getCharts(), setList.getCharts(), "charts should be the same");
         assertEquals(result.getGenres(), setList.getGenres(), "genres should equal");
         assertEquals(result.getMadeBy(), setList.getMadeBy(), "madeby should be same person");
     }

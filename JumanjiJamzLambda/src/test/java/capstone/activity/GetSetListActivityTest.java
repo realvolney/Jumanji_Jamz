@@ -6,6 +6,8 @@ import capstone.dynamodb.SetListDAO;
 import capstone.dynamodb.models.Chart;
 import capstone.dynamodb.models.SetList;
 import capstone.helper.ChartTestHelper;
+import capstone.models.ChartModel;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -39,7 +41,7 @@ public class GetSetListActivityTest {
         GetSetListRequest request = GetSetListRequest.builder()
                 .withId(id)
                 .build();
-        Set<Chart> expectedCharts = new HashSet<>(ChartTestHelper.generateChartList(4));
+        Set<ChartModel> expectedCharts = new HashSet<>(ChartTestHelper.generateChartModelList(4));
 
         SetList setList = new SetList();
         setList.setId(id);

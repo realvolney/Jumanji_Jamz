@@ -57,14 +57,10 @@ public class ModelConverter {
      * @return the converted SetListModel
      */
     public SetListModel toSetListModel(SetList setList) {
-        Set<ChartModel> chartModels = null;
-        if (setList.getCharts() != null) {
-            chartModels = new HashSet<>(toChartModelList(new ArrayList<>(setList.getCharts())));
-        }
         return SetListModel.builder()
                .withId(setList.getId())
                .withName(setList.getName())
-               .withCharts(chartModels)
+               .withCharts(setList.getCharts())
                .withGenres(setList.getGenres())
                .withMadeBy(setList.getMadeBy())
                .build();

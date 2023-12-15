@@ -1,6 +1,7 @@
 package capstone.activity.requests;
 
 import capstone.dynamodb.models.Chart;
+import capstone.models.ChartModel;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -10,12 +11,12 @@ import java.util.Set;
 public class UpdateSetListRequest {
     private final String id;
     private final String name;
-    private final Set<Chart> charts;
+    private final Set<ChartModel> charts;
     private final Set<String> genres;
     private final String madeBy;
 
     private UpdateSetListRequest(String id, String name,
-                                Set<Chart> charts, Set<String> genres, String madeBy) {
+                                Set<ChartModel> charts, Set<String> genres, String madeBy) {
         this.id = id;
         this.name = name;
         this.charts = charts;
@@ -31,7 +32,7 @@ public class UpdateSetListRequest {
         return name;
     }
 
-    public Set<Chart> getCharts() {
+    public Set<ChartModel> getCharts() {
         return charts;
     }
 
@@ -62,7 +63,7 @@ public class UpdateSetListRequest {
     public static class Builder {
         private String id;
         private String name;
-        private Set<Chart> charts;
+        private Set<ChartModel> charts;
         private Set<String> genres;
         private String madeBy;
 
@@ -76,7 +77,7 @@ public class UpdateSetListRequest {
             return this;
         }
 
-        public Builder withCharts(Set<Chart> charts) {
+        public Builder withCharts(Set<ChartModel> charts) {
             this.charts = charts;
             return this;
         }

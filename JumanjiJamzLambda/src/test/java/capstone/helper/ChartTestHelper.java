@@ -1,6 +1,8 @@
 package capstone.helper;
 
+import capstone.converters.ModelConverter;
 import capstone.dynamodb.models.Chart;
+import capstone.models.ChartModel;
 
 import java.util.*;
 
@@ -17,6 +19,15 @@ public class ChartTestHelper {
         return chartList;
     }
 
+    public static List<ChartModel> generateChartModelList(int size) {
+        List<ChartModel> chartList = new ArrayList<>();
+        ModelConverter converter = new ModelConverter();
+
+        for (int i = 0; i < size; i++) {
+            chartList.add(converter.toChartModel(generateChart(i)));
+        }
+        return chartList;
+    }
     public static Chart generateChart(int sequence) {
         Chart chart = new Chart();
         chart.setId(String.valueOf(UUID.randomUUID()));
