@@ -9,7 +9,7 @@ import DataStore from "../util/DataStore";
 class ViewSetList extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addSetListToPage'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addSetListToPage', 'redirectToUpdateSetList'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addSetListToPage);
         this.header = new Header(this.dataStore);
@@ -39,6 +39,7 @@ class ViewSetList extends BindingClass {
      */
     mount() {
         // document.getElementById('add-to-setList').addEventListener('click', this.updateChart);
+        document.getElementById('update-setList').addEventListener('click', this.redirectToUpdateSetList);
         this.header.addHeaderToPage();
 
         this.clientLoaded();
@@ -64,6 +65,16 @@ class ViewSetList extends BindingClass {
             tagHtml += '<div class="tag">' + tag + '</div>';
         }
         document.getElementById('tags').innerHTML = tagHtml;
+    }
+
+    /**
+     * When the update is selected, redirect to the view chart page.
+     */
+    redirectToUpdateSetList() {
+        const id = this.dataStore.get('setList').id;
+        if (id != null) {
+            window.location.href = `/updateSetList.html?id=${id}`;
+        }
     }
 }
 
