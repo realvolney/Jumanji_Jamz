@@ -1,8 +1,7 @@
 package capstone.lambda;
-
-
 import capstone.dependency.DaggerServiceComponent;
 import capstone.dependency.ServiceComponent;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

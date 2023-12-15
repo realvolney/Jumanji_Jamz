@@ -26,6 +26,11 @@ public class GetSetListActivity {
         this.dao = dao;
     }
 
+    /**
+     * HandleRequest method.
+     * @param request GetSetListRequest with key to get setList entry.
+     * @return GetSetListResult object containing setList.
+     */
     public GetSetListResult handleRequest(final GetSetListRequest request) {
         log.info("Received GetSetListRequest {}", request);
 

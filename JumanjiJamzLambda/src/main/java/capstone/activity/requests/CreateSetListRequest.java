@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Set;
 
-
 import static capstone.utils.CollectionUtils.copyToSet;
 
 @JsonDeserialize(builder = CreateSetListRequest.Builder.class)
@@ -58,6 +57,7 @@ public class CreateSetListRequest {
                 '}';
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }

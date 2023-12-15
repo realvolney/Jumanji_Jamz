@@ -2,7 +2,6 @@ package capstone.models;
 
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 public class SetListModel {
     private final String id;
@@ -41,10 +40,15 @@ public class SetListModel {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SetListModel that = (SetListModel) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(charts, that.charts) && Objects.equals(genres, that.genres) && Objects.equals(madeBy, that.madeBy);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(charts, that.charts) &&
+                Objects.equals(genres, that.genres) && Objects.equals(madeBy, that.madeBy);
     }
 
     @Override
@@ -52,6 +56,7 @@ public class SetListModel {
         return Objects.hash(id, name, charts, genres, madeBy);
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() { return new Builder(); }
     public static class Builder {
         private String id;

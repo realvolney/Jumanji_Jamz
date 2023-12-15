@@ -9,11 +9,12 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Inject;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 /**
- * Accesses data for a chart using {@Link SetList} to represent the model in DynamoDB
+ * Accesses data for a chart using {@Link SetList} to represent the model in DynamoDB.
  */
 public class SetListDAO {
 
@@ -22,7 +23,7 @@ public class SetListDAO {
     private final Logger log = LogManager.getLogger();
 
     /**
-     * Instantiates ChartDao object
+     * Instantiates ChartDao object.
      * @param publisher the {@link DynamoDBMapper} used to interact with the Charts table
      * @param mapper the {@link MetricsPublisher} used to record metrics.
      */
@@ -54,7 +55,7 @@ public class SetListDAO {
     }
 
     /**
-     * Gets one setList from the database
+     * Gets one setList from the database.
      * @param id is the id of the setList to be found
      * @return the setList
      */
@@ -62,7 +63,7 @@ public class SetListDAO {
         log.info(String.format("looking for chart with id: '%s' ", id));
         SetList setList = mapper.load(SetList.class, id);
 
-        if(setList == null) {
+        if (setList == null) {
             log.warn("Could not find setList with id: " + id);
             publisher.addCount(MetricsConstants.GET_SET_LIST_SUCCESS_COUNT, 0);
             return setList;
@@ -72,7 +73,7 @@ public class SetListDAO {
     }
 
     /**
-     * Saves setList to dataBase
+     * Saves setList to dataBase.
      * @param setList the Setlist to be saved to Setlists
      * @return SetList that was saved
      */

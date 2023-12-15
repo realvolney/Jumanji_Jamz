@@ -53,7 +53,7 @@ public class GetChartResult {
     @Override
     public String toString() {
         return "GetChartResult{" +
-                "id=" + id +'\'' +
+                "id=" + id + '\'' +
                 "name=" + name + '\'' +
                 "artist=" + artist + '\'' +
                 "bpm=" + bpm + '\'' +

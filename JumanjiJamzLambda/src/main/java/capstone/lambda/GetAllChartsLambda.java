@@ -11,10 +11,10 @@ public class GetAllChartsLambda extends LambdaActivityRunner<GetAllChartsRequest
 
     @Override
     public LambdaResponse handleRequest(LambdaRequest<GetAllChartsRequest> input, Context context) {
-        return super.runActivity( () -> input.fromQuery(query ->
-                GetAllChartsRequest.builder()
-                        .withId(query.get("id"))
-                        .build()),
-                (request, serviceComponent) -> serviceComponent.provideGetAllChartsActivity().handleRequest(request));
+        return super.runActivity(() -> input.fromQuery(query ->
+            GetAllChartsRequest.builder()
+                .withId(query.get("id"))
+                .build()),
+            (request, serviceComponent) -> serviceComponent.provideGetAllChartsActivity().handleRequest(request));
     }
 }

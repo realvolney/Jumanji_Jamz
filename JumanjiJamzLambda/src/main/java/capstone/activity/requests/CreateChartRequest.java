@@ -8,9 +8,10 @@ import java.util.Set;
 import static capstone.utils.CollectionUtils.copyToSet;
 
 /**
- * This class represents a request to create a chart
- * It is used as part of the CreateChartActivity API
+ * This class represents a request to create a chart.
+ * It is used as part of the CreateChartActivity API.
  */
+//CHECKSTYLE:OFF:CreateChartRequest
 @JsonDeserialize(builder = CreateChartRequest.Builder.class)
 public class CreateChartRequest {
     private final String name;
@@ -64,6 +65,7 @@ public class CreateChartRequest {
                 '}';
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }

@@ -6,7 +6,7 @@ import capstone.models.ChartModel;
 
 
 /**
- * This class represents a result to update a chart
+ * This class represents a result to update a chart.
  * It is used as part of the UpdateChartActivity
  */
 public class UpdateChartResult {

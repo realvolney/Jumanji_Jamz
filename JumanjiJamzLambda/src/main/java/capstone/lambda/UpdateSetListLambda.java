@@ -19,23 +19,23 @@ public class UpdateSetListLambda extends LambdaActivityRunner<UpdateSetListReque
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<UpdateSetListRequest> input, Context context) {
         return super.runActivity(
-                () -> {
-                    UpdateSetListRequest unauthenticatedRequest = input.fromBody(UpdateSetListRequest.class);
-                    UpdateSetListRequest claimsRequest = input.fromUserClaims((claims) -> UpdateSetListRequest.builder()
-                            .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
-                            .build());
-                    return input.fromPath(path ->
-                            UpdateSetListRequest.builder()
-                                    .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
-                                    .withName(unauthenticatedRequest.getName())
-                                    .withCharts(unauthenticatedRequest.getCharts())
-                                    .withGenres(unauthenticatedRequest.getGenres())
-                                    .withMadeBy(claimsRequest.getMadeBy())
-                                    .build());
+            () -> {
+                UpdateSetListRequest unauthenticatedRequest = input.fromBody(UpdateSetListRequest.class);
+                UpdateSetListRequest claimsRequest = input.fromUserClaims(claims -> UpdateSetListRequest.builder()
+                    .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
+                    .build());
+                return input.fromPath(path ->
+                    UpdateSetListRequest.builder()
+                        .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
+                        .withName(unauthenticatedRequest.getName())
+                        .withCharts(unauthenticatedRequest.getCharts())
+                        .withGenres(unauthenticatedRequest.getGenres())
+                        .withMadeBy(claimsRequest.getMadeBy())
+                        .build());
 
-                },
-                ((request, serviceComponent) ->
-                        serviceComponent.provideUpdateSetListActivity().handleRequest(request))
+            },
+            (request, serviceComponent) ->
+                serviceComponent.provideUpdateSetListActivity().handleRequest(request)
         );
     }
 }

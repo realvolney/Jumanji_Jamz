@@ -2,8 +2,8 @@ package capstone.models;
 
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
+//CHECKSTYLE:OFF:ChartModel
 public class ChartModel {
     private final String id;
     private final String name;
@@ -63,6 +63,7 @@ public class ChartModel {
         return Objects.hash(id, name, artist, bpm, Content, genres, madeBy);
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }

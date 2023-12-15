@@ -23,7 +23,7 @@ class ViewSetList extends BindingClass {
     async clientLoaded() {
         this.client = new JumanjiJamzClient();
         const urlParams = new URLSearchParams(window.location.search);
-        const setListId = urlParams.get('id');
+        const setListId = encodeURI(urlParams.get('id'));
         document.getElementById('setList-name').innerText = "Loading SetList ..."
         console.log(process.env.API_LOCATION);
 
@@ -71,9 +71,9 @@ class ViewSetList extends BindingClass {
      * When the update is selected, redirect to the view Setlist page.
      */
     redirectToUpdateSetList() {
-        const id = this.dataStore.get('setList').id;
-        if (id != null) {
-            window.location.href = `/updateSetList.html?id=${id}`;
+        const setList = this.dataStore.get('setList');
+        if (setList != null) {
+            window.location.href = `/updateSetList.html?id=${setList.id}`;
         }
     }
 }

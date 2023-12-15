@@ -7,7 +7,6 @@ import capstone.dynamodb.SetListDAO;
 import capstone.dynamodb.models.SetList;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
-import capstone.models.SetListModel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,9 +21,9 @@ public class UpdateSetListActivity {
     private ModelConverter converter = new ModelConverter();
 
     /**
-     *  Instantiates UpdateSetListActivity
-     * @param dao SetListDAO to access SetLists table
-     * @param publisher
+     *  Instantiates UpdateSetListActivity.
+     * @param dao SetListDAO to access SetLists table.
+     * @param publisher MetricsPublisher to publish metrics to cloudwatch.
      */
     @Inject
     public UpdateSetListActivity(SetListDAO dao, MetricsPublisher publisher) {
@@ -33,9 +32,9 @@ public class UpdateSetListActivity {
     }
 
     /**
-     * Hadles request
-     * @param request to be updated
-     * @return the result with the updated setList
+     * Handles request method.
+     * @param request UpdateSetListRequest with update field.
+     * @return UpdateSetListResult with the updated setList.
      */
     public UpdateSetListResult handleRequest(final UpdateSetListRequest request) {
         log.info("Received UpdateSetListRequest {}", request);
@@ -50,7 +49,7 @@ public class UpdateSetListActivity {
 
         SetList setList = dao.getSetList(request.getId());
 
-        if(!setList.getMadeBy().equals(request.getMadeBy())) {
+        if (!setList.getMadeBy().equals(request.getMadeBy())) {
             log.error(String.format("User: '%s' does not own setList: '%s'",
                     request.getMadeBy(), request.getId()));
             publisher.addCount(MetricsConstants.UPDATE_SET_LIST_SUCCESS_COUNT, 0);
