@@ -51,6 +51,22 @@ public class AddChartRequest {
         return madeBy;
     }
 
+    @Override
+    public String toString() {
+        return "AddChartRequest{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", artist='" + artist + '\'' +
+                ", bpm=" + bpm +
+                ", content='" + content + '\'' +
+                ", genres=" + genres +
+                ", madeBy='" + madeBy + '\'' +
+                '}';
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
     public static class Builder {
         private String id;
         private String name;
