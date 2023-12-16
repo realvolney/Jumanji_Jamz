@@ -1,13 +1,6 @@
 package capstone.dependency;
 
-import capstone.activity.CreateChartActivity;
-import capstone.activity.CreateSetListActivity;
-import capstone.activity.GetAllChartsActivity;
-import capstone.activity.GetChartActivity;
-import capstone.activity.GetSetListActivity;
-import capstone.activity.SearchChartActivity;
-import capstone.activity.UpdateChartActivity;
-import capstone.activity.UpdateSetListActivity;
+import capstone.activity.*;
 
 import dagger.Component;
 
@@ -68,4 +61,10 @@ public interface ServiceComponent {
       * @return SearchChartActivity
       */
      SearchChartActivity provideSearchChartActivity();
+
+     /**
+      * Provides the relevant activity.
+      * @return SearchChartActivity
+      */
+     AddChartActivity provideAddChartActivity();
 }
