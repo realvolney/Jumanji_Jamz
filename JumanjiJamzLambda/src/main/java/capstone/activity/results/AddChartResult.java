@@ -27,7 +27,8 @@ public class AddChartResult {
                 '}';
     }
 
-    public Builder builder() {
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
         return new Builder();
     }
     public static class Builder {
@@ -44,7 +45,7 @@ public class AddChartResult {
             return this;
         }
 
-        public AddChartResult builder() {
+        public AddChartResult build() {
             return new AddChartResult(chart, id);
         }
     }

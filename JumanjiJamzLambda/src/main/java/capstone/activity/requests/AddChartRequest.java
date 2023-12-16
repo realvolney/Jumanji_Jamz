@@ -11,9 +11,10 @@ public class AddChartRequest {
     private final String content;
     private final Set<String> genres;
     private final String madeBy;
+    private final String setListId;
 
     private AddChartRequest(String id, String name, String artist, Integer bpm,
-                           String content, Set<String> genres, String madeBy) {
+                           String content, Set<String> genres, String madeBy, String setListId) {
         this.id = id;
         this.name = name;
         this.artist = artist;
@@ -21,6 +22,7 @@ public class AddChartRequest {
         this.content = content;
         this.genres = genres;
         this.madeBy = madeBy;
+        this.setListId = setListId;
     }
 
     public String getId() {
@@ -51,6 +53,10 @@ public class AddChartRequest {
         return madeBy;
     }
 
+    public String getSetListId() {
+        return setListId;
+    }
+
     @Override
     public String toString() {
         return "AddChartRequest{" +
@@ -61,9 +67,11 @@ public class AddChartRequest {
                 ", content='" + content + '\'' +
                 ", genres=" + genres +
                 ", madeBy='" + madeBy + '\'' +
+                ", setListId='" + setListId + '\'' +
                 '}';
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
@@ -75,6 +83,7 @@ public class AddChartRequest {
         private String content;
         private Set<String> genres;
         private String madeBy;
+        private String setListId;
 
         public Builder withId(String id) {
             this.id = id;
@@ -111,8 +120,13 @@ public class AddChartRequest {
             return this;
         }
 
+        public Builder withSetListId(String setListId) {
+            this.setListId = setListId;
+            return this;
+        }
+
         public AddChartRequest build() {
-            return new AddChartRequest(id, name, artist, bpm, content, genres, madeBy);
+            return new AddChartRequest(id, name, artist, bpm, content, genres, madeBy, setListId);
         }
 
     }
