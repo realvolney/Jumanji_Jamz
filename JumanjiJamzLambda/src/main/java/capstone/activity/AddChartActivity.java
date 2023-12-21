@@ -11,6 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class AddChartActivity {
 
@@ -40,7 +43,12 @@ public class AddChartActivity {
                 .build();
 
         SetList setList = setListDAO.getSetList(id);
+        Set<ChartModel> charts = setList.getCharts();
+        if(charts == null) {
+            setList.setCharts(new HashSet<>());
+        }
         setList.getCharts().add(chart);
+
         setListDAO.saveSetList(setList);
 
         return AddChartResult.builder()
