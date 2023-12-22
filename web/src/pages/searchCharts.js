@@ -113,7 +113,7 @@ class SearchCharts extends BindingClass {
             return '<h4>No results found</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
+        let html = '<table><tr><th>Name</th><th>Created by</th><th>Genres</th></tr>';
         for (const res of searchResults) {
             html += `
             <tr>

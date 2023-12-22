@@ -14,7 +14,7 @@ class BrowseCharts extends BindingClass {
         this.previousKeys = [];
         console.log("BrowseCharts constructor");
         this.limit = 5;
-        this.header = new Header(this.dataStore);
+        
     }
 
     showLoading() {
@@ -45,7 +45,7 @@ class BrowseCharts extends BindingClass {
      * Add the header to the page and load the VendorEventClient.
      */
     mount() {
-        this.header.addHeaderToPage();
+        
         this.clientLoaded();
         document.getElementById('nextButton').addEventListener('click', this.next);
         document.getElementById('prevButton').addEventListener('click', this.previous);
