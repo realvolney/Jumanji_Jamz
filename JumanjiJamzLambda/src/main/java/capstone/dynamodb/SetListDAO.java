@@ -99,14 +99,13 @@ public class SetListDAO {
     public List<SetList> getMySetLists(String madeBy) {
         log.info("getting my setlists madeBy: {}", madeBy);
 
-        Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put(":madeBy", new AttributeValue().withS(madeBy));
-
         DynamoDBQueryExpression<SetList> expression = new DynamoDBQueryExpression<SetList>()
                 .withIndexName(SETLIST_NAME_GSI)
                 .withConsistentRead(false)
-                .withExpressionAttributeValues(valueMap);
+                .withKeyConditionExpression("madeBy = :madeBy")  // Add this line
+                .withExpressionAttributeValues(Map.of(":madeBy", new AttributeValue().withS(madeBy)));
 
         return mapper.query(SetList.class, expression);
     }
+
 }
