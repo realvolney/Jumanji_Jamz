@@ -223,5 +223,22 @@ export default class JumanjiJamzClient extends BindingClass {
         }
 
     }
+
+    // Method to view user's setLists
+    async mySetLists(errorCallBack) {
+        try {
+            const token = await this.getTokenOrThrow("Log in to view personal setlists");
+
+            const response = await this.axiosClient.get(`setlists/my`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            this.handleError(error, errorCallBack);
+        }
+    
+    }
 }
 
