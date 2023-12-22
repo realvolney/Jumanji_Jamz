@@ -9,8 +9,7 @@ export default class Header extends BindingClass {
         super();
 
         const methodsToBind = [
-            'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton'
+            'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader', 'createLoginButton', 'createLogoutButton'
         ];
         this.bindClassMethods(methodsToBind, this);
 

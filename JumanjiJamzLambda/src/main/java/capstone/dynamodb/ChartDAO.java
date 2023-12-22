@@ -136,45 +136,35 @@ public class ChartDAO {
      * ALL elements of the criteria array must appear in the name or the genres (or both).
      * Searches are CASE SENSITIVE.
      *
-     * @param criteria an array of String containing search criteria.
+     * @param c an array of String containing search criteria.
      * @return a List of Playlist objects that match the search criteria.
      */
-    public List<Chart> searchCharts(String[] criteria) {
-        DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();
-
-        if (criteria.length > 0) {
-            Map<String, AttributeValue> valueMap = new HashMap<>();
-            String valueMapNamePrefix = ":c";
-
-            StringBuilder nameFilter = new StringBuilder();
-            StringBuilder genresFilter = new StringBuilder();
-
-            for (int i = 0; i < criteria.length; i++) {
-                valueMap.put(valueMapNamePrefix + i,
-                        new AttributeValue().withS(criteria[i]));
-                nameFilter.append(
-                        filterExpressionPart("name", valueMapNamePrefix, i));
-                genresFilter.append(
-                        filterExpressionPart("genres", valueMapNamePrefix, i));
+    public List<Chart> searchCharts(String[] c) {
+        DynamoDBScanExpression d = new DynamoDBScanExpression();
+        if (c.length > 0) {
+            Map<String, AttributeValue> v = new HashMap<>();
+            Map<String, String> n = new HashMap<>();
+            String p = ":c";
+            StringBuilder nf = new StringBuilder();
+            for (int i = 0; i < c.length; i++) {
+                v.put(p + i, new AttributeValue().withS(c[i]));
+                n.put("#n" + i, "name");
+                nf.append(filterPart("#n", p, i));
             }
-
-            dynamoDBScanExpression.setExpressionAttributeValues(valueMap);
-            dynamoDBScanExpression.setFilterExpression(
-                    "(" + nameFilter + ") or (" + genresFilter + ")");
+            d.setExpressionAttributeValues(v);
+            d.setExpressionAttributeNames(n);
+            d.setFilterExpression("(" + nf + ")");
         }
-
-        return this.mapper.scan(Chart.class, dynamoDBScanExpression);
+        List<Chart> r = this.mapper.scan(Chart.class, d);
+        metricsPublisher.addCount(MetricsConstants.SEARCH_CHARTS__SUCCESS_COUNT, 1);
+        return r;
+    }
+    private StringBuilder filterPart(String t, String p, int i) {
+        String a = i == 0 ? "" : "and ";
+        return new StringBuilder().append(a).append("contains(")
+                .append(t).append(i).append(", ")
+                .append(p).append(i).append(") ");
     }
 
-    private StringBuilder filterExpressionPart(String target, String valueMapNamePrefix, int position) {
-        String possiblyAnd = position == 0 ? "" : "and ";
-        return new StringBuilder()
-                .append(possiblyAnd)
-                .append("contains(")
-                .append(target)
-                .append(", ")
-                .append(valueMapNamePrefix).append(position)
-                .append(") ");
-    }
 }
 

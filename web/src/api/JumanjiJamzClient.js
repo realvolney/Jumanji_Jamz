@@ -7,7 +7,7 @@ export default class JumanjiJamzClient extends BindingClass {
     constructor(props = {}) {
         super();
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'handleError',
-            'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList', 'updateChart'];
+            'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList', 'updateChart', 'search'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();
@@ -199,6 +199,21 @@ export default class JumanjiJamzClient extends BindingClass {
         } catch (error) {
             this.handleError(error, errorCallback);
         }
+    }
+
+    // Method for searching by CHart name and genres
+    async search(criteria, errorCallback) {
+        try {
+            const queryParams = new URLSearchParams({ q: criteria })
+            const queryString = queryParams.toString();
+
+            const response = await this.axiosClient.get(`chart/search?${queryString}`);
+
+            return response.data.charts;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+
     }
 }
 
