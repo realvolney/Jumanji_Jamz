@@ -39,7 +39,7 @@ public class GetAllChartsActivity {
 
         String id = request.getId();
 
-        List<ChartModel> chartList = converter.toChartModelList(dao.getAllCharts(id, request.getLimit()));
+        List<ChartModel> chartList = converter.toChartModelList(dao.getAllCharts(id, 4));
 
         ChartModel nextStartKey = chartList.get(chartList.size() - 1);
         if (nextStartKey != null) {

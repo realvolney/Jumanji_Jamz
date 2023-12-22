@@ -1,6 +1,7 @@
-import { DataStore } from "aws-amplify";
+import DataStore from '../util/DataStore';
 import BindingClass from "../util/bindingClass";
 import JumanjiJamzClient from "../api/JumanjiJamzClient";
+import Header from '../components/header';
 
 class BrowseCharts extends BindingClass {
     constructor() {
@@ -12,6 +13,7 @@ class BrowseCharts extends BindingClass {
         this.previousKeys = [];
         console.log("BrowseCharts constructor");
         this.limit = 5;
+        this.header = new Header(this.dataStore);
     }
 
     showLoading() {
@@ -57,7 +59,7 @@ class BrowseCharts extends BindingClass {
          const nextId = this.dataStore.get('nextId');
          const nextLimit = this.dataStore.get('nextLimit');
      
-         const result = await this.client.getAllVendors(nextId, this.limit);
+         const result = await this.client.getAllCharts(nextId, limit);
          console.log("Result:", result);
          
          console.log("Received charts:", result.charts);
@@ -77,9 +79,9 @@ class BrowseCharts extends BindingClass {
         let result;
             if (this.previousKeys.length > 0) {
                 const previousId = this.previousKeys.pop();
-                result = await this.client.getAllVendors(previousId, limit);
+                result = await this.client.getAllCharts(previousId, limit);
             } else {
-                result = await this.client.getAllVendors(this.dataStore.get('previousId'), limit);
+                result = await this.client.getAllCharts(this.dataStore.get('previousId'), limit);
             }
     
         console.log("Result:", result);
@@ -93,7 +95,7 @@ class BrowseCharts extends BindingClass {
     }
 
     displayCharts() {
-        const vendors = this.dataStore.get('vendors');
+        const charts = this.dataStore.get('charts');
         const displayDiv = document.getElementById('vendors-list-display');
         displayDiv.innerText = vendors.length > 0 ? "" : "No more Vendors available.";
     
@@ -128,12 +130,12 @@ class BrowseCharts extends BindingClass {
                     window.location.href = vendorPageUrl;
                     console.log('Created Event listener' + vendorPageUrl);
                 });
-            });
-        }
+        });
     }
-
-
 }
+
+
+
 
 const main = async () => {
     const browseCharts = new BrowseCharts();

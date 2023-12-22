@@ -106,14 +106,16 @@ public class ChartDAO {
      * @param limit the pagination limit of the List returned
      * @return List of charts
      */
-    public List<Chart> getAllCharts(String id, int limit) {
+    public List<Chart> getAllCharts(String id, Integer limit) {
         Map<String, AttributeValue> valueMap = null;
 
         if (id != null && !id.isBlank()) {
             valueMap = new HashMap<>();
             valueMap.put("id", new AttributeValue().withS(id));
         }
-
+        if (limit == null) {
+            limit = 4;
+        }
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
                 .withExclusiveStartKey(valueMap)
                 .withLimit(limit);

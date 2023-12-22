@@ -353,7 +353,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: JumanjiJamzLambda
-      Handler: capstone.lambda.UpdateChartLambda::handleRequest
+      Handler: capstone.lambda.GetAllChartsLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -365,7 +365,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /all/charts/{id}
+            Path: /charts
             Method: get
             Auth:
               Authorizer: 'NONE'

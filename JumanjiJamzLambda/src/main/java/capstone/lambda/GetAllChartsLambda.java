@@ -10,14 +10,15 @@ public class GetAllChartsLambda extends LambdaActivityRunner<GetAllChartsRequest
     implements RequestHandler<LambdaRequest<GetAllChartsRequest>, LambdaResponse> {
 
 
+
     @Override
     public LambdaResponse handleRequest(LambdaRequest<GetAllChartsRequest> input, Context context) {
         return super.runActivity(() -> {
-                    GetAllChartsRequest body = input.fromBody(GetAllChartsRequest.class);
+
                     return input.fromQuery(query ->
                             GetAllChartsRequest.builder()
                                     .withId(query.get("id"))
-                                    .withLimit(body.getLimit())
+                                    .withLimit(4)
                                     .build());
                 },
                 (request, serviceComponent) -> serviceComponent.provideGetAllChartsActivity().handleRequest(request)
