@@ -23,8 +23,12 @@ body {
     color: var(--secondary-color);
     padding: 25px;
 }
-
-.button {
+.header a {
+    /* Adjust the styling for the home button */
+    font-size: 30px; /* Change the font size as needed */
+    /* Add any other styling properties you want to modify */
+}
+.button, .create {
     background-color: var(--tertiary-color);
     border: none;
     color: var(--secondary-color);
@@ -37,7 +41,7 @@ body {
     transition: background-color 0.3s ease-in-out;
 }
 
-.button:hover {
+.button:hover, .create:hover {
     background-color: #D97718;
 }
 
@@ -74,15 +78,34 @@ body {
 .card-content {
     max-width: 500px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 
-.form-field {
+.form-column {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    justify-content: flex-start;
+}
+
+.form-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-field, .form-field1 {
+    width: 100%;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .tags {
     display: flex;
     flex-wrap: wrap;
+    width: calc(100% - 22px);
 }
 
 .tag {
@@ -117,12 +140,8 @@ body {
     transition: background-color 0.3s ease-in-out;
 }
 
-.chartCard h2 {
+.chartCard h2, .chartCard h3 {
     margin: 0;
-}
-
-.chartCard h3 {
-    margin: 5px 0;
 }
 
 .chartCard:hover {
@@ -164,66 +183,3 @@ a {
 a:hover {
     text-decoration: underline;
 }
-
-
-.form-column {
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px; 
-    justify-content: flex-start; 
-}
-
-.form-content {
-    display: flex;
-    justify-content: space-between;
-}
-
-.form-field {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.tags {
-    width: calc(100% - 22px); 
-}
-
-
-
-.card-content {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-.create {
-    background-color: var(--tertiary-color);
-    border: none;
-    color: var(--secondary-color);
-    padding: 10px 20px;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
-}
-.form-field1 {
-    width: 100%;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-}
-
-.form-field1 label {
-    margin-bottom: 5px;
-}
-
-.form-field1 input {
-    width: 100%;
-}
-
-
-
-
-

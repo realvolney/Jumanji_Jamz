@@ -65,7 +65,7 @@ export default class Header extends BindingClass {
     }
 
     createButton(text, clickHandler) {
-        const button = document.createElement('a');
+        const button = document.createElement('b');
         button.classList.add('button');
         button.href = '#';
         button.innerText = text;
