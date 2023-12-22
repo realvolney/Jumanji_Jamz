@@ -213,9 +213,12 @@ Resources:
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
-            - Effect: Allow
-              Action: dynamodb:*
-              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/setlists"
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource:
+                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/setlists"
+                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/setlists/index/SetListNameAndMadeByIndex"
+
 
 
   #-----------------------------------------------------
@@ -409,30 +412,25 @@ Resources:
             Path: /setlists/{id}/charts
             Method: post
 
-#  GetPlaylistSongsLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: VendorNearMeLambda
-#      Handler: com.nashss.se.vendornearme.lambda.GetPlaylistSongsLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /playlists/{id}/songs
-#            Method: get
-#            Auth:
-#              Authorizer: 'NONE'
-#
-#
-#
+  MySetListsLambda:
+      Type: AWS::Serverless::Function
+      Properties:
+        Role: !GetAtt AccessRole.Arn
+        CodeUri: JumanjiJamzLambda
+        Handler: capstone.lambda.MySetListsLambda::handleRequest
+        Runtime: java11
+        Architectures:
+          - x86_64
+        MemorySize: 512
+        Environment:
+          Variables:
+            JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+        Events:
+          MusicPlaylistService:
+            Type: Api
+            Properties:
+              Path: /setLists/{id}/my
+              Method: get
 
 
   #-----------------------------------------------------
@@ -457,11 +455,26 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "id"
           AttributeType: "S"
+        - AttributeName: "name"
+          AttributeType: "S"
+        - AttributeName: "madeBy"
+          AttributeType: "S"
+        # Add other attribute definitions as needed
       KeySchema:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "setlists"
+      GlobalSecondaryIndexes:
+        - IndexName: "SetListNameAndMadeByIndex"
+          KeySchema:
+            - AttributeName: "madeBy"
+              KeyType: "HASH"
+            - AttributeName: "name"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+
 
 #-----------------------------------------------------
 # The outputs defined below will be printed

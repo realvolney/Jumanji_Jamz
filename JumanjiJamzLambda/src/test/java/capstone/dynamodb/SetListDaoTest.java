@@ -3,22 +3,28 @@ package capstone.dynamodb;
 import capstone.dynamodb.models.Chart;
 import capstone.dynamodb.models.SetList;
 import capstone.helper.ChartTestHelper;
+import capstone.helper.SetListTestHelper;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 
 public class SetListDaoTest {
 
@@ -170,5 +176,43 @@ public class SetListDaoTest {
 
         verify(mapper, times(1)).save(setList);
         verify(publisher, (times(1))).addCount(MetricsConstants.SAVE_SET_LIST_SUCCESS_COUNT, 0);
+    }
+
+    @Test
+    void getMySetLists_SetListDoesExists_returnsList() {
+        // GIVEN
+        String madeBy = "madeBy";
+        ArgumentCaptor<DynamoDBQueryExpression> captor = ArgumentCaptor.forClass(DynamoDBQueryExpression.class);
+        PaginatedQueryList list = Mockito.mock(PaginatedQueryList.class);
+        list.add(SetListTestHelper.generateSetList(1));
+        list.add(SetListTestHelper.generateSetList(2));
+        list.add(SetListTestHelper.generateSetList(3));
+
+        when(mapper.query(eq(SetList.class), captor.capture())).thenReturn(list);
+
+        // WHEN
+        List<SetList> result = dao.getMySetLists(madeBy);
+
+        // THEN
+        assertEquals(result, list);
+        verify(mapper, times(1)).query(eq(SetList.class), captor.capture());
+
+    }
+
+    @Test
+    void getMySetLists_SetListDoesNotExists_returnsEmptyList() {
+        // GIVEN
+        String madeBy = "madeBy";
+        ArgumentCaptor<DynamoDBQueryExpression> captor = ArgumentCaptor.forClass(DynamoDBQueryExpression.class);
+        PaginatedQueryList list = Mockito.mock(PaginatedQueryList.class);
+        when(mapper.query(eq(SetList.class), captor.capture())).thenReturn(list);
+
+        // WHEN
+        List<SetList> result = dao.getMySetLists(madeBy);
+
+        // THEN
+        assertEquals(result, list);
+        verify(mapper, times(1)).query(eq(SetList.class), captor.capture());
+
     }
 }

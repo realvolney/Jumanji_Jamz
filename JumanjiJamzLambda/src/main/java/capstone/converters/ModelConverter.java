@@ -65,4 +65,16 @@ public class ModelConverter {
                .withMadeBy(setList.getMadeBy())
                .build();
     }
+
+    /**
+     * Convert provided List of setLists to a List of SetListModels.
+     * @param setLists the List of charts to be converted
+     * @return the converted seListModels
+     */
+    public List<SetListModel> toSetListModelList(List<SetList> setLists) {
+        List<SetListModel> modelList = new ArrayList<>();
+        setLists.forEach(setList -> modelList.add(toSetListModel(setList)));
+        return modelList;
+    }
+
 }

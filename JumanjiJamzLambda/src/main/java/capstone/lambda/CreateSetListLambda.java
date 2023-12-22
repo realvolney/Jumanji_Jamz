@@ -31,7 +31,7 @@ public class CreateSetListLambda
                         .withName(unauthenticatedRequest.getName())
                         .withCharts(unauthenticatedRequest.getCharts())
                         .withGenres(unauthenticatedRequest.getGenres())
-                        .withMadeBy(decoder.decode(claims.get("name"), StandardCharsets.UTF_8))
+                        .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
                         .build());
             },
             (request, serviceComponent) ->

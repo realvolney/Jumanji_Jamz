@@ -3,10 +3,7 @@ package capstone.dynamodb.models;
 import capstone.converters.SetStringConverter;
 
 import capstone.models.ChartModel;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.Set;
 
@@ -23,7 +20,7 @@ public class SetList {
     private Set<ChartModel> charts;
     private Set<String> genres;
     private String madeBy;
-
+    private static final String SETLIST_NAME_GSI = "SetListNameAndMadeByIndex";
     /**
      * Getter for id.
      * @return id
@@ -43,7 +40,7 @@ public class SetList {
      * Getter for name.
      * @return name
      */
-    @DynamoDBAttribute(attributeName = "name")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = SETLIST_NAME_GSI, attributeName = "name")
     public String getName() {
         return name; }
 
@@ -92,7 +89,7 @@ public class SetList {
      * Getter for madeBy.
      * @return madeBY
      */
-    @DynamoDBAttribute(attributeName = "madeBy")
+    @DynamoDBIndexRangeKey(globalSecondaryIndexName = SETLIST_NAME_GSI, attributeName = "madeBy")
     public String getMadeBy() {
         return madeBy; }
 
