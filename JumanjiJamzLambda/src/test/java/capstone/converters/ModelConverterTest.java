@@ -3,6 +3,7 @@ package capstone.converters;
 import capstone.dynamodb.models.Chart;
 import capstone.dynamodb.models.SetList;
 import capstone.helper.ChartTestHelper;
+import capstone.helper.SetListTestHelper;
 import capstone.models.ChartModel;
 import capstone.models.SetListModel;
 import org.junit.jupiter.api.BeforeEach;
@@ -143,6 +144,31 @@ public class ModelConverterTest {
                     String.format("chart: '%s' and model: '%s' should be equal", chart.getGenres(), model.getGenres()));
             assertEquals(chart.getMadeBy(), model.getMadeBy(),
                     String.format("chart: '%s' and model: '%s' should be equal", chart.getMadeBy(), model.getMadeBy()));
+        }
+
+    }
+
+    @Test
+    void toSetListModelList_givenListSetList_returnsConvertedList() {
+        // GIVEN
+        List<SetList> setLists = SetListTestHelper.generateSetListList(10);
+
+        // WHEN
+        List<SetListModel> result = modelConverter.toSetListModelList(setLists);
+
+        // THEN
+        for (int i = 0; i < setLists.size(); i++) {
+            SetListModel model = result.get(i);
+            SetList setList = setLists.get(i);
+            assertEquals(setList.getId(), model.getId(),
+                    String.format("setlist: '%s' and model: '%s' should be equal", setList.getId(), model.getId()));
+            assertEquals(setList.getName(), model.getName(),
+                    String.format("setlist: '%s' and model: '%s' should be equal", setList.getName(), model.getName()));
+            assertEquals(setList.getCharts(), model.getCharts() );
+            assertEquals(setList.getGenres(), model.getGenres(),
+                    String.format("chart: '%s' and model: '%s' should be equal", setList.getGenres(), model.getGenres()));
+            assertEquals(setList.getMadeBy(), model.getMadeBy(),
+                    String.format("chart: '%s' and model: '%s' should be equal", setList.getMadeBy(), model.getMadeBy()));
         }
 
     }
