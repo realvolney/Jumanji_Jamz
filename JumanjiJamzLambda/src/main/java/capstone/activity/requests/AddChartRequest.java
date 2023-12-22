@@ -1,7 +1,10 @@
 package capstone.activity.requests;
 
-import java.util.Set;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+import java.util.Set;
+@JsonDeserialize(builder =AddChartRequest.Builder.class)
 public class AddChartRequest {
 
     private final String id;
@@ -75,6 +78,7 @@ public class AddChartRequest {
     public static Builder builder() {
         return new Builder();
     }
+    @JsonPOJOBuilder
     public static class Builder {
         private String id;
         private String name;

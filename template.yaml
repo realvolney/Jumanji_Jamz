@@ -410,7 +410,7 @@ Resources:
           Type: Api
           Properties:
             Path: /setlists/{id}/charts
-            Method: post
+            Method: PUT
 
   MySetListsLambda:
       Type: AWS::Serverless::Function
