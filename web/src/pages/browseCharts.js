@@ -38,6 +38,7 @@ class BrowseCharts extends BindingClass {
         this.dataStore.set('previousId', result.currentId)
         this.dataStore.set('nextId', result.nextId);
         this.displayCharts();
+        console.log("nextKey {}", result.nextId);
     }
 
     /**
@@ -71,6 +72,7 @@ class BrowseCharts extends BindingClass {
          this.dataStore.set('previousId', result.currentId)
          this.dataStore.set('nextId', result.nextId);
          this.hideLoading();
+         console.log("nextKey {}", result.nextId);
          }
     }
 
@@ -87,6 +89,7 @@ class BrowseCharts extends BindingClass {
         this.dataStore.set('previousId', result.currentId);
         this.dataStore.set('nextId', result.nextId);
         this.hideLoading();
+        console.log("nextKey {}", result.nextId);
     }
     
 

@@ -154,12 +154,12 @@ export default class JumanjiJamzClient extends BindingClass {
             const queryParams = {id: id, limit: limit};
             const response = await this.axiosClient.get (`charts/`, {params: queryParams});
             const result = {
-                vendors: response.data.charts,
+                charts: response.data.charts,
                 currentId: id,
                 currentLimit: limit,
                 nextId: response.data.id,
             };
-            return response.data;
+            return result;
         } catch (error) {
             this.handleError(error, errorCallback);
         }
