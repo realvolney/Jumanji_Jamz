@@ -1,20 +1,20 @@
 package capstone.activity.requests;
 
 public class MySetListsRequest {
-    private final String createdBy;
+    private final String madeBy;
 
-    private MySetListsRequest(String createdBy) {
-        this.createdBy = createdBy;
+    private MySetListsRequest(String madeBy) {
+        this.madeBy = madeBy;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getMadeBy() {
+        return madeBy;
     }
 
     @Override
     public String toString() {
         return "MySetListsRequest{" +
-                "createdBy='" + createdBy + '\'' +
+                "madeBy='" + madeBy + '\'' +
                 '}';
     }
 
@@ -22,15 +22,15 @@ public class MySetListsRequest {
         return new Builder();
     }
     public static class Builder {
-        private String createdBy;
+        private String madeBy;
 
-        public Builder withCreatedBy(String createdBy) {
-            this.createdBy = createdBy;
+        public Builder withMadeBy(String madeBy) {
+            this.madeBy= madeBy;
             return this;
         }
 
         public MySetListsRequest build() {
-            return new MySetListsRequest(createdBy);
+            return new MySetListsRequest(madeBy);
         }
     }
 }

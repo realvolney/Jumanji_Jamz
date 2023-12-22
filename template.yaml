@@ -473,9 +473,9 @@ Resources:
       GlobalSecondaryIndexes:
         - IndexName: "SetListNameAndMadeByIndex"
           KeySchema:
-            - AttributeName: "name"
-              KeyType: "HASH"
             - AttributeName: "madeBy"
+              KeyType: "HASH"
+            - AttributeName: "name"
               KeyType: "RANGE"
           Projection:
             ProjectionType: "ALL"
