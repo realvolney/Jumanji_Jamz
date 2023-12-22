@@ -207,7 +207,7 @@ export default class JumanjiJamzClient extends BindingClass {
             const queryParams = new URLSearchParams({ q: criteria })
             const queryString = queryParams.toString();
 
-            const response = await this.axiosClient.get(`chart/search?${queryString}`);
+            const response = await this.axiosClient.get(`charts/search?${queryString}`);
 
             return response.data.charts;
         } catch (error) {
