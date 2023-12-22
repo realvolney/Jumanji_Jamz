@@ -6,6 +6,7 @@ import capstone.metrics.MetricsPublisher;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -97,7 +98,15 @@ public class SetListDAO {
 
     public List<SetList> getMySetLists(String madeBy) {
         log.info("getting my setlists madeBy: {}", madeBy);
+
         Map<String, AttributeValue> valueMap = new HashMap<>();
         valueMap.put(":madeBy", new AttributeValue().withS(madeBy));
+
+        DynamoDBQueryExpression<SetList> expression = new DynamoDBQueryExpression<SetList>()
+                .withIndexName(SETLIST_NAME_GSI)
+                .withConsistentRead(false)
+                .withExpressionAttributeValues(valueMap);
+
+        return mapper.query(SetList.class, expression);
     }
 }
