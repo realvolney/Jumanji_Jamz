@@ -107,7 +107,6 @@ class CreateChart extends BindingClass {
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
-        debugger;
         this.dataStore.set('data', data);
         }   
     }

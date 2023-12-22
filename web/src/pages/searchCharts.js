@@ -59,7 +59,9 @@ class SearchCharts extends BindingClass {
     async search(evt) {
         // Prevent submitting the from from reloading the page.
         evt.preventDefault();
-
+        const searchButton = document.getElementById('search-btn');
+        const origButtonText = searchButton.innerText;
+        searchButton.innerText = 'Loading...';
         const searchCriteria = document.getElementById('search-criteria').value;
         const previousSearchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
 
