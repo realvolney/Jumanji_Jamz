@@ -73,11 +73,12 @@ class CreateChart extends BindingClass {
             const chordValue = document.getElementById(`chords${i}`).value || '';
             const lyricsValue = document.getElementById(`lyrics-${i}`).value || '';
         
-            interweavedArray.push(`${sectionValue}: ${chordValue}\n     ${lyricsValue}`);
+            
         
             if (!sectionValue && !chordValue && !lyricsValue) {
                 break;
             }
+            interweavedArray.push(`${sectionValue}: ${chordValue}\n     ${lyricsValue}`);
         }
         
         const content = interweavedArray.join('\n');
@@ -106,6 +107,7 @@ class CreateChart extends BindingClass {
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
+        debugger;
         this.dataStore.set('data', data);
         }   
     }

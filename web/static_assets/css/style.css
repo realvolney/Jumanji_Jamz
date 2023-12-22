@@ -183,3 +183,11 @@ a {
 a:hover {
     text-decoration: underline;
 }
+@media screen and (max-width: 600px) {
+    /* Adjust styles for smaller screens */
+    .card {
+        padding: 10px;
+        margin: 5px;
+    }
+}
+
