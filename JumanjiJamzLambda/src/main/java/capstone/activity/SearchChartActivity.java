@@ -5,6 +5,7 @@ import capstone.activity.results.SearchChartResult;
 import capstone.converters.ModelConverter;
 import capstone.dynamodb.ChartDAO;
 import capstone.dynamodb.models.Chart;
+import capstone.metrics.MetricsPublisher;
 import capstone.models.ChartModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +26,9 @@ public class SearchChartActivity {
      */
     @Inject
     public SearchChartActivity(ChartDAO dao) {
+
         this.dao = dao;
+
     }
 
     /**
@@ -45,6 +48,7 @@ public class SearchChartActivity {
 
         List<Chart> results = dao.searchCharts(criteriaArray);
         List<ChartModel> chartModels = new ModelConverter().toChartModelList(results);
+
 
         return SearchChartResult.builder()
                 .withCharts(chartModels)

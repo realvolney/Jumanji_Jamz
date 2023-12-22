@@ -7,7 +7,7 @@ export default class JumanjiJamzClient extends BindingClass {
     constructor(props = {}) {
         super();
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'handleError',
-            'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList', 'updateChart'];
+            'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList', 'updateChart', 'search'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();
@@ -132,7 +132,8 @@ export default class JumanjiJamzClient extends BindingClass {
                 charts: setListDetails.charts,
                 genres: setListDetails.genres
             };
-           
+            debugger;
+
 
             const response = await this.axiosClient.post(`setlists`, payload, {
                 headers: {
@@ -150,8 +151,15 @@ export default class JumanjiJamzClient extends BindingClass {
     // Method for accessing the getAllCharts API
     async getAllCharts(id, limit, errorCallback) {
         try {
-            const response = await this.axiosClient.get (`all/charts/${id}`, limit);
-            return response.data;
+            const queryParams = {id: id, limit: limit};
+            const response = await this.axiosClient.get (`charts/`, {params: queryParams});
+            const result = {
+                charts: response.data.charts,
+                currentId: id,
+                currentLimit: limit,
+                nextId: response.data.id,
+            };
+            return result;
         } catch (error) {
             this.handleError(error, errorCallback);
         }
@@ -199,6 +207,21 @@ export default class JumanjiJamzClient extends BindingClass {
         } catch (error) {
             this.handleError(error, errorCallback);
         }
+    }
+
+    // Method for searching by CHart name and genres
+    async search(criteria, errorCallback) {
+        try {
+            const queryParams = new URLSearchParams({ q: criteria })
+            const queryString = queryParams.toString();
+
+            const response = await this.axiosClient.get(`charts/search?${queryString}`);
+
+            return response.data.charts;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+
     }
 }
 

@@ -106,14 +106,16 @@ public class ChartDAO {
      * @param limit the pagination limit of the List returned
      * @return List of charts
      */
-    public List<Chart> getAllCharts(String id, int limit) {
+    public List<Chart> getAllCharts(String id, Integer limit) {
         Map<String, AttributeValue> valueMap = null;
 
         if (id != null && !id.isBlank()) {
             valueMap = new HashMap<>();
             valueMap.put("id", new AttributeValue().withS(id));
         }
-
+        if (limit == null) {
+            limit = 4;
+        }
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
                 .withExclusiveStartKey(valueMap)
                 .withLimit(limit);
@@ -144,21 +146,23 @@ public class ChartDAO {
 
         if (criteria.length > 0) {
             Map<String, AttributeValue> valueMap = new HashMap<>();
+            Map<String, String> expressionAttributeNames = new HashMap<>();
             String valueMapNamePrefix = ":c";
 
             StringBuilder nameFilter = new StringBuilder();
             StringBuilder genresFilter = new StringBuilder();
 
             for (int i = 0; i < criteria.length; i++) {
-                valueMap.put(valueMapNamePrefix + i,
-                        new AttributeValue().withS(criteria[i]));
-                nameFilter.append(
-                        filterExpressionPart("name", valueMapNamePrefix, i));
-                genresFilter.append(
-                        filterExpressionPart("genres", valueMapNamePrefix, i));
+                valueMap.put(valueMapNamePrefix + i, new AttributeValue().withS(criteria[i]));
+                expressionAttributeNames.put("#n" + i, "name");
+                expressionAttributeNames.put("#g" + i, "genres");
+
+                nameFilter.append(filterExpressionPart("#n", valueMapNamePrefix, i));
+                genresFilter.append(filterExpressionPart("#g", valueMapNamePrefix, i));
             }
 
             dynamoDBScanExpression.setExpressionAttributeValues(valueMap);
+            dynamoDBScanExpression.setExpressionAttributeNames(expressionAttributeNames);
             dynamoDBScanExpression.setFilterExpression(
                     "(" + nameFilter + ") or (" + genresFilter + ")");
         }
@@ -167,14 +171,16 @@ public class ChartDAO {
     }
 
     private StringBuilder filterExpressionPart(String target, String valueMapNamePrefix, int position) {
-        String possiblyAnd = position == 0 ? "" : "and ";
+        String possiblyAnd = position == 0 ? "" : " and ";
         return new StringBuilder()
                 .append(possiblyAnd)
                 .append("contains(")
-                .append(target)
+                .append(target).append(position)
                 .append(", ")
                 .append(valueMapNamePrefix).append(position)
                 .append(") ");
     }
+
+
 }
 

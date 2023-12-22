@@ -23,9 +23,9 @@ const EMPTY_DATASTORE_STATE = {
 
 
 /**
- * Logic needed for the view playlist page of the website.
+ * Logic needed for the view Chart page of the website.
  */
-class SearchPlaylists extends BindingClass {
+class SearchCharts extends BindingClass {
     constructor() {
         super();
 
@@ -36,7 +36,6 @@ class SearchPlaylists extends BindingClass {
         this.header = new Header(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
         console.log("searchCharts constructor");
-        debugger;
     }
 
     /**
@@ -44,7 +43,7 @@ class SearchPlaylists extends BindingClass {
      */
     mount() {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
-        document.getElementById('search-chart-form').addEventListener('click', this.search);
+        document.getElementById('search-chart-form').addEventListener('submit', this.search);
         document.getElementById('search-btn').addEventListener('click', this.search);
 
         this.header.addHeaderToPage();
@@ -87,6 +86,7 @@ class SearchPlaylists extends BindingClass {
     displaySearchResults() {
         const searchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
         const searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
+        console.log("searchResults {}", searchResults);
 
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
@@ -105,23 +105,23 @@ class SearchPlaylists extends BindingClass {
 
     /**
      * Create appropriate HTML for displaying searchResults on the page.
-     * @param searchResults An array of playlists objects to be displayed on the page.
+     * @param searchResults An array of chart objects to be displayed on the page.
      * @returns A string of HTML suitable for being dropped on the page.
      */
     getHTMLForSearchResults(searchResults) {
-        if (searchResults.length === 0) {
+        if (searchResults.length == 0) {
             return '<h4>No results found</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>madeBy</th><th>Genres</th></tr>';
+        let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
         for (const res of searchResults) {
             html += `
             <tr>
                 <td>
-                    <a href="playlist.html?id=${res.id}">${res.name}</a>
+                    <a href="chart.html?id=${res.id}">${res.name}</a>
                 </td>
-                <td>${res.songCount}</td>
-                <td>${res.tags?.join(', ')}</td>
+                <td>${res.madeBy}</td>
+                <td>${res.genres?.join(', ')}</td>
             </tr>`;
         }
         html += '</table>';
@@ -135,8 +135,8 @@ class SearchPlaylists extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const searchPlaylists = new SearchPlaylists();
-    searchPlaylists.mount();
+    const searchChart = new SearchCharts();
+    searchChart.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
