@@ -3,12 +3,11 @@ package capstone.activity.results;
 import capstone.models.SetListModel;
 
 import java.util.List;
-import java.util.Set;
 
-public class MySetListResult {
+public class MySetListsResult {
     private final List<SetListModel> setLists;
 
-    private MySetListResult(List<SetListModel> setLists) {
+    private MySetListsResult(List<SetListModel> setLists) {
         this.setLists = setLists;
     }
 
@@ -34,8 +33,8 @@ public class MySetListResult {
             return this;
         }
 
-        public MySetListResult build() {
-            return new MySetListResult(setLists);
+        public MySetListsResult build() {
+            return new MySetListsResult(setLists);
         }
     }
 }

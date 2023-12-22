@@ -2,7 +2,7 @@ package capstone.lambda;
 
 
 import capstone.activity.requests.MySetListsRequest;
-import capstone.activity.results.MySetListResult;
+import capstone.activity.results.MySetListsResult;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
@@ -11,12 +11,12 @@ import org.apache.logging.log4j.Logger;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-public class MySetListLambda extends LambdaActivityRunner<MySetListsRequest, MySetListResult>
+public class MySetListsLambda extends LambdaActivityRunner<MySetListsRequest, MySetListsResult>
         implements RequestHandler<AuthenticatedLambdaRequest<MySetListsRequest>, LambdaResponse> {
 
     private final Logger log = LogManager.getLogger();
     private final URLDecoder decoder = new URLDecoder();
-    
+
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<MySetListsRequest> input, Context context) {
         log.info("handleRequest");

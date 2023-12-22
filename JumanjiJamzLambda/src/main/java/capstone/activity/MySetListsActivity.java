@@ -1,7 +1,7 @@
 package capstone.activity;
 
 import capstone.activity.requests.MySetListsRequest;
-import capstone.activity.results.MySetListResult;
+import capstone.activity.results.MySetListsResult;
 import capstone.converters.ModelConverter;
 import capstone.dynamodb.SetListDAO;
 import capstone.dynamodb.models.SetList;
@@ -19,19 +19,20 @@ public class MySetListsActivity {
 
     private final Logger log = LogManager.getLogger();
 
+    @Inject
     public MySetListsActivity(SetListDAO dao, MetricsPublisher publisher) {
         this.dao = dao;
         this.publisher = publisher;
     }
 
-    @Inject
-    public MySetListResult handleRequest(final MySetListsRequest request) {
+
+    public MySetListsResult handleRequest(final MySetListsRequest request) {
         log.info("Received MySetListRequest {}", request);
         String madeBy = request.getMadeBy();
 
         List<SetList> setListList = dao.getMySetLists(madeBy);
 
-        return MySetListResult.builder()
+        return MySetListsResult.builder()
                 .withSetLists(new ModelConverter().toSetListModelList(setListList))
                 .build();
     }
