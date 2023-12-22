@@ -67,4 +67,10 @@ public interface ServiceComponent {
       * @return SearchChartActivity
       */
      AddChartActivity provideAddChartActivity();
+
+     /**
+      * Provides the relevant activity.
+      * @return MySetListActivity
+      */
+     MySetListsActivity provideMySetListsActivity();
 }
