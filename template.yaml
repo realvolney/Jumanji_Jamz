@@ -457,11 +457,26 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "id"
           AttributeType: "S"
+        - AttributeName: "name"
+          AttributeType: "S"
+        - AttributeName: "madeBy"
+          AttributeType: "S"
+        # Add other attribute definitions as needed
       KeySchema:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "setlists"
+      GlobalSecondaryIndexes:
+        - IndexName: "SetListNameAndMadeByIndex"
+          KeySchema:
+            - AttributeName: "name"
+              KeyType: "HASH"
+            - AttributeName: "madeBy"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
