@@ -6,7 +6,8 @@ import Header from '../components/header';
 class BrowseCharts extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['showLoading', 'hideLoading', 'clientLoaded', 'mount', 'next', 'previous', 'displayCharts'], this);
+        this.bindClassMethods(['showLoading', 'hideLoading', 'clientLoaded', 'mount', 'next', 'previous',
+        'getHTMLForChartResults', 'displayCharts'], this);
         this.dataStore = new DataStore();
         this.client = new JumanjiJamzClient();
         this.dataStore.addChangeListener(this.displayCharts);
@@ -57,9 +58,9 @@ class BrowseCharts extends BindingClass {
          }
          else {
          const nextId = this.dataStore.get('nextId');
-         const nextLimit = this.dataStore.get('nextLimit');
+
      
-         const result = await this.client.getAllCharts(nextId, limit);
+         const result = await this.client.getAllCharts(nextId, 4);
          console.log("Result:", result);
          
          console.log("Received charts:", result.charts);
@@ -76,61 +77,77 @@ class BrowseCharts extends BindingClass {
     async previous() {
         this.showLoading();
     
-        let result;
-            if (this.previousKeys.length > 0) {
-                const previousId = this.previousKeys.pop();
-                result = await this.client.getAllCharts(previousId, limit);
-            } else {
-                result = await this.client.getAllCharts(this.dataStore.get('previousId'), limit);
-            }
+        const previousId = this.previousKeys.pop() || this.dataStore.get('previousId');
+        const result = await this.client.getAllCharts(previousId, 4);
     
         console.log("Result:", result);
         console.log("Received charts:", result.charts);
     
-        
         this.dataStore.set('charts', result.charts);
-        this.dataStore.set('previousId', result.currentId)
+        this.dataStore.set('previousId', result.currentId);
         this.dataStore.set('nextId', result.nextId);
         this.hideLoading();
     }
+    
 
     displayCharts() {
         const charts = this.dataStore.get('charts');
-        const displayDiv = document.getElementById('vendors-list-display');
-        displayDiv.innerText = vendors.length > 0 ? "" : "No more Vendors available.";
+        const displayDiv = document.getElementById('charts-list-display');
+        displayDiv.innerText = charts.length > 0 ? "" : "No more Charts available.";
     
     
     
-        vendors.forEach(vendor => {
+        charts.forEach(chart => {
                 const chartCard = document.createElement('section');
-                chartCard.className = 'vendorCard';
+                chartCard.className = 'chartCard';
     
-                const vendorId = encodeURIComponent(vendor.id);
-                const name = encodeURIComponent(vendor.name);
+                const chartId = encodeURIComponent(chart.id);
+                
     
                 const currentHostname = window.location.hostname;
     
                 const isLocal = currentHostname === 'localhost' || currentHostname === '127.0.0.1';
                 const baseUrl = isLocal ? 'http://localhost:8000/' : 'https://d3hqn9u6ae71hc.cloudfront.net/';
     
-                const vendorPageUrl = `${baseUrl}viewVendor.html?id=${vendorId}&name=${encodeURIComponent(name)}`;
+                const chartPageUrl = `${baseUrl}chart.html?id=${chartId}`;
     
-                const vendorName = document.createElement('h2');
-                vendorName.innerText = vendor.name;
+                const chartName = document.createElement('h2');
+                chartName.innerText = chart.name;
     
-                const vendorBio = document.createElement('h3');
-                vendorBio.innerText = vendor.bio;
+                const chartMadeBy = document.createElement('h3');
+                chartMadeBy.innerText = chart.madeBy;
     
-                vendorCard.appendChild(vendorName);
-                vendorCard.appendChild(vendorBio);
+                chartCard.appendChild(chartName);
+                chartCard.appendChild(chartMadeBy);
     
-                displayDiv.appendChild(vendorCard);
+                displayDiv.appendChild(chartCard);
     
-                vendorCard.addEventListener('click', () => {
-                    window.location.href = vendorPageUrl;
-                    console.log('Created Event listener' + vendorPageUrl);
+                chartCard.addEventListener('click', () => {
+                    window.location.href = chartPageUrl;
+                    console.log('Created Event listener' + chartPageUrl);
                 });
         });
+    }
+
+    getHTMLForChartResults(searchResults) {
+        if (searchResults.length == 0) {
+            return '<h4>No results found</h4>';
+        }
+
+        let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
+        for (const res of searchResults) {
+            html += `
+            <tr>
+                <td>
+                    <a href="chart.html?id=${res.id}">${res.name}</a>
+                </td>
+                <td>${res.madeBy}</td>
+                <td>${res.genres?.join(', ')}</td>
+            </tr>`;
+        }
+        html += '</table>';
+
+        return html;
     }
 }
 
