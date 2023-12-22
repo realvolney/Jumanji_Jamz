@@ -12,36 +12,89 @@
         <h2>Create Chart</h2>
         <form class="card-content" id="create-chart-form">
             <p class="hidden error" id="error-message"> </p>
-            <p class="form-field">
-                <label>Chart Name</label>
-                <input type="text" required class="validated-field" id="chart-name" placeholder="jumanji-jamz"
-                    autofocus>
-            </p>
-            <p class="form-field">
-                <label>Artist</label>
-                <input type="text" id="artist" class="tags" placeholder="artist-name"
-                    data-tip="Must be a comma separated list of tags">
-            </p>
-            <p class="form-field">
-                <label>BPM</label>
-                <input type="text" id="bpm" class="tags" placeholder="must-be-number"
-                    data-tip="Must be a comma separated list of tags">
-            </p>
-            <p class="form-field">
-                <label>Content</label>
-                <input type="text" id="content" class="tags" placeholder="chords"
-                    data-tip="Must be a comma separated list of tags">
-            </p>
-            <p class="form-field">
-                <label>Genres</label>
-                <input type="text" id="tags" class="tags" placeholder="genre1, genre2"
-                    data-tip="Must be a comma separated list of tags">
-            </p>
+            <div class="form-column">
+                <p class="form-field1">
+                    <label>Chart Name</label>
+                    <input type="text" required class="validated-field" id="chart-name" placeholder="jumanji-jamz"
+                        autofocus>
+                </p>
+                <p class="form-field1">
+                    <label>Artist</label>
+                    <input type="text" id="artist" class="tags" placeholder="artist-name"
+                        data-tip="Must be a comma separated list of tags">
+                </p>
+                <p class="form-field1">
+                    <label>BPM</label>
+                    <input type="text" id="bpm" class="tags" placeholder="must-be-number"
+                        data-tip="Must be a comma separated list of tags">
+                </p>
+                <p class="form-field1">
+                    <label>Genres</label>
+                    <input type="text" id="genres" class="tags" placeholder="genre1, genre2"
+                        data-tip="Must be a comma separated list of tags">
+                </p>
+            </div>
+            <div class="form-column">
+                <p class="form-field2">
+                    <label>Section</label>
+                    <input type="text" id="section-name-1" class="tags" placeholder="verse">
+                </p>
+                <p class="form-field2">
+                    <input type="text" id="section-name-2" class="tags" placeholder="chorus">
+                </p>
+                <p class="form-field2">
+                    <input type="text" id="section-name-3" class="tags" placeholder="verse">
+                </p>
+                <p class="form-field2">
+                    <input type="text" id="section-name-4" class="tags" placeholder="bridge">
+                </p>
+                <p class="form-field2">
+                    <input type="text" id="section-name-5" class="tags" placeholder="chorus">
+                </p>
+            </div>
+            <div class="form-column">
+                <p class="form-field3">
+                    <label>Chords</label>
+                    <input type="text" id="genres" class="tags" placeholder="Am, C">
+                </p>
+                <p class="form-field3">
+                    <input type="text" id="genres" class="tags" placeholder="D, F">
+                </p>
+                <p class="form-field3">
+                    <input type="text" id="genres" class="tags" placeholder="G, Eflat">
+                </p>
+                <p class="form-field3">
+                    <input type="text" id="genres" class="tags" placeholder="Bflat, F ">
+                </p>
+                <p class="form-field3">
+                    <input type="text" id="genres" class="tags" placeholder="E9, Amaj7 ">
+                </p>
+            </div>
+            <div class="form-column">
+                <p class="form-field4">
+                    <label>Lyrics</label>
+                    <input type="text" id="lyrics-1" class="tags" placeholder="lyrics 1">
+                </p>
+                <p class="form-field4">
+                    <input type="text" id="lyrics-2" class="tags" placeholder="lyrics 2">
+                </p>
+                <p class="form-field4">
+                    <input type="text" id="lyrics-3" class="tags" placeholder="lyrics 3">
+                </p>
+                <p class="form-field4">
+                    <input type="text" id="lyrics-4" class="tags" placeholder="lyrics 4">
+                </p>
+                <p class="form-field4">
+                    <input type="text" id="lyrics-5" class="tags" placeholder="lyrics 5">
+                </p>
+            </div>
             <p>
-                <a href="#" class="button" id="create">Create Chart</a>
+                
             </p>
+            
         </form>
     </div>
+    <a href="#" class="button" id="create">Create Chart</a>
 </body>
 
 </html>
