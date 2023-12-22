@@ -133,7 +133,7 @@ export default class JumanjiJamzClient extends BindingClass {
                 genres: setListDetails.genres
             };
             debugger;
-            
+
 
             const response = await this.axiosClient.post(`setlists`, payload, {
                 headers: {
@@ -152,6 +152,13 @@ export default class JumanjiJamzClient extends BindingClass {
     async getAllCharts(id, limit, errorCallback) {
         try {
             const response = await this.axiosClient.get (`all/charts/${id}`, limit);
+            const result = {
+                vendors: response.data.charts,
+                currentId: id,
+                currentLimit: limit,
+                nextId: response.data.id,
+                nextLimit: response.data.name
+            };
             return response.data;
         } catch (error) {
             this.handleError(error, errorCallback);
