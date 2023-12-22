@@ -102,7 +102,7 @@ public class SetListDAO {
         DynamoDBQueryExpression<SetList> expression = new DynamoDBQueryExpression<SetList>()
                 .withIndexName(SETLIST_NAME_GSI)
                 .withConsistentRead(false)
-                .withKeyConditionExpression("madeBy = :madeBy")  // Add this line
+                .withKeyConditionExpression("madeBy = :madeBy") 
                 .withExpressionAttributeValues(Map.of(":madeBy", new AttributeValue().withS(madeBy)));
 
         return mapper.query(SetList.class, expression);
