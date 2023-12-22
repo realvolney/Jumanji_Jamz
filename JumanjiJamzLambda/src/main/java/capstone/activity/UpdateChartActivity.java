@@ -55,11 +55,11 @@ public class UpdateChartActivity {
             publisher.addCount(MetricsConstants.UPDATE_CHART_SUCCESS_COUNT, 0);
             throw new SecurityException("You must own Chart to update it.");
         }
-        chart.setName(request.getName());
-        chart.setArtist(request.getArtist());
-        chart.setBpm(request.getBpm());
-        chart.setContent(request.getContent());
-        chart.setGenres(request.getGenres());
+        if (request.getName() != null) chart.setName(request.getName());
+        if (request.getArtist() != null) chart.setArtist(request.getArtist());
+        if (request.getBpm() != null) chart.setBpm(request.getBpm());
+        if (request.getContent() != null) chart.setContent(request.getContent());
+        if (request.getGenres() != null) chart.setGenres(request.getGenres());
 
         ChartModel model = converter.toChartModel(dao.saveChart(chart));
 

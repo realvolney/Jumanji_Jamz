@@ -14,7 +14,7 @@ class BrowseCharts extends BindingClass {
         this.previousKeys = [];
         console.log("BrowseCharts constructor");
         this.limit = 5;
-        this.header = new Header(this.dataStore);
+        
     }
 
     showLoading() {
@@ -45,7 +45,7 @@ class BrowseCharts extends BindingClass {
      * Add the header to the page and load the VendorEventClient.
      */
     mount() {
-        this.header.addHeaderToPage();
+        
         this.clientLoaded();
         document.getElementById('nextButton').addEventListener('click', this.next);
         document.getElementById('prevButton').addEventListener('click', this.previous);
@@ -110,7 +110,7 @@ class BrowseCharts extends BindingClass {
                 const currentHostname = window.location.hostname;
     
                 const isLocal = currentHostname === 'localhost' || currentHostname === '127.0.0.1';
-                const baseUrl = isLocal ? 'http://localhost:8000/' : 'https://d3hqn9u6ae71hc.cloudfront.net/';
+                const baseUrl = isLocal ? 'http://localhost:8000/' : 'https://d1pv9h2o6o7zp8.cloudfront.net/';
     
                 const chartPageUrl = `${baseUrl}chart.html?id=${chartId}`;
     
@@ -133,9 +133,7 @@ class BrowseCharts extends BindingClass {
     }
 
     getHTMLForChartResults(searchResults) {
-        if (searchResults.length == 0) {
-            return '<h4>No results found</h4>';
-        }
+        
 
         let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
         for (const res of searchResults) {

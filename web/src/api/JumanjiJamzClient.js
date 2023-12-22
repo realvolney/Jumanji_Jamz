@@ -132,7 +132,7 @@ export default class JumanjiJamzClient extends BindingClass {
                 charts: setListDetails.charts,
                 genres: setListDetails.genres
             };
-            debugger;
+           
 
 
             const response = await this.axiosClient.post(`setlists`, payload, {

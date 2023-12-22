@@ -59,9 +59,32 @@ class CreateChart extends BindingClass {
         }
         else {
 
-        const content = document.getElementById('content').value;
-        const tagsText = document.getElementById('tags').value;
-    
+        
+        const tagsText = document.getElementById('genres').value;
+        const numSections = 5; 
+        const numChords = 5;   
+        const numLyrics = 5;    
+       
+        let interweavedArray = [];
+     
+        
+        for (let i = 1; i <= Math.max(numSections, numChords, numLyrics); i++) {
+            const sectionValue = document.getElementById(`section-name-${i}`).value || '';
+            const chordValue = document.getElementById(`chords${i}`).value || '';
+            const lyricsValue = document.getElementById(`lyrics-${i}`).value || '';
+        
+            
+        
+            if (!sectionValue && !chordValue && !lyricsValue) {
+                break;
+            }
+            interweavedArray.push(`${sectionValue}: ${chordValue}\n     ${lyricsValue}`);
+        }
+        
+        const content = interweavedArray.join('\n');
+        
+
+        console.log(content);
 
         let tags;
         if (tagsText.length < 1) {
@@ -79,7 +102,6 @@ class CreateChart extends BindingClass {
         };
 
         console.log("payload {}", chartDetails);
-        
         const data = await this.client.createChart(chartDetails, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;

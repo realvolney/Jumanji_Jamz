@@ -59,7 +59,9 @@ class SearchCharts extends BindingClass {
     async search(evt) {
         // Prevent submitting the from from reloading the page.
         evt.preventDefault();
-
+        const searchButton = document.getElementById('search-btn');
+        const origButtonText = searchButton.innerText;
+        searchButton.innerText = 'Loading...';
         const searchCriteria = document.getElementById('search-criteria').value;
         const previousSearchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
 
@@ -113,7 +115,7 @@ class SearchCharts extends BindingClass {
             return '<h4>No results found</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
+        let html = '<table><tr><th>Name</th><th>Created by</th><th>Genres</th></tr>';
         for (const res of searchResults) {
             html += `
             <tr>
