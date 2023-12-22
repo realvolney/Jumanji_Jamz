@@ -35,7 +35,7 @@ class SearchCharts extends BindingClass {
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.header = new Header(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
-        console.log("searchPlaylists constructor");
+        console.log("searchCharts constructor");
     }
 
     /**
@@ -117,10 +117,10 @@ class SearchCharts extends BindingClass {
             html += `
             <tr>
                 <td>
-                    <a href="playlist.html?id=${res.id}">${res.name}</a>
+                    <a href="chart.html?id=${res.id}">${res.name}</a>
                 </td>
-                <td>${res.songCount}</td>
-                <td>${res.tags?.join(', ')}</td>
+                <td>${res.madeBy}</td>
+                <td>${res.genres?.join(', ')}</td>
             </tr>`;
         }
         html += '</table>';
