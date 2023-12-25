@@ -7,13 +7,16 @@
 </head>
 
 <body class="background">
+
     <header class="header" id="header"></header>
+    <div class="toolBar">
+        <a href="mySetLists.html" class="button" id="my-setlists-btn">My Setlists</a>
+    </div>
+
     <div class="card">
         <h2>Need Some Charts?</h2>
         <form class="card-content" id="search-chart-form">
-           
             <p class="form-field">
-        
                 <label>Search chart by name </label>
                 <input type="text" class="validated-field" id="search-criteria" placeholder="jumanji-jamz" autofocus>
                 <sub>Search is case-sensitive </sub>
@@ -24,12 +27,12 @@
             <a href="#" class="button" id="search-btn">Search</a>
             <a href="createSetList.html" class="button">New SetList</a>
             <a href="createChart.html" class="button">New Chart</a>
+            <a href="mySetLists.html" class="button">My Setlists</a>
         </p>
     </div>
     <div class="card hidden" id='search-results-container'>
         <h3>Results for <span id="search-criteria-display"></span></h3>
-        <div id="search-results-display">
-        </div>
+        <div id="search-results-display"></div>
     </div>
 </body>
 
