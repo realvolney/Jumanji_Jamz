@@ -2,6 +2,7 @@ import DataStore from '../util/DataStore';
 import BindingClass from "../util/bindingClass";
 import JumanjiJamzClient from "../api/JumanjiJamzClient";
 import Header from '../components/header';
+import Authenticator from '../api/authenticator';
 
 class MySetLists extends BindingClass {
     constructor() {
@@ -10,6 +11,7 @@ class MySetLists extends BindingClass {
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
         this.client = new JumanjiJamzClient();
+        this.authenticator = new Authenticator();
         console.log("MySetLists constructor");
     }
 
@@ -26,6 +28,10 @@ class MySetLists extends BindingClass {
     async clientLoaded() {
         this.showLoading();
         const setLists = await this.client.mySetLists();
+        const info = await this.authenticator.getCurrentUserInfo();
+        console.log("info {}", info);
+        const user = document.getElementById('setList-owner');
+        user.innerText = info.name + "'s Setlists";
         this.hideLoading();
 
         console.log("SetLists {}", setLists);
@@ -50,6 +56,20 @@ class MySetLists extends BindingClass {
 
     displaySetlists() {
         const setLists = this.dataStore.get('setLists');
+        //  const searchResultsContainer = document.getElementById('search-results-container');
+        // const searchCriteriaDisplay = document.getElementById('search-criteria-display');
+        // const searchResultsDisplay = document.getElementById('search-results-display');
+
+        // if (searchCriteria === '') {
+        //     searchResultsContainer.classList.add('hidden');
+        //     searchCriteriaDisplay.innerHTML = '';
+        //     searchResultsDisplay.innerHTML = '';
+        // } else {
+        //     searchResultsContainer.classList.remove('hidden');
+        //     searchCriteriaDisplay.innerHTML = `"${searchCriteria}"`;
+        //     searchResultsDisplay.innerHTML = this.getHTMLForSearchResults(searchResults);
+        // }
+    
         // const displayDiv = document.getElementById('charts-list-display');
         // displayDiv.innerText = charts.length > 0 ? "" : "No more Charts available.";
     
@@ -94,7 +114,7 @@ class MySetLists extends BindingClass {
             return '<h4>No results found</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Created by</th><th>Genres</th></tr>';
+        let html = '<table><tr><th>Name</th><th></th><th>Genres</th></tr>';
         for (const res of searchResults) {
             html += `
             <tr>
