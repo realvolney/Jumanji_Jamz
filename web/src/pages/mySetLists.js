@@ -56,73 +56,32 @@ class MySetLists extends BindingClass {
 
     displaySetlists() {
         const setLists = this.dataStore.get('setLists');
-        //  const searchResultsContainer = document.getElementById('search-results-container');
+         const setListsResultsContainer = document.getElementById('search-results-container');
         // const searchCriteriaDisplay = document.getElementById('search-criteria-display');
-        // const searchResultsDisplay = document.getElementById('search-results-display');
+        const setListsResultsDisplay = document.getElementById('search-results-display');
 
-        // if (searchCriteria === '') {
-        //     searchResultsContainer.classList.add('hidden');
-        //     searchCriteriaDisplay.innerHTML = '';
-        //     searchResultsDisplay.innerHTML = '';
-        // } else {
-        //     searchResultsContainer.classList.remove('hidden');
-        //     searchCriteriaDisplay.innerHTML = `"${searchCriteria}"`;
-        //     searchResultsDisplay.innerHTML = this.getHTMLForSearchResults(searchResults);
-        // }
     
-        // const displayDiv = document.getElementById('charts-list-display');
-        // displayDiv.innerText = charts.length > 0 ? "" : "No more Charts available.";
-    
-    
-    
-        // charts.forEach(chart => {
-        //         const chartCard = document.createElement('section');
-        //         chartCard.className = 'chartCard';
-    
-        //         const chartId = encodeURIComponent(chart.id);
-                
-    
-        //         const currentHostname = window.location.hostname;
-    
-        //         const isLocal = currentHostname === 'localhost' || currentHostname === '127.0.0.1';
-        //         const baseUrl = isLocal ? 'http://localhost:8000/' : 'https://d1pv9h2o6o7zp8.cloudfront.net/';
-    
-        //         const chartPageUrl = `${baseUrl}chart.html?id=${chartId}`;
-    
-        //         const chartName = document.createElement('h2');
-        //         chartName.innerText = chart.name;
-    
-        //         const chartMadeBy = document.createElement('h3');
-        //         chartMadeBy.innerText = chart.madeBy;
-    
-        //         chartCard.appendChild(chartName);
-        //         chartCard.appendChild(chartMadeBy);
-    
-        //         displayDiv.appendChild(chartCard);
-    
-        //         chartCard.addEventListener('click', () => {
-        //             window.location.href = chartPageUrl;
-        //             console.log('Created Event listener' + chartPageUrl);
-        //         });
-        // });
+            setListsResultsContainer.classList.remove('hidden');
+       
+            setListsResultsDisplay.innerHTML = this.getHTMLForSetListResults(setLists);    
     }
 
     
 
-    getHTMLForSetListResults(searchResults) {
-        if (searchResults.length == 0) {
-            return '<h4>No results found</h4>';
+    getHTMLForSetListResults(setLists) {
+        if (setLists.length == 0) {
+            return '<h4>You have no setlists</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th></th><th>Genres</th></tr>';
-        for (const res of searchResults) {
+        let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
+        for (const res of setLists) {
             html += `
             <tr>
                 <td>
                     <a href="setlist.html?id=${res.id}">${res.name}</a>
                 </td>
-                <td>${res.madeBy}</td>
-                <td>${res.genres?.join(', ')}</td>
+        
+                <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
             </tr>`;
         }
         html += '</table>';
