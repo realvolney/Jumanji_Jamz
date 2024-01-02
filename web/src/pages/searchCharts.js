@@ -67,11 +67,19 @@ class SearchCharts extends BindingClass {
 
         // If the user didn't change the search criteria, do nothing
         if (previousSearchCriteria === searchCriteria) {
+            searchButton.innerText = 'Search';
             return;
         }
 
         if (searchCriteria) {
             const results = await this.client.search(searchCriteria);
+
+            // get rid of if doesn't work
+            while(!results) {
+                searchButton.innerText = 'Loading.';
+                searchButton.innerText = 'Loading..';
+                searchButton.innerText = 'Loading...';
+            }
 
             this.dataStore.setState({
                 [SEARCH_CRITERIA_KEY]: searchCriteria,

@@ -240,5 +240,31 @@ export default class JumanjiJamzClient extends BindingClass {
         }
     
     }
+
+    // Method to view add chart to setlist
+    async addChart(chartDetails, errorCallBack) {
+        try {
+            const payload = {
+                id: chartDetails.id,
+                name: chartDetails.name,
+                artist: chartDetails.artist,
+                bpm: chartDetails.bpm,
+                content: chartDetails.content,
+                genres: chartDetails.genres,
+                madeBy: chartDetails.madeBy,
+            }
+            const token = await this.getTokenOrThrow("Log in to view personal setlists");
+
+            const response = await this.axiosClient.put(`setlists/{id}/charts`, payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data
+        } catch (error) {
+            this.handleError(error, errorCallBack);
+        }
+    
+    }
 }
 
