@@ -9,6 +9,7 @@ body {
     margin: 0;
     counter-reset: section;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
+    background-image: url("static_assets/images/Background.jpeg");
 }
 
 .background {

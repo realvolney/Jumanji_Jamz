@@ -80,6 +80,7 @@ class SearchCharts extends BindingClass {
         } else {
             this.dataStore.setState(EMPTY_DATASTORE_STATE);
         }
+        searchButton.innerText = 'Search';
     }
 
     /**
