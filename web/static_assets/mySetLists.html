@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/searchCharts.js"></script>
+    <script type="text/javascript" src="assets/browseCharts.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body class="background">
+    <header class="header" id="header"></header>
+    <div class="card">
+        <h2>Browse Charts</h2>
+        <form class="card-content" id="search-chart-form">
+            <p class="form-field">
+                <label>Search by name </label>
+                <input type="text" class="validated-field" id="search-criteria" placeholder="jumanji-jamz" autofocus>
+                <sub>Search is case-sensitive </sub>
+            </p>
+        </form>
+        <div id="loading"></div>
+        <p class="button-group">
+            <a href="#" class="button" id="search-btn">Search</a>
+            <a href="createChart.html" class="button">New Chart</a>
+        </p>
+    </div>
+    
+    <div class="card hidden" id='search-results-container'>
+        <h3>Results for <span id="search-criteria-display"></span></h3>
+        <div id="search-results-display">
+        </div>
+        
+    </div>
+    <div id="charts-list-display"></div>
+
+</body>
+
+<div id="pagination-controls">
+    <button id="prevButton">Previous</button>
+    <button id="nextButton">Next</button>
+</div>
+</body>
+
+
+</html>
