@@ -234,7 +234,7 @@ export default class JumanjiJamzClient extends BindingClass {
                     Authorization: `Bearer ${token}`
                 }
             });
-            return response.data;
+            return response.data.setLists;
         } catch (error) {
             this.handleError(error, errorCallBack);
         }

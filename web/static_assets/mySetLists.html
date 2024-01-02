@@ -2,37 +2,34 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="assets/viewSetList.js"></script>
+    <script type ="text/javascript" src="assets/mySetLists.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="background">
     <header class="header" id="header"></header>
     <div class="card">
-        <h2 id="setList-name"></h2>
-        <h3>Created by: <span id="setList-owner"></span></h3>
-        <div class="tags" id="tags"></div>
-        <ol id="genres"></ol>
+        <h2  id="setList-owner"></span>'s  Setlists </h2>
     </div>
     <div class="card">
-        
-        <h3> <span id="content"></span></h3>
-        
+        <h3 id="content"></span></h3>
     </div>
-    
     <div class="card">
         <h2>Add Chart to SetList</h2>
-        <form class="card-content" id="add-chart-form">
-            <p class="hidden error" id="error-message"> </p>
-            <p class="form-field">
-                <label>Chart ID</label>
-                <input type="text" required class="validated-field" id="chart-id" placeholder="00000000" autofocus>
-            </p>
-           
-        </form>
-        <a href="#" class="button" id="add-song">Add Chart</a>
-        <a href="#" class="button" id="update-setList">Update SetList</a>
+            <form class="card-content" id="add-chart-form">
+                <p class="hidden error" id="error-message"> </p>
+                <p class="form-field">
+                    <label>Chart ID</label>
+                    <input type="text" required class="validated-field" id="chart-id" placeholder="00000000" autofocus>
+                </p>
+               
+            </form>
+        <a href="#" class="button" id="add-chart">Add Chart</a>
+        <a href="createSetList.html" class="button">Create SetList</a>
+    </div>
+    <div class="card hidden" id='search-results-container'>
+        <h3>Results for <span id="search-criteria-display"></span></h3>
+        <div id="search-results-display"></div>
     </div>
 </body>
-
 </html>
