@@ -25,7 +25,7 @@ class MySetLists extends BindingClass {
 
     async clientLoaded() {
         this.showLoading();
-        const setLists = await this.client.MySetLists();
+        const setLists = await this.client.mySetLists();
         this.hideLoading();
 
         console.log("SetLists {}", setLists);
