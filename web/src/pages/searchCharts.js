@@ -124,7 +124,7 @@ class SearchCharts extends BindingClass {
                     <a href="chart.html?id=${res.id}">${res.name}</a>
                 </td>
                 <td>${res.madeBy}</td>
-                <td>${res.genres?.join(', ')}</td>
+                <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
             </tr>`;
         }
         html += '</table>';

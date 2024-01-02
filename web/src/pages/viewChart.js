@@ -9,7 +9,8 @@ import DataStore from "../util/DataStore";
 class ViewChart extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage', 'redirectToUpdateChart'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage', 'redirectToUpdateChart',
+         'popUpMySetLists', 'getHTMLForSetListResults'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addChartToPage);
         this.header = new Header(this.dataStore);
@@ -36,6 +37,7 @@ class ViewChart extends BindingClass {
      */
     mount() {
         document.getElementById('update-chart').addEventListener('click', this.redirectToUpdateChart);
+        document.getElementById('add-to-setList').addEventListener('click', this.popUpMySetLists);
         this.header.addHeaderToPage();
 
         this.clientLoaded();
@@ -77,6 +79,55 @@ class ViewChart extends BindingClass {
         if (chart != null) {
             window.location.href = `/updateChart.html?id=${chart.id}`;
         }
+    }
+
+     /**
+     * When the Add to SetList is selected, redirect to the mySetlists popUp
+     */
+
+    async popUpMySetLists() {
+        const addButton = document.getElementById('add-to-setList');
+        addButton.innerText = "Loading...";
+        const chart = this.dataStore.get('chart');
+        console.log('chart {}', chart);
+
+        if (chart != null) {
+            const setlists = await this.client.mySetLists();
+            console.log('setlists {}', setlists);
+            this.dataStore.set('my-setlists', setlists);
+
+
+        
+            const setListsResultsContainer = document.getElementById('search-results-container');
+            const setListsResultsDisplay = document.getElementById('search-results-display');
+            const searchCriteriaDisplay = document.getElementById('search-criteria-display');
+
+            searchCriteriaDisplay.innerText = "My Setlists"
+            setListsResultsContainer.classList.remove('hidden');
+       
+            setListsResultsDisplay.innerHTML = this.getHTMLForSetListResults(setlists);   
+        } 
+        addButton.innerText = "Add to SetList";
+    }
+    getHTMLForSetListResults(setLists) {
+        if (setLists.length == 0) {
+            return '<h4>You have no setlists</h4>';
+        }
+
+        let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
+        for (const res of setLists) {
+            html += `
+            <tr>
+                <td>
+                    <a href="setlist.html?id=${res.id}">${res.name}</a>
+                </td>
+        
+                <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
+            </tr>`;
+        }
+        html += '</table>';
+
+        return html;
     }
 }
 
