@@ -64,7 +64,7 @@ class ViewSetList extends BindingClass {
 
         let tagHtml = '';
         let tag;
-        if (!setList.genres) {
+        if (setList.genres) {
         for( tag  of setList.genres) {
             tagHtml += '<div class="tag">' + tag + '</div>';
         }

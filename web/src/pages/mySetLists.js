@@ -69,7 +69,7 @@ class MySetLists extends BindingClass {
     
 
     getHTMLForSetListResults(setLists) {
-        if (setLists.length == 0) {
+        if (!setLists.length) {
             return '<h4>You have no setlists</h4>';
         }
 
