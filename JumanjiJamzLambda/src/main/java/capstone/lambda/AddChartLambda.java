@@ -14,6 +14,10 @@ public class AddChartLambda
         return super.runActivity(
                 () -> {
                     AddChartRequest unauthenticatedRequest = input.fromBody(AddChartRequest.class);
+                    AddChartRequest userRequest = input.fromUserClaims(claims -> AddChartRequest.builder()
+                                .withUser(claims.get("email"))
+                                .build()
+                    );
                     return input.fromQuery(query ->
                             AddChartRequest.builder()
                                     .withId(unauthenticatedRequest.getId())
@@ -23,6 +27,7 @@ public class AddChartLambda
                                     .withContent(unauthenticatedRequest.getContent())
                                     .withGenres(unauthenticatedRequest.getGenres())
                                     .withMadeBy(unauthenticatedRequest.getMadeBy())
+                                    .withUser(userRequest.getUser())
                                     .withSetListId(query.get("setListId"))
                                     .build());
                 },

@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class AddChartActivity {
@@ -43,6 +44,9 @@ public class AddChartActivity {
                 .build();
 
         SetList setList = setListDAO.getSetList(id);
+        if (!Objects.equals(request.getUser(), setList.getMadeBy())) {
+            throw new IllegalArgumentException("You do not own this setlist");
+        }
         Set<ChartModel> charts = setList.getCharts();
         if(charts == null) {
             setList.setCharts(new HashSet<>());

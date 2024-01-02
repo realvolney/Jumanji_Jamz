@@ -15,9 +15,10 @@ public class AddChartRequest {
     private final Set<String> genres;
     private final String madeBy;
     private final String setListId;
+    private final String user;
 
     private AddChartRequest(String id, String name, String artist, Integer bpm,
-                           String content, Set<String> genres, String madeBy, String setListId) {
+                           String content, Set<String> genres, String madeBy, String setListId, String user) {
         this.id = id;
         this.name = name;
         this.artist = artist;
@@ -26,6 +27,7 @@ public class AddChartRequest {
         this.genres = genres;
         this.madeBy = madeBy;
         this.setListId = setListId;
+        this.user = user;
     }
 
     public String getId() {
@@ -60,6 +62,10 @@ public class AddChartRequest {
         return setListId;
     }
 
+    public String getUser() {
+        return user;
+    }
+
     @Override
     public String toString() {
         return "AddChartRequest{" +
@@ -71,6 +77,7 @@ public class AddChartRequest {
                 ", genres=" + genres +
                 ", madeBy='" + madeBy + '\'' +
                 ", setListId='" + setListId + '\'' +
+                ", user='" + user + '\'' +
                 '}';
     }
 
@@ -88,6 +95,7 @@ public class AddChartRequest {
         private Set<String> genres;
         private String madeBy;
         private String setListId;
+        private String user;
 
         public Builder withId(String id) {
             this.id = id;
@@ -129,8 +137,13 @@ public class AddChartRequest {
             return this;
         }
 
+        public Builder withUser(String user) {
+            this.user = user;
+            return this;
+        }
+
         public AddChartRequest build() {
-            return new AddChartRequest(id, name, artist, bpm, content, genres, madeBy, setListId);
+            return new AddChartRequest(id, name, artist, bpm, content, genres, madeBy, setListId, user);
         }
 
     }
