@@ -85,14 +85,13 @@ class ViewSetList extends BindingClass {
     displayCharts() {
         const charts = this.dataStore.get('charts');
         console.log('charts {}', charts);
-         const setListsResultsContainer = document.getElementById('search-results-container');
-       
+        const setListsResultsContainer = document.getElementById('search-results-container');
+        const searchCriteriaDisplay = document.getElementById('search-criteria-display');
         const setListsResultsDisplay = document.getElementById('search-results-display');
 
-    
-            
-       
-            setListsResultsDisplay.innerHTML = this.getHTMLForChartResults(charts);    
+        searchCriteriaDisplay.innerText = "Charts";
+
+        setListsResultsDisplay.innerHTML = this.getHTMLForChartResults(charts);    
     }
 
     
