@@ -157,6 +157,8 @@ class ViewChart extends BindingClass {
         parentElement.addEventListener('submit', async (event) => {
             event.preventDefault();
             const searchCriteriaDisplay = document.getElementById('search-criteria-display');
+            const button = document.getElementById('')
+            searchCriteriaDisplay.innerText = "Loading..."
             if (event.target.tagName === 'FORM') {
                 const form = event.target;
                 const selectedSetlists = form.querySelectorAll('input[type="checkbox"]:checked');

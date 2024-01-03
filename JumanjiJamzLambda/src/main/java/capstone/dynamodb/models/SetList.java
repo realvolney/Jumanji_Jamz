@@ -47,7 +47,7 @@ public class SetList {
      * Getter for name.
      * @return name
      */
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = SETLIST_NAME_GSI, attributeName = "name")
+    @DynamoDBIndexRangeKey(globalSecondaryIndexName = SETLIST_NAME_GSI, attributeName = "name")
     public String getName() {
         return name; }
 
@@ -96,7 +96,7 @@ public class SetList {
      * Getter for madeBy.
      * @return madeBY
      */
-    @DynamoDBIndexRangeKey(globalSecondaryIndexName = SETLIST_NAME_GSI, attributeName = "madeBy")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = SETLIST_NAME_GSI, attributeName = "madeBy")
     public String getMadeBy() {
         return madeBy; }
 
