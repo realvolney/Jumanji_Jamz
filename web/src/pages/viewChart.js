@@ -118,6 +118,9 @@ class ViewChart extends BindingClass {
         console.log('chart {}', chart);
         let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
         for (const res of setLists) {
+            const button = document.createElement('add-setlists');
+            button.className = 'button';
+            button.onclick =  this.addChart(chart, res.id);
             html += `
             <tr>
                 <td>
@@ -125,7 +128,7 @@ class ViewChart extends BindingClass {
                 </td>
                 <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
                 <td>
-                    <button onclick="addChart(${JSON.stringify(chart)}, '${res.id}')">Add Chart</button>
+                  
                 </td>
             </tr>`;
         }
