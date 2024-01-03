@@ -124,10 +124,14 @@ class BrowseCharts extends BindingClass {
                 const chartName = document.createElement('h2');
                 chartName.innerText = chart.name;
     
-                const chartMadeBy = document.createElement('h3');
+                const chartMadeBy = document.createElement('h4');
                 chartMadeBy.innerText = chart.madeBy;
-    
+
+                const chartArtist = document.createElement('h3');
+                chartArtist.innerText = chart.artist;
+
                 chartCard.appendChild(chartName);
+                chartCard.appendChild(chartArtist);
                 chartCard.appendChild(chartMadeBy);
     
                 displayDiv.appendChild(chartCard);
