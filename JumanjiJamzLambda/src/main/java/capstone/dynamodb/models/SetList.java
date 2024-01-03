@@ -107,4 +107,15 @@ public class SetList {
      */
     public void setMadeBy(String madeBy) {
         this.madeBy = madeBy; }
+
+    @Override
+    public String toString() {
+        return "SetList{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", charts=" + charts +
+                ", genres=" + genres +
+                ", madeBy='" + madeBy + '\'' +
+                '}';
+    }
 }

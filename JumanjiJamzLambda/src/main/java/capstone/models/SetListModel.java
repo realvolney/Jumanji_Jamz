@@ -39,6 +39,17 @@ public class SetListModel {
     }
 
     @Override
+    public String toString() {
+        return "SetListModel{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", charts=" + charts +
+                ", genres=" + genres +
+                ", madeBy='" + madeBy + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

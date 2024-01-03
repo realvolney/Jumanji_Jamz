@@ -1,5 +1,6 @@
 package capstone.converters;
 
+import capstone.models.ChartModel;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,6 +22,7 @@ public class SetStringConverter implements DynamoDBTypeConverter<String, Set> {
 
     @Override
     public String convert(Set listToBeConverted) {
+        log.info("listToBeConverted {}", listToBeConverted);
         if (listToBeConverted == null || listToBeConverted.isEmpty()) {
             return null;
         }
