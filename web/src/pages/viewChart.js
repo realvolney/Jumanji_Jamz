@@ -121,7 +121,7 @@ class ViewChart extends BindingClass {
         const chart = this.dataStore.get('chart');
         console.log('chart {}', chart);
         let html = `<form>`
-        html += '<table><tr><th>Name</th><th>Genres</th><th><button type="submit">Add Chart</button></tr>';
+        html += '<table><tr><th>Name</th><th>Genres</th><th>Check to Add Chart</th></tr>';
 
         for (const res of setLists) {
             
@@ -138,7 +138,9 @@ class ViewChart extends BindingClass {
         }
         console.log("html {}", html);
         html += '</table>';
-        html += `</form>`
+        html += '<th><button class="add-chart-button" type="submit">Click to Add to Setlists</button></th>';
+        html += `</form>`;
+        
 
         
         return html;
