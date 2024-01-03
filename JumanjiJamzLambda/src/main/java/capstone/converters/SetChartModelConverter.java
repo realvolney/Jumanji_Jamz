@@ -19,7 +19,7 @@ public class SetChartModelConverter implements DynamoDBTypeConverter<String, Set
 
     @Override
     public String convert(Set<ChartModel> object) {
-        log.error("object {}", object);
+        log.info("object {}", object);
         try {
             return mapper.writeValueAsString(object);
 
@@ -30,7 +30,7 @@ public class SetChartModelConverter implements DynamoDBTypeConverter<String, Set
 
     @Override
     public Set<ChartModel> unconvert(String object) {
-        log.error("object {}", object);
+        log.info("object {}", object);
         try {
             return mapper.readValue(object,
                     mapper.getTypeFactory().constructCollectionType(Set.class, ChartModel.class));
