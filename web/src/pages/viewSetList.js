@@ -102,7 +102,7 @@ class ViewSetList extends BindingClass {
             return '<h4>This setlist contains no charts</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
+        let html = '<table><tr><th>Name</th><th>Created by</th><th>Genres</th></tr>';
         for (const res of charts) {
             
             html += `
@@ -110,7 +110,7 @@ class ViewSetList extends BindingClass {
                 <td>
                     <a href="chart.html?id=${res.id}">${res.name}</a>
                 </td>
-        
+                <td>${res.madeBy}</td>
                 <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
             </tr>`;
         }
