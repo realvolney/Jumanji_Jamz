@@ -113,12 +113,10 @@ public class ChartDAO {
             valueMap = new HashMap<>();
             valueMap.put("id", new AttributeValue().withS(id));
         }
-        if (limit == null) {
-            limit = 4;
-        }
+        int pagination = Objects.isNull(limit) ? 4 : limit;
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
                 .withExclusiveStartKey(valueMap)
-                .withLimit(limit);
+                .withLimit(pagination);
 
         ScanResultPage<Chart> resultPage = mapper.scanPage(Chart.class, scanExpression);
 
