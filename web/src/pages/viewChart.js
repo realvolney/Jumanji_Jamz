@@ -10,7 +10,7 @@ class ViewChart extends BindingClass {
     constructor() {
         super();
         this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage', 'redirectToUpdateChart',
-         'popUpMySetLists', 'getHTMLForSetListResults'], this);
+         'popUpMySetLists', 'getHTMLForSetListResults', 'addChart'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addChartToPage);
         this.header = new Header(this.dataStore);
@@ -129,15 +129,18 @@ class ViewChart extends BindingClass {
 
                 <td>
                 <!-- Use a button or a link with an onclick event -->
-                <button onclick="this.client.addChart(${chart}${res.id})">Add Chart</button>
+                <button onclick="this.addChart(${chart}${res.id})">Add Chart</button>
             </td>
             </tr>`;
         }
-        debugger;
+      
         html += '</table>';
 
         return html;
         
+    }
+    async addChart(chart, id) {
+        await this.client.addChart(chart, id);
     }
    
 }
