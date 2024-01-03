@@ -3,26 +3,26 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "220e8400-e29b-41d4-a716-446655440000" },
-          "name": { "S": "ChartName1" },
-          "artist": { "S": "ChartArtist1" },
-          "bpm": { "N": "123" },
-          "content": { "S": "Eflat, BfLat" },
-          "madeBy": { "S": "Henry" },
-          "genres": { "SS": [ "Funk", "Soul" ] }
+          "id": { "S": "33230423-0524-4e5c-b041-50f3de3fd090" },
+          "artist": { "S": "Beastie Boys" },
+          "bpm": { "N": "134" },
+          "content": { "S": "intro: (A, C, D) 7x, A, D,E,G,E\n     Kick it\nverse: A, ACD, ACD, A, ACD,ACD, A, ACD,ACD, A, ACDA (hold)\n     You wake up late for school man you don't want to go, You ask your mom please but she still says no, You miss two classes and no homework, But your teacher preaches class like you're some kind of jerk\nchorus: D, D, ACD, ACD, ACD, ACD\n     You gotta fight, for your right, to Party\nverse: A, ACD, ACD, A, ACD,ACD, A, ACD,ACD, A, ACDA (hold)\n     Your pop caught you smoking man he said no way, That hypocrite smokes two packs a day, Man, living at home is such a drag, Now your mom threw away your best porno mag    Busted\nchorus: D, D, ACD, ACD, ACD, ACD\n     You gotta fight, for your right, to Party" },
+          "genres": { "SS": [ "Hip-Hop", "rock" ] },
+          "madeBy": { "S": "vpowlisiv@gmail.com" },
+          "name": { "S": "You Gotta Fight For your Right To Party " }
         }
       }
     },
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "220e8400-e29b-41d4-a716-446655440001" },
-          "name": { "S": "ChartName2" },
-          "artist": { "S": "ChartArtist2" },
-          "bpm": { "N": "123" },
-          "content": { "S": "Eflat, BfLat" },
-          "madeBy": { "S": "Henry" },
-          "genres": { "SS": [ "Funk", "Soul" ] }
+          "id": { "S": "a525b2f7-c603-47ee-a7ed-fda67c222911" },
+          "artist": { "S": "Chuck Berry" },
+          "bpm": { "N": "118" },
+          "content": { "S": "intro: A\n     ////////\nchorus: A, D7, A, E7, D7, A\n     Maybellene, why can't you be true, Oh, Maybellene, why can't you be true, You've started back doin' the things you used to do\nverse: A, D7, A, E7,D7,A\n     As I was motivatin' over the hill, I saw Maybellene in a Coupe de Ville, Cadillac rollin' on the open road, Nothin' outruns my V-8 Ford, Cadillac doin' 'bout 95, Bumper-to-Bumper, rollin' side by side\nchorus: A, D7, A, E7,D7,A\n     Maybellene, why can't you be true, Oh, Maybellene, why can't you be true, You've started back doin' the things you used to do" },
+          "genres": { "SS": [ "Rock N' Roll" ] },
+          "madeBy": { "S": "vpowlisiv@gmail.com" },
+          "name": { "S": "Maybellene" }
         }
       }
     },

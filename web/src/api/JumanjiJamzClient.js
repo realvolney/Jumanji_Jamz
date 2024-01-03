@@ -242,7 +242,7 @@ export default class JumanjiJamzClient extends BindingClass {
     }
 
     // Method to view add chart to setlist
-    async addChart(chartDetails, errorCallBack) {
+    async addChart(chartDetails, setListId, errorCallBack) {
         try {
             const payload = {
                 id: chartDetails.id,
@@ -255,7 +255,7 @@ export default class JumanjiJamzClient extends BindingClass {
             }
             const token = await this.getTokenOrThrow("Log in to view personal setlists");
 
-            const response = await this.axiosClient.put(`setlists/{id}/charts`, payload, {
+            const response = await this.axiosClient.put(`setlists/${setListId}/charts`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

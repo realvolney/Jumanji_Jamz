@@ -35,7 +35,7 @@ public class ModelConverter {
                 .withBpm(chart.getBpm())
                 .withContent(chart.getContent())
                 .withGenres(genres)
-                .withMadeBY(chart.getMadeBy())
+                .withMadeBy(chart.getMadeBy())
                 .build();
     }
 

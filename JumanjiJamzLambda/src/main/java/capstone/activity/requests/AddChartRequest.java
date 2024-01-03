@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.Set;
-@JsonDeserialize(builder =AddChartRequest.Builder.class)
+@JsonDeserialize(builder = AddChartRequest.Builder.class)
 public class AddChartRequest {
 
     private final String id;

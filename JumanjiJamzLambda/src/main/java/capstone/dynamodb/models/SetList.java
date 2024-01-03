@@ -1,9 +1,14 @@
 package capstone.dynamodb.models;
 
-import capstone.converters.SetStringConverter;
-
+import capstone.converters.SetChartModelConverter;
 import capstone.models.ChartModel;
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.Set;
 
@@ -15,12 +20,14 @@ import static capstone.utils.CollectionUtils.copyToSet;
  */
 @DynamoDBTable(tableName = "setlists")
 public class SetList {
+
+    private static final String SETLIST_NAME_GSI = "SetListNameAndMadeByIndex";
     private String id;
     private String name;
     private Set<ChartModel> charts;
     private Set<String> genres;
     private String madeBy;
-    private static final String SETLIST_NAME_GSI = "SetListNameAndMadeByIndex";
+
     /**
      * Getter for id.
      * @return id
@@ -55,7 +62,7 @@ public class SetList {
      * Getter for charts.
      * @return charts
      */
-    @DynamoDBTypeConverted(converter = SetStringConverter.class)
+    @DynamoDBTypeConverted(converter = SetChartModelConverter.class)
     @DynamoDBAttribute(attributeName = "charts")
     public Set<ChartModel> getCharts() {
         return copyToSet(charts);
@@ -99,4 +106,15 @@ public class SetList {
      */
     public void setMadeBy(String madeBy) {
         this.madeBy = madeBy; }
+
+    @Override
+    public String toString() {
+        return "SetList{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", charts=" + charts +
+                ", genres=" + genres +
+                ", madeBy='" + madeBy + '\'' +
+                '}';
+    }
 }

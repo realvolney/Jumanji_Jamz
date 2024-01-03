@@ -1,6 +1,5 @@
 package capstone.activity.results;
 
-import capstone.dynamodb.models.Chart;
 import capstone.models.ChartModel;
 
 import java.util.Set;

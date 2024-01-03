@@ -11,7 +11,6 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -23,10 +22,11 @@ import javax.inject.Inject;
  */
 public class SetListDAO {
 
+    private static final String SETLIST_NAME_GSI = "SetListNameAndMadeByIndex";
     private final MetricsPublisher publisher;
     private final DynamoDBMapper mapper;
     private final Logger log = LogManager.getLogger();
-    private static final String SETLIST_NAME_GSI = "SetListNameAndMadeByIndex";
+
 
     /**
      * Instantiates ChartDao object.
@@ -96,6 +96,11 @@ public class SetListDAO {
         return setList;
     }
 
+    /**
+     * Gets all setLists for current user.
+     * @param madeBy is the owner of the setList
+     * @return List of setLists
+     */
     public List<SetList> getMySetLists(String madeBy) {
         log.info("getting my setlists madeBy: {}", madeBy);
 

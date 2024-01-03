@@ -34,6 +34,7 @@ class ViewSetList extends BindingClass {
         this.dataStore.set('charts', setList.charts);
 
         console.log("setList {}", setList);
+        document.getElementById('update-setList').addEventListener('click', this.redirectToUpdateSetList);
         
     }
 
@@ -42,7 +43,7 @@ class ViewSetList extends BindingClass {
      */
     mount() {
         // document.getElementById('add-to-setList').addEventListener('click', this.updateChart);
-        document.getElementById('update-setList').addEventListener('click', this.redirectToUpdateSetList);
+        // document.getElementById('update-setList').addEventListener('click', this.redirectToUpdateSetList);
         this.header.addHeaderToPage();
 
         this.clientLoaded();
@@ -85,14 +86,13 @@ class ViewSetList extends BindingClass {
     displayCharts() {
         const charts = this.dataStore.get('charts');
         console.log('charts {}', charts);
-         const setListsResultsContainer = document.getElementById('search-results-container');
-       
+        const setListsResultsContainer = document.getElementById('search-results-container');
+        const searchCriteriaDisplay = document.getElementById('search-criteria-display');
         const setListsResultsDisplay = document.getElementById('search-results-display');
 
-    
-            
-       
-            setListsResultsDisplay.innerHTML = this.getHTMLForChartResults(charts);    
+        searchCriteriaDisplay.innerText = "Charts";
+
+        setListsResultsDisplay.innerHTML = this.getHTMLForChartResults(charts);    
     }
 
     
@@ -102,14 +102,15 @@ class ViewSetList extends BindingClass {
             return '<h4>This setlist contains no charts</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
+        let html = '<table><tr><th>Name</th><th>Created by</th><th>Genres</th></tr>';
         for (const res of charts) {
+            
             html += `
             <tr>
                 <td>
-                    <a href="setlist.html?id=${res.id}">${res.name}</a>
+                    <a href="chart.html?id=${res.id}">${res.name}</a>
                 </td>
-        
+                <td>${res.madeBy}</td>
                 <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
             </tr>`;
         }
