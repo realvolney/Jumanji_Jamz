@@ -159,11 +159,11 @@ class ViewChart extends BindingClass {
                 const form = event.target;
                 const selectedSetlists = form.querySelectorAll('input[type="checkbox"]:checked');
                 
-                selectedSetlists.forEach(checkbox => {
+                for(const checkbox of selectedSetlists) {
                     const setId = checkbox.value;
-                    this.client.addChart(chart, setId); 
+                    await this.client.addChart(chart, setId); 
                     searchCriteriaDisplay.innerText = "Success :)"
-                });
+                };
 
                 // const searchCriteriaDisplay = document.getElementById('search-criteria-display');
 
