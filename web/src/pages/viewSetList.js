@@ -34,6 +34,7 @@ class ViewSetList extends BindingClass {
         this.dataStore.set('charts', setList.charts);
 
         console.log("setList {}", setList);
+        document.getElementById('update-setList').addEventListener('click', this.redirectToUpdateSetList);
         
     }
 
@@ -42,7 +43,7 @@ class ViewSetList extends BindingClass {
      */
     mount() {
         // document.getElementById('add-to-setList').addEventListener('click', this.updateChart);
-        document.getElementById('update-setList').addEventListener('click', this.redirectToUpdateSetList);
+        // document.getElementById('update-setList').addEventListener('click', this.redirectToUpdateSetList);
         this.header.addHeaderToPage();
 
         this.clientLoaded();

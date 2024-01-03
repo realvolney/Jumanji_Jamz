@@ -10,7 +10,7 @@ class ViewChart extends BindingClass {
     constructor() {
         super();
         this.bindClassMethods(['clientLoaded', 'mount', 'addChartToPage', 'redirectToUpdateChart',
-         'popUpMySetLists', 'getHTMLForSetListResults', 'addChart'], this);
+         'popUpMySetLists', 'getHTMLForSetListResults', 'addChartNow','handleFormSubmission'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addChartToPage);
         this.header = new Header(this.dataStore);
@@ -29,6 +29,8 @@ class ViewChart extends BindingClass {
 
         const chart = await this.client.getChart(chartId);
         this.dataStore.set('chart', chart);
+        document.getElementById('update-chart').addEventListener('click', this.redirectToUpdateChart);
+        document.getElementById('add-to-setList').addEventListener('click', this.popUpMySetLists);
         
     }
 
@@ -36,11 +38,12 @@ class ViewChart extends BindingClass {
      * Add the header to the page
      */
     mount() {
-        document.getElementById('update-chart').addEventListener('click', this.redirectToUpdateChart);
-        document.getElementById('add-to-setList').addEventListener('click', this.popUpMySetLists);
+        
         this.header.addHeaderToPage();
 
         this.clientLoaded();
+
+        
     }
 
     /**
@@ -105,7 +108,8 @@ class ViewChart extends BindingClass {
             searchCriteriaDisplay.innerText = "My Setlists"
             setListsResultsContainer.classList.remove('hidden');
        
-            setListsResultsDisplay.innerHTML = this.getHTMLForSetListResults(setlists);   
+            setListsResultsDisplay.innerHTML = this.getHTMLForSetListResults(setlists);  
+            this.handleFormSubmission(); 
         } 
         addButton.innerText = "Add to SetList";
     }
@@ -116,33 +120,66 @@ class ViewChart extends BindingClass {
         
         const chart = this.dataStore.get('chart');
         console.log('chart {}', chart);
-        let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
+        let html = `<form>`
+        html += '<table><tr><th>Name</th><th>Genres</th></tr><button type="submit">Add</button>';
+
         for (const res of setLists) {
-            const button = document.createElement('add-setlists');
-            button.className = 'button';
-            button.onclick =  this.addChart(chart, res.id);
+            
+            /** <button class="add-chart-button" onclick="addChartNow(${JSON.stringify(chart).replace(/"/g, "'")},
+            '${res.id}')">Add Chart</button>*/ 
             html += `
             <tr>
                 <td>
                     <a href="setlist.html?id=${res.id}">${res.name}</a>
                 </td>
                 <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
-                <td>
-                  
-                </td>
+                <td><input type="checkbox" value="${res.id}"></td>
             </tr>`;
         }
         console.log("html {}", html);
         html += '</table>';
+        html += `</form>`
 
+        
         return html;
         
     }
-    async addChart(chart, id) {
-        await this.client.addChart(chart, id);
+
+    async addChartNow(chart, id) {
+        await this.client.addChart(chart, id,);
     }
+
+    handleFormSubmission() {
+        const parentElement = document.getElementById('search-results-container');
+        const chart = this.dataStore.get('chart');
+        parentElement.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const searchCriteriaDisplay = document.getElementById('search-criteria-display');
+            if (event.target.tagName === 'FORM') {
+                const form = event.target;
+                const selectedSetlists = form.querySelectorAll('input[type="checkbox"]:checked');
+                
+                selectedSetlists.forEach(checkbox => {
+                    const setId = checkbox.value;
+                    this.client.addChart(chart, setId); 
+                    searchCriteriaDisplay.innerText = "Success :)"
+                });
+
+                // const searchCriteriaDisplay = document.getElementById('search-criteria-display');
+
+                // searchCriteriaDisplay.innerText = "Success :)"
+                await this.popUpMySetLists();
+            }
+
+        });
+    }
+    
    
 }
+
+
+
+
 
 /**
  * Main method to run when the page contents have loaded.
