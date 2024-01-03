@@ -1,8 +1,6 @@
 package capstone.dynamodb.models;
 
 import capstone.converters.SetChartModelConverter;
-import capstone.converters.SetStringConverter;
-
 import capstone.models.ChartModel;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;

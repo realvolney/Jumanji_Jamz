@@ -7,9 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Singleton;
-
 import java.util.Set;
+
+import javax.inject.Singleton;
 
 @Singleton
 public class SetChartModelConverter implements DynamoDBTypeConverter<String, Set<ChartModel>> {
@@ -32,8 +32,8 @@ public class SetChartModelConverter implements DynamoDBTypeConverter<String, Set
     public Set<ChartModel> unconvert(String object) {
         log.error("object {}", object);
         try {
-            // Use readValue method to deserialize the JSON string into a Set<ChartModel>
-            return mapper.readValue(object, mapper.getTypeFactory().constructCollectionType(Set.class, ChartModel.class));
+            return mapper.readValue(object,
+                    mapper.getTypeFactory().constructCollectionType(Set.class, ChartModel.class));
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Error attempting to deserialize the JSON string", e);
         }

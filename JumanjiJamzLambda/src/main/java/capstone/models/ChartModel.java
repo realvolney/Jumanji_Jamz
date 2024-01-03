@@ -1,6 +1,5 @@
 package capstone.models;
 
-import capstone.activity.requests.AddChartRequest;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 

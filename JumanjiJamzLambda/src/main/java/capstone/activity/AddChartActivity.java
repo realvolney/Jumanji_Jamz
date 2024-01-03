@@ -10,7 +10,6 @@ import capstone.models.ChartModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -41,7 +40,7 @@ public class AddChartActivity {
      * @return AddChartResult containing the setListId and the ChartModel
      */
     public AddChartResult handleRequest(final AddChartRequest request) {
-        log.error("request {}", request);
+        log.info("request {}", request);
 
         String id = request.getSetListId();
 
@@ -54,25 +53,20 @@ public class AddChartActivity {
                 .withGenres(request.getGenres())
                 .withMadeBy(request.getMadeBy())
                 .build();
-        log.error("chartModel {}", chart);
+        log.info("chartModel {}", chart);
         SetList setList = setListDAO.getSetList(id);
-        log.error("setList {}", setList);
+        log.info("setList {}", setList);
         if (!Objects.equals(request.getUser(), setList.getMadeBy())) {
             throw new IllegalArgumentException("You do not own this setlist");
         }
         Set<ChartModel> charts = setList.getCharts();
-        log.error("charts", setList.getCharts());
+        log.info("charts", charts);
         if (charts == null) {
             charts = new HashSet<>();
-            log.error("charts", setList.getCharts());
         }
 
-            charts.add(chart);
-            log.error("charts", charts);
-            setList.setCharts(charts);
-
-
-
+        charts.add(chart);
+        setList.setCharts(charts);
 
         setListDAO.saveSetList(setList);
 
