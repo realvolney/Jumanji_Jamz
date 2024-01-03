@@ -1,5 +1,6 @@
 package capstone.dynamodb.models;
 
+import capstone.converters.SetChartModelConverter;
 import capstone.converters.SetStringConverter;
 
 import capstone.models.ChartModel;
@@ -63,7 +64,7 @@ public class SetList {
      * Getter for charts.
      * @return charts
      */
-    @DynamoDBTypeConverted(converter = SetStringConverter.class)
+    @DynamoDBTypeConverted(converter = SetChartModelConverter.class)
     @DynamoDBAttribute(attributeName = "charts")
     public Set<ChartModel> getCharts() {
         return copyToSet(charts);

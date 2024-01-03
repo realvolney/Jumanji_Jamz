@@ -17,7 +17,7 @@ import java.util.Set;
  */
 public class SetStringConverter implements DynamoDBTypeConverter<String, Set> {
     private static final Gson GSON = new Gson();
-    private final Type listType = new TypeToken<List<String>>() { } .getType();
+    private final Type setType = new TypeToken<Set<String>>() { } .getType();
     private final Logger log = LogManager.getLogger();
 
     @Override
@@ -36,6 +36,6 @@ public class SetStringConverter implements DynamoDBTypeConverter<String, Set> {
         if (dynamoDbRepresentation == null || dynamoDbRepresentation.isEmpty()) {
             return null;
         }
-        return GSON.fromJson(dynamoDbRepresentation, listType);
+        return GSON.fromJson(dynamoDbRepresentation, setType);
     }
 }

@@ -1,9 +1,14 @@
 package capstone.models;
 
+import capstone.activity.requests.AddChartRequest;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import java.util.Objects;
 import java.util.Set;
 
 //CHECKSTYLE:OFF:ChartModel
+@JsonDeserialize(builder = ChartModel.Builder.class)
 public class ChartModel {
     private final String id;
     private final String name;
@@ -80,7 +85,7 @@ public class ChartModel {
     public static Builder builder() {
         return new Builder();
     }
-
+    @JsonPOJOBuilder
     public static class Builder {
         private String id;
         private String name;
@@ -120,7 +125,7 @@ public class ChartModel {
             return this;
         }
 
-        public Builder withMadeBY(String madeBy) {
+        public Builder withMadeBy(String madeBy) {
             this.madeBy = madeBy;
             return this;
         }
@@ -128,5 +133,7 @@ public class ChartModel {
         public ChartModel build() {
             return new ChartModel(id, name, artist, bpm, content, genres, madeBy);
         }
+
+
     }
 }

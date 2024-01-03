@@ -52,7 +52,7 @@ public class AddChartActivity {
                 .withBpm(request.getBpm())
                 .withContent(request.getContent())
                 .withGenres(request.getGenres())
-                .withMadeBY(request.getMadeBy())
+                .withMadeBy(request.getMadeBy())
                 .build();
         log.error("chartModel {}", chart);
         SetList setList = setListDAO.getSetList(id);
