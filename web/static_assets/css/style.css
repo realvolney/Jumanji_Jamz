@@ -44,6 +44,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease-in-out;
+    margin-top: auto;
 }
 
 .button:hover, .create:hover {
@@ -205,3 +206,7 @@ a:hover {
     margin: 0 20px 10px 0;
     padding: 20px;
 }
+#search-results-display {
+    margin-bottom: 20px; /* Adjust the value as needed */
+}
+
