@@ -67,11 +67,19 @@ class SearchCharts extends BindingClass {
 
         // If the user didn't change the search criteria, do nothing
         if (previousSearchCriteria === searchCriteria) {
+            searchButton.innerText = 'Search';
             return;
         }
 
         if (searchCriteria) {
             const results = await this.client.search(searchCriteria);
+
+            // get rid of if doesn't work
+            while(!results) {
+                searchButton.innerText = 'Loading.';
+                searchButton.innerText = 'Loading..';
+                searchButton.innerText = 'Loading...';
+            }
 
             this.dataStore.setState({
                 [SEARCH_CRITERIA_KEY]: searchCriteria,
@@ -80,6 +88,7 @@ class SearchCharts extends BindingClass {
         } else {
             this.dataStore.setState(EMPTY_DATASTORE_STATE);
         }
+        searchButton.innerText = 'Search';
     }
 
     /**
@@ -123,7 +132,7 @@ class SearchCharts extends BindingClass {
                     <a href="chart.html?id=${res.id}">${res.name}</a>
                 </td>
                 <td>${res.madeBy}</td>
-                <td>${res.genres?.join(', ')}</td>
+                <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
             </tr>`;
         }
         html += '</table>';

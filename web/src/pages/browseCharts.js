@@ -59,6 +59,13 @@ class BrowseCharts extends BindingClass {
          }
          else {
          const nextId = this.dataStore.get('nextId');
+         
+         if (nextId == this.dataStore.get('previousId')) {
+
+            const displayDiv = document.getElementById('charts-list-display');
+            displayDiv.innerText =  "No more Charts available.";
+            this.displayCharts();
+         }
 
      
          const result = await this.client.getAllCharts(nextId, 4);
@@ -79,7 +86,7 @@ class BrowseCharts extends BindingClass {
     async previous() {
         this.showLoading();
     
-        const previousId = this.previousKeys.pop() || this.dataStore.get('previousId');
+        const previousId = this.previousKeys.pop() || null;
         const result = await this.client.getAllCharts(previousId, 4);
     
         console.log("Result:", result);

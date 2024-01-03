@@ -3,10 +3,10 @@ package capstone.activity;
 import capstone.activity.requests.AddChartRequest;
 import capstone.activity.results.AddChartResult;
 import capstone.dynamodb.SetListDAO;
-import capstone.dynamodb.models.Chart;
 import capstone.dynamodb.models.SetList;
 import capstone.metrics.MetricsPublisher;
 import capstone.models.ChartModel;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

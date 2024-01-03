@@ -9,9 +9,11 @@ import DataStore from "../util/DataStore";
 class ViewSetList extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addSetListToPage', 'redirectToUpdateSetList'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addSetListToPage', 'redirectToUpdateSetList',
+        'displayCharts','getHTMLForChartResults'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addSetListToPage);
+        this.dataStore.addChangeListener(this.displayCharts);
         this.header = new Header(this.dataStore);
         console.log("viewSetlist constructor");
 
@@ -29,6 +31,7 @@ class ViewSetList extends BindingClass {
 
         const setList = await this.client.getSetList(setListId);
         this.dataStore.set('setList', setList);
+        this.dataStore.set('charts', setList.charts);
 
         console.log("setList {}", setList);
         
@@ -61,8 +64,10 @@ class ViewSetList extends BindingClass {
 
         let tagHtml = '';
         let tag;
+        if (setList.genres) {
         for( tag  of setList.genres) {
             tagHtml += '<div class="tag">' + tag + '</div>';
+        }
         }
         document.getElementById('tags').innerHTML = tagHtml;
     }
@@ -76,7 +81,44 @@ class ViewSetList extends BindingClass {
             window.location.href = `/updateSetList.html?id=${setList.id}`;
         }
     }
+
+    displayCharts() {
+        const charts = this.dataStore.get('charts');
+        console.log('charts {}', charts);
+         const setListsResultsContainer = document.getElementById('search-results-container');
+       
+        const setListsResultsDisplay = document.getElementById('search-results-display');
+
+    
+            
+       
+            setListsResultsDisplay.innerHTML = this.getHTMLForChartResults(charts);    
+    }
+
+    
+
+    getHTMLForChartResults(charts) {
+        if (!charts) {
+            return '<h4>This setlist contains no charts</h4>';
+        }
+
+        let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
+        for (const res of charts) {
+            html += `
+            <tr>
+                <td>
+                    <a href="setlist.html?id=${res.id}">${res.name}</a>
+                </td>
+        
+                <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
+            </tr>`;
+        }
+        html += '</table>';
+
+        return html;
+    }
 }
+
 
 /**
  * Main method to run when the page contents have loaded.

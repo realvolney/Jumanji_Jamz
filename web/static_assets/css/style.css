@@ -9,10 +9,12 @@ body {
     margin: 0;
     counter-reset: section;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
+    background-image: url("/images/Background.jpeg");
 }
 
 .background {
     background-color: #8A8C8F;
+   
 }
 
 .header {
@@ -20,9 +22,12 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: var(--primary-color);
+    background-image: url("/images/Background.jpeg");
     color: var(--secondary-color);
     padding: 25px;
+    transition: background-image 0.3s ease-in-out;
 }
+
 .header a {
     /* Adjust the styling for the home button */
     font-size: 30px; /* Change the font size as needed */
@@ -190,4 +195,9 @@ a:hover {
         margin: 5px;
     }
 }
-
+.toolBar {
+    text-align: right;
+    font-size: 12px;
+    margin: 0 20px 10px 0;
+    padding: 20px;
+}

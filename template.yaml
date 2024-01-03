@@ -429,7 +429,7 @@ Resources:
           MusicPlaylistService:
             Type: Api
             Properties:
-              Path: /setLists/my
+              Path: /setlists/my/
               Method: get
 
 
