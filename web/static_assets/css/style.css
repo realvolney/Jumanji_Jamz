@@ -207,6 +207,11 @@ a:hover {
     padding: 20px;
 }
 #search-results-display {
-    margin-bottom: 20px; /* Adjust the value as needed */
+    margin-bottom: 20px; 
+}
+
+#pagination-controls {
+    margin-top: 20px; 
+    margin-left: 20px;
 }
 
