@@ -122,18 +122,14 @@ class ViewChart extends BindingClass {
             <tr>
                 <td>
                     <a href="setlist.html?id=${res.id}">${res.name}</a>
-                
                 </td>
-        
                 <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
-
                 <td>
-                <!-- Use a button or a link with an onclick event -->
-                <button onclick="this.addChart(${chart}${res.id})">Add Chart</button>
-            </td>
+                    <button onclick="addChart(${JSON.stringify(chart)}, '${res.id}')">Add Chart</button>
+                </td>
             </tr>`;
         }
-      
+        console.log("html {}", html);
         html += '</table>';
 
         return html;
