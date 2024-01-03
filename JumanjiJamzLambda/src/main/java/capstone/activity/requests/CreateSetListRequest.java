@@ -1,9 +1,10 @@
 package capstone.activity.requests;
 
-import capstone.dynamodb.models.Chart;
 import capstone.models.ChartModel;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

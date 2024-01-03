@@ -5,8 +5,8 @@ import capstone.activity.results.SearchChartResult;
 import capstone.converters.ModelConverter;
 import capstone.dynamodb.ChartDAO;
 import capstone.dynamodb.models.Chart;
-import capstone.metrics.MetricsPublisher;
 import capstone.models.ChartModel;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

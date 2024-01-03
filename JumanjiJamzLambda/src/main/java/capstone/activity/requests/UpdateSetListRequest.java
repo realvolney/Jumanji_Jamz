@@ -1,7 +1,7 @@
 package capstone.activity.requests;
 
-import capstone.dynamodb.models.Chart;
 import capstone.models.ChartModel;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 

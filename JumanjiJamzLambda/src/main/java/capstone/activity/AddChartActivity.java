@@ -10,11 +10,11 @@ import capstone.models.ChartModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Inject;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import javax.inject.Inject;
 
 public class AddChartActivity {
 
@@ -22,12 +22,23 @@ public class AddChartActivity {
     private MetricsPublisher publisher;
     private Logger log = LogManager.getLogger();
 
+    /**
+     * Instantiates AddChartActivity object.
+     * @param setListDAO dao to access the setList table
+     * @param publisher to publish all metrics
+     */
     @Inject
     public AddChartActivity(SetListDAO setListDAO, MetricsPublisher publisher) {
         this.setListDAO = setListDAO;
         this.publisher = publisher;
     }
 
+
+    /**
+     * Handles request.
+     * @param request AddChartRequest with containing setListId and chart.
+     * @return AddChartResult containing the setListId and the ChartModel
+     */
     public AddChartResult handleRequest(final AddChartRequest request) {
         log.info("request {}", request);
 
@@ -48,7 +59,7 @@ public class AddChartActivity {
             throw new IllegalArgumentException("You do not own this setlist");
         }
         Set<ChartModel> charts = setList.getCharts();
-        if(charts == null) {
+        if (charts == null) {
             setList.setCharts(new HashSet<>());
         }
         setList.getCharts().add(chart);

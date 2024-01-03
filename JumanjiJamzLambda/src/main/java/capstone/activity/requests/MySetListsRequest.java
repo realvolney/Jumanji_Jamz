@@ -18,6 +18,7 @@ public class MySetListsRequest {
                 '}';
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }

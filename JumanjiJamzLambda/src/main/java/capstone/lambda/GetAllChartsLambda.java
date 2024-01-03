@@ -1,8 +1,8 @@
 package capstone.lambda;
 
-import capstone.activity.requests.CreateSetListRequest;
 import capstone.activity.requests.GetAllChartsRequest;
 import capstone.activity.results.GetAllChartsResult;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
@@ -15,13 +15,13 @@ public class GetAllChartsLambda extends LambdaActivityRunner<GetAllChartsRequest
     public LambdaResponse handleRequest(LambdaRequest<GetAllChartsRequest> input, Context context) {
         return super.runActivity(() -> {
 
-                    return input.fromQuery(query ->
-                            GetAllChartsRequest.builder()
-                                    .withId(query.get("id"))
-                                    .withLimit(4)
-                                    .build());
-                },
-                (request, serviceComponent) -> serviceComponent.provideGetAllChartsActivity().handleRequest(request)
+            return input.fromQuery(query ->
+                GetAllChartsRequest.builder()
+                    .withId(query.get("id"))
+                    .withLimit(4)
+                    .build());
+        },
+            (request, serviceComponent) -> serviceComponent.provideGetAllChartsActivity().handleRequest(request)
         );
     }
 }

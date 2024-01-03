@@ -113,22 +113,33 @@ class ViewChart extends BindingClass {
         if (!setLists) {
             return '<h4>You have no setlists</h4>';
         }
-
+        
+        const chart = this.dataStore.get('chart');
+        console.log('chart {}', chart);
         let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
         for (const res of setLists) {
             html += `
             <tr>
                 <td>
                     <a href="setlist.html?id=${res.id}">${res.name}</a>
+                
                 </td>
         
                 <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
+
+                <td>
+                <!-- Use a button or a link with an onclick event -->
+                <button onclick="this.client.addChart(${chart}${res.id})">Add Chart</button>
+            </td>
             </tr>`;
         }
+        debugger;
         html += '</table>';
 
         return html;
+        
     }
+   
 }
 
 /**

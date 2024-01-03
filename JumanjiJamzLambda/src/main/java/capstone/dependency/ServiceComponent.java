@@ -1,12 +1,13 @@
 package capstone.dependency;
 
+//CHECKSTYLE:OFF:ServiceComponent
 import capstone.activity.*;
 
 import dagger.Component;
 
 import javax.inject.Singleton;
 
-//CHECKSTYLE:OFF:ServiceComponent
+
 /**
  * Dagger component for providing dependency injection in the Music Playlist Service.
  */
