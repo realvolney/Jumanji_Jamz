@@ -227,4 +227,9 @@ a:hover {
     margin-top: 20px; 
     margin-left: 20px;
 }
+#myAudio {
+    display: flex;
+    border-left: 200;
+}
+
 
