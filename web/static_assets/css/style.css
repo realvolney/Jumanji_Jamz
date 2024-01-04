@@ -10,6 +10,8 @@ body {
     counter-reset: section;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     background-image: url("/images/Background.jpeg");
+    background-position: center;
+    background-position: cover;
 }
 
 .background {
@@ -23,6 +25,8 @@ body {
     align-items: center;
     background-color: var(--primary-color);
     background-image: url("/images/Background.jpeg");
+    background-position: center;
+    background-position: cover;
     color: var(--secondary-color);
     padding: 25px;
     transition: background-color 0.3s ease-in-out;
