@@ -74,4 +74,10 @@ public interface ServiceComponent {
       * @return MySetListActivity
       */
      MySetListsActivity provideMySetListsActivity();
+
+     /**
+      * Provides the relevant activity.
+      * @return DeleteSetListActivity
+      */
+     DeleteSetListActivity provideDeleteSetListActivity();
 }
