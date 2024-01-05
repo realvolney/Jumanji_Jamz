@@ -4,13 +4,17 @@ import capstone.dynamodb.models.SetList;
 import capstone.metrics.MetricsConstants;
 import capstone.metrics.MetricsPublisher;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
+import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -113,4 +117,32 @@ public class SetListDAO {
         return mapper.query(SetList.class, expression);
     }
 
+    /**
+     *
+     * @param id of setList to be deleted.
+     * @param madeBy the user attempting to delete the setList
+     * @return boolean of successful delete process
+     */
+    public boolean deleteSetList(String id, String madeBy) {
+        log.info("user: {} is attempting to access", madeBy);
+        log.info("deleting setList with id : {}", id);
+
+        SetList setList = new SetList();
+        setList.setId(id);
+
+        mapper.delete(setList);
+
+        try {
+            DynamoDBDeleteExpression deleteExpression = new DynamoDBDeleteExpression();
+            Map<String, ExpectedAttributeValue> expected = new HashMap<>();
+            expected.put("madeBy", new ExpectedAttributeValue(new AttributeValue().withS(madeBy)));
+
+            deleteExpression.setExpected(expected);
+
+            mapper.delete(setList, deleteExpression);
+            return true;
+        } catch (ConditionalCheckFailedException e) {
+            return false;
+        }
+    }
 }
