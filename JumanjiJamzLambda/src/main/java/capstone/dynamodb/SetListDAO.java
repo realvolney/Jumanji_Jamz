@@ -140,8 +140,10 @@ public class SetListDAO {
             deleteExpression.setExpected(expected);
 
             mapper.delete(setList, deleteExpression);
+            publisher.addCount(MetricsConstants.DELETE_SET_LIST_SUCCESS_COUNT, 0);
             return true;
         } catch (ConditionalCheckFailedException e) {
+            publisher.addCount(MetricsConstants.DELETE_SET_LIST_SUCCESS_COUNT, 1);
             return false;
         }
     }
