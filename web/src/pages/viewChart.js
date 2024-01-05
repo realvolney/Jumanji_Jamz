@@ -125,8 +125,6 @@ class ViewChart extends BindingClass {
 
         for (const res of setLists) {
             
-            /** <button class="add-chart-button" onclick="addChartNow(${JSON.stringify(chart).replace(/"/g, "'")},
-            '${res.id}')">Add Chart</button>*/ 
             html += `
             <tr>
                 <td>
@@ -157,7 +155,8 @@ class ViewChart extends BindingClass {
         parentElement.addEventListener('submit', async (event) => {
             event.preventDefault();
             const searchCriteriaDisplay = document.getElementById('search-criteria-display');
-            const button = document.getElementById('')
+            // const button = document.getElementById('add-chart-button');
+            // button.innerText = "Loading..."
             searchCriteriaDisplay.innerText = "Loading..."
             if (event.target.tagName === 'FORM') {
                 const form = event.target;
