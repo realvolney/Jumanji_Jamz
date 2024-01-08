@@ -131,9 +131,10 @@ class MySetLists extends BindingClass {
 
                 // searchCriteriaDisplay.a
                 searchCriteriaDisplay.innerText = "Success :)"
-                searchCriteriaDisplay.innerText = "";
+                
 
                 await this.clientLoaded();
+                searchCriteriaDisplay.innerText = "";
             }
 
         });
