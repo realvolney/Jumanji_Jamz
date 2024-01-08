@@ -11,8 +11,13 @@
     <header class="header" id="header"></header>
     <div class="toolBar">
         <a href="mysetlists.html" class="button" id="my-setlists-btn">My Setlists</a>
+        <audio  controls autoplay loop id="myAudio" src="/audio/nss.mp3"></audio>
     </div>
-
+    
+    <script>
+        var audio = document.getElementById("myAudio");
+        audio.playbackRate = 1; 
+      </script>
     <div class="card">
         <h2>Need Some Charts?</h2>
         <form class="card-content" id="search-chart-form">

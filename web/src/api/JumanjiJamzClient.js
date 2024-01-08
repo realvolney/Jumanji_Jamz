@@ -7,7 +7,8 @@ export default class JumanjiJamzClient extends BindingClass {
     constructor(props = {}) {
         super();
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'handleError',
-            'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList', 'updateChart', 'search'];
+            'getChart', 'getSetList', 'createChart', 'createSetList', 'getAllCharts', 'updateSetList',
+             'updateChart', 'search', 'deleteSetList'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();
@@ -265,6 +266,21 @@ export default class JumanjiJamzClient extends BindingClass {
             this.handleError(error, errorCallBack);
         }
     
+    }
+
+    // Method for getting deleting single  setlist with id Param
+    async deleteSetList(id, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Must Own Setlist to delete");
+            const response = await this.axiosClient.delete(`setlists/${id}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
     }
 }
 

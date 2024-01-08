@@ -8,6 +8,14 @@
 
 <body class="background">
     <header class="header" id="header"></header>
+    <div class="toolBar">
+        <a href="mysetlists.html" class="button" id="my-setlists-btn">My Setlists</a>
+        <audio  controls autoplay loop id="myAudio" src="/audio/nss.mp3"></audio>
+    </div>
+    <script>
+        var audio = document.getElementById("myAudio");
+        audio.playbackRate = 1; 
+      </script>
     <div class="card">
         <h2>Create Chart</h2>
         <form class="card-content" id="create-chart-form">
@@ -93,8 +101,9 @@
             </p>
             
         </form>
+        <a href="#" class="button" id="create">Create Chart</a>
     </div>
-    <a href="#" class="button" id="create">Create Chart</a>
+    <!-- <a href="#" class="button" id="create">Create Chart</a> -->
 </body>
 
 </html>

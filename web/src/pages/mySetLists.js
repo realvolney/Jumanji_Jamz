@@ -7,7 +7,8 @@ import Authenticator from '../api/authenticator';
 class MySetLists extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['showLoading', 'hideLoading', 'clientLoaded', 'mount', 'displaySetlists', 'getHTMLForSetListResults'], this);
+        this.bindClassMethods(['showLoading', 'hideLoading', 'clientLoaded', 'mount',
+         'displaySetlists', 'getHTMLForSetListResults', 'handleFormSubmission','displayLogInMessage'], this);
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
         this.client = new JumanjiJamzClient();
@@ -27,19 +28,24 @@ class MySetLists extends BindingClass {
 
     async clientLoaded() {
         this.showLoading();
-        const setLists = await this.client.mySetLists();
-        const info = await this.authenticator.getCurrentUserInfo();
-        console.log("info {}", info);
-        const user = document.getElementById('setList-owner');
-        user.innerText = info.name + "'s Setlists";
-        this.hideLoading();
-
-        console.log("SetLists {}", setLists);
-
-
-        this.dataStore.set('setLists', setLists);
-        this.displaySetlists();
-
+        
+        try {
+            const setLists = await this.client.mySetLists();
+    
+            const info = await this.authenticator.getCurrentUserInfo();
+            console.log("info {}", info);
+            const user = document.getElementById('setList-owner');
+            user.innerText = info.name + "'s Setlists";
+            this.hideLoading();
+    
+            console.log("SetLists {}", setLists);
+    
+            this.dataStore.set('setLists', setLists);
+            this.displaySetlists();
+        } catch (error) {
+            this.displayLogInMessage();
+            this.hideLoading();
+        }
     }
 
     /**
@@ -64,16 +70,26 @@ class MySetLists extends BindingClass {
             setListsResultsContainer.classList.remove('hidden');
        
             setListsResultsDisplay.innerHTML = this.getHTMLForSetListResults(setLists);    
+            this.handleFormSubmission();
     }
 
-    
+    displayLogInMessage() {
+        const setLists = this.dataStore.get('setLists');
+        const setListsResultsContainer = document.getElementById('search-results-container');
+       
+        const setListsResultsDisplay = document.getElementById('search-results-display');
+        setListsResultsContainer.classList.remove('hidden');
+        setListsResultsDisplay.innerHTML = '<h4>You must be logged in</h4>';
+        
+    }
 
     getHTMLForSetListResults(setLists) {
-        if (!setLists.length) {
+        if (!setLists) {
             return '<h4>You have no setlists</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Genres</th></tr>';
+        let html = `<form>`
+        html += '<table><tr><th>Name</th><th>Genres</th><th>Check to Delete Setlists</th></tr>';
         for (const res of setLists) {
             html += `
             <tr>
@@ -82,12 +98,49 @@ class MySetLists extends BindingClass {
                 </td>
         
                 <td>${res.genres ? res.genres?.join(', ') : 'none'}</td>
+                <td><input type="checkbox" value="${res.id}"></td>
             </tr>`;
         }
         html += '</table>';
+        html += '<th><button class="add-chart-button" type="submit">Click to Delete Setlists</button></th>';
+        html += `</form>`;
 
         return html;
     }
+    handleFormSubmission() {
+        const parentElement = document.getElementById('search-results-container');
+        const setLists = this.dataStore.get('setLists');
+        
+        parentElement.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const searchCriteriaDisplay = document.getElementById('search-criteria-display');
+            // const button = document.getElementById('add-chart-button');
+            // button.innerText = "Loading..."
+            searchCriteriaDisplay.innerText = "Loading..."
+            if (event.target.tagName === 'FORM') {
+                const form = event.target;
+                const selectedSetlists = form.querySelectorAll('input[type="checkbox"]:checked');
+                
+                for(const checkbox of selectedSetlists) {
+                    const setId = checkbox.value;
+                    await this.client.deleteSetList(setId); 
+                    searchCriteriaDisplay.innerText = "Success :)"
+                };
+
+                // const searchCriteriaDisplay = document.getElementById('search-criteria-display');
+
+                // searchCriteriaDisplay.a
+                searchCriteriaDisplay.innerText = "Success :)"
+                
+
+                await this.clientLoaded();
+                searchCriteriaDisplay.innerText = "";
+            }
+
+        });
+    }    
+
+    
 }
 
 

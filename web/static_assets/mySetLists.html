@@ -8,6 +8,11 @@
 
 <body class="background">
     <header class="header" id="header"></header>
+    <!-- <audio controls autoplay loop id="myAudio" src="/audio/nss.mp3"></audio>
+    <script>
+        var audio = document.getElementById("myAudio");
+        audio.playbackRate = 1; 
+      </script> -->
 
     <div class="card">
         <h2  id="setList-owner"> </h2>
@@ -15,7 +20,12 @@
     <div id="loading"></div>
    
     <div class="card hidden" id='search-results-container'>
+        <h3 id="search-criteria-display"></h3>
         <div id="search-results-display"></div>
+        
+        
+        <a href="browseCharts.html" class="button" id="add-chart-reveal">Browse Charts</a>
+        <a href="createSetList.html" class="button">Create SetList</a>
     </div>
     <div class="card hidden" id="add-chart">
         <h2>Add Chart to SetList</h2>
@@ -31,8 +41,8 @@
         <a href="createSetList.html" class="button">Create SetList</a>
     </div>
     
-        <a href="browseCharts.html" class="button" id="add-chart-reveal">Browse Charts</a>
-        <a href="createSetList.html" class="button">Create SetList</a>
+        <!-- <a href="browseCharts.html" class="button" id="add-chart-reveal">Browse Charts</a>
+        <a href="createSetList.html" class="button">Create SetList</a> -->
     
 </body>
 </html>

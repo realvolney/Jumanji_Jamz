@@ -10,6 +10,9 @@ body {
     counter-reset: section;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     background-image: url("/images/Background.jpeg");
+    background-position: center;
+    /* background-size: cover; */
+
 }
 
 .background {
@@ -23,6 +26,8 @@ body {
     align-items: center;
     background-color: var(--primary-color);
     background-image: url("/images/Background.jpeg");
+    background-position: center;
+    /* background-size: contain; */
     color: var(--secondary-color);
     padding: 25px;
     transition: background-color 0.3s ease-in-out;
@@ -44,8 +49,22 @@ body {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease-in-out;
+    margin-top: auto;
 }
-
+.add-chart-button, .create {
+    background-color: var(--tertiary-color);
+    border: none;
+    color: var(--secondary-color);
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 20px;
+    margin-right: 200px;
+}
 .button:hover, .create:hover {
     background-color: #D97718;
 }
@@ -205,3 +224,17 @@ a:hover {
     margin: 0 20px 10px 0;
     padding: 20px;
 }
+#search-results-display {
+    margin-bottom: 20px; 
+}
+
+#pagination-controls {
+    margin-top: 20px; 
+    margin-left: 20px;
+}
+#myAudio {
+    display: flex;
+    border-left: 200;
+}
+
+

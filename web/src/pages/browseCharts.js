@@ -54,6 +54,8 @@ class BrowseCharts extends BindingClass {
     async next() {
         this.showLoading();
          // To make the it stop at the end rather than looping around
+         const searchResultsContainer = document.getElementById('search-results-container');
+         searchResultsContainer.classList.add('hidden');
          if (this.dataStore.get('charts') == 0) {
              this.displayCharts();
          }
