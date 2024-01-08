@@ -22,13 +22,12 @@ public class UpdateSetListLambda extends LambdaActivityRunner<UpdateSetListReque
             () -> {
                 UpdateSetListRequest unauthenticatedRequest = input.fromBody(UpdateSetListRequest.class);
                 UpdateSetListRequest claimsRequest = input.fromUserClaims(claims -> UpdateSetListRequest.builder()
-                    .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
+                    .withMadeBy(claims.get("email"))
                     .build());
                 return input.fromPath(path ->
                     UpdateSetListRequest.builder()
                         .withId(decoder.decode(path.get("id"), StandardCharsets.UTF_8))
                         .withName(unauthenticatedRequest.getName())
-                        .withCharts(unauthenticatedRequest.getCharts())
                         .withGenres(unauthenticatedRequest.getGenres())
                         .withMadeBy(claimsRequest.getMadeBy())
                         .build());

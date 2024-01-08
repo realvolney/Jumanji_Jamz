@@ -57,7 +57,6 @@ public class UpdateSetListActivityTest {
         UpdateSetListRequest request = UpdateSetListRequest.builder()
                 .withId(id)
                 .withName("name")
-                .withCharts(expectedCharts)
                 .withGenres(new HashSet<>(Arrays.asList("Funk", "Soul")))
                 .withMadeBy("me")
                 .build();
@@ -70,7 +69,6 @@ public class UpdateSetListActivityTest {
         // THEN
         assertEquals(result.getId(), id, "Ids should be equal");
         assertEquals(result.getName(), setList.getName(), "names should be equal");
-        assertEquals(result.getCharts(), setList.getCharts(), "Charts should be equal");
         assertEquals(result.getGenres(), setList.getGenres(), "Genres should be equal");
         assertEquals(result.getMadeBy(), setList.getMadeBy(), "MadeBY should be equal");
 

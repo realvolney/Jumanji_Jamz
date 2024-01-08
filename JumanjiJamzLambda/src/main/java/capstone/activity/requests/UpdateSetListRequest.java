@@ -11,15 +11,12 @@ import java.util.Set;
 public class UpdateSetListRequest {
     private final String id;
     private final String name;
-    private final Set<ChartModel> charts;
     private final Set<String> genres;
     private final String madeBy;
 
-    private UpdateSetListRequest(String id, String name,
-                                Set<ChartModel> charts, Set<String> genres, String madeBy) {
+    private UpdateSetListRequest(String id, String name, Set<String> genres, String madeBy) {
         this.id = id;
         this.name = name;
-        this.charts = charts;
         this.genres = genres;
         this.madeBy = madeBy;
     }
@@ -30,10 +27,6 @@ public class UpdateSetListRequest {
 
     public String getName() {
         return name;
-    }
-
-    public Set<ChartModel> getCharts() {
-        return charts;
     }
 
     public Set<String> getGenres() {
@@ -49,13 +42,11 @@ public class UpdateSetListRequest {
         return "UpdateSetListRequest{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", charts=" + charts +
                 ", genres=" + genres +
                 ", madeBy='" + madeBy + '\'' +
                 '}';
     }
-
-    //CHECKSTYLE:OFF:Builder
+//CHECKSTYLE:OFF:Builder
 
     public static Builder builder() { return new Builder(); }
 
@@ -63,7 +54,6 @@ public class UpdateSetListRequest {
     public static class Builder {
         private String id;
         private String name;
-        private Set<ChartModel> charts;
         private Set<String> genres;
         private String madeBy;
 
@@ -74,11 +64,6 @@ public class UpdateSetListRequest {
 
         public Builder withName(String name) {
             this.name = name;
-            return this;
-        }
-
-        public Builder withCharts(Set<ChartModel> charts) {
-            this.charts = charts;
             return this;
         }
 
@@ -93,7 +78,7 @@ public class UpdateSetListRequest {
         }
 
         public UpdateSetListRequest build() {
-            return new UpdateSetListRequest(id, name, charts, genres, madeBy);
+            return new UpdateSetListRequest(id, name, genres, madeBy);
         }
     }
 }
