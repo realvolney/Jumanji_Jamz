@@ -79,7 +79,7 @@ class MySetLists extends BindingClass {
        
         const setListsResultsDisplay = document.getElementById('search-results-display');
         setListsResultsContainer.classList.remove('hidden');
-        setListsResultsDisplay.innerHTML = '<h4>You must log in to view setlists</h4>';
+        setListsResultsDisplay.innerHTML = '<h4>You must be logged in</h4>';
         
     }
 
