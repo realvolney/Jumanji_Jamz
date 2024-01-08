@@ -12,7 +12,7 @@ public class CreateChartLambda
     extends LambdaActivityRunner<CreateChartRequest, CreateChartResult>
     implements RequestHandler<AuthenticatedLambdaRequest<CreateChartRequest>, LambdaResponse> {
 
-    private URLDecoder decoder = new URLDecoder();
+
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<CreateChartRequest> input, Context context) {
         return super.runActivity(
@@ -25,7 +25,7 @@ public class CreateChartLambda
                         .withContent(unauthenticatedRequest.getContent())
                         .withBpm(unauthenticatedRequest.getBpm())
                         .withGenres(unauthenticatedRequest.getGenres())
-                        .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
+                        .withMadeBy(claims.get("email"))
                         .build());
             },
             (request, serviceComponent) ->

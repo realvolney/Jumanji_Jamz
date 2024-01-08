@@ -24,7 +24,7 @@ public class MySetListsLambda extends LambdaActivityRunner<MySetListsRequest, My
         return super.runActivity(
             () -> input.fromUserClaims(claims ->
                 MySetListsRequest.builder()
-                    .withMadeBy(decoder.decode(claims.get("email"), StandardCharsets.UTF_8))
+                    .withMadeBy(claims.get("email"))
                     .build()),
             (request, serviceComponent) ->
                 serviceComponent.provideMySetListsActivity().handleRequest(request)

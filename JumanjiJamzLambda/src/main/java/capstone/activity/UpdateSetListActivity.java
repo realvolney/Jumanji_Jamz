@@ -56,10 +56,17 @@ public class UpdateSetListActivity {
             throw new SecurityException("You must own SetList to update it.");
         }
 
-        setList.setName(name);
-        setList.setCharts(request.getCharts());
-        setList.setGenres(request.getGenres());
-        setList.setMadeBy(request.getMadeBy());
+        if (!request.getName().isBlank()) {
+            setList.setName(name);
+        }
+        if (request.getGenres() != null) {
+            setList.setGenres(request.getGenres());
+        }
+
+        if (request.getMadeBy() != null) {
+            setList.setMadeBy(request.getMadeBy());
+        }
+
         setList = dao.saveSetList(setList);
 
         publisher.addCount(MetricsConstants.UPDATE_SET_LIST_SUCCESS_COUNT, 1);
