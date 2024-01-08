@@ -215,4 +215,7 @@ public class SetListDaoTest {
         verify(mapper, times(1)).query(eq(SetList.class), captor.capture());
 
     }
+
+
+
 }

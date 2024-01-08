@@ -129,8 +129,7 @@ public class SetListDAO {
 
         SetList setList = new SetList();
         setList.setId(id);
-
-        mapper.delete(setList);
+        
 
         try {
             DynamoDBDeleteExpression deleteExpression = new DynamoDBDeleteExpression();
