@@ -8,7 +8,7 @@ class MySetLists extends BindingClass {
     constructor() {
         super();
         this.bindClassMethods(['showLoading', 'hideLoading', 'clientLoaded', 'mount',
-         'displaySetlists', 'getHTMLForSetListResults', 'handleFormSubmission'], this);
+         'displaySetlists', 'getHTMLForSetListResults', 'handleFormSubmission','displayLogInMessage'], this);
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
         this.client = new JumanjiJamzClient();
@@ -28,19 +28,24 @@ class MySetLists extends BindingClass {
 
     async clientLoaded() {
         this.showLoading();
-        const setLists = await this.client.mySetLists();
-        const info = await this.authenticator.getCurrentUserInfo();
-        console.log("info {}", info);
-        const user = document.getElementById('setList-owner');
-        user.innerText = info.name + "'s Setlists";
-        this.hideLoading();
-
-        console.log("SetLists {}", setLists);
-
-
-        this.dataStore.set('setLists', setLists);
-        this.displaySetlists();
-
+        
+        try {
+            const setLists = await this.client.mySetLists();
+    
+            const info = await this.authenticator.getCurrentUserInfo();
+            console.log("info {}", info);
+            const user = document.getElementById('setList-owner');
+            user.innerText = info.name + "'s Setlists";
+            this.hideLoading();
+    
+            console.log("SetLists {}", setLists);
+    
+            this.dataStore.set('setLists', setLists);
+            this.displaySetlists();
+        } catch (error) {
+            this.displayLogInMessage();
+            this.hideLoading();
+        }
     }
 
     /**
@@ -68,10 +73,18 @@ class MySetLists extends BindingClass {
             this.handleFormSubmission();
     }
 
-    
+    displayLogInMessage() {
+        const setLists = this.dataStore.get('setLists');
+        const setListsResultsContainer = document.getElementById('search-results-container');
+       
+        const setListsResultsDisplay = document.getElementById('search-results-display');
+        setListsResultsContainer.classList.remove('hidden');
+        setListsResultsDisplay.innerHTML = '<h4>You must log in to view setlists</h4>';
+        
+    }
 
     getHTMLForSetListResults(setLists) {
-        if (!setLists.length) {
+        if (!setLists) {
             return '<h4>You have no setlists</h4>';
         }
 
@@ -116,7 +129,10 @@ class MySetLists extends BindingClass {
 
                 // const searchCriteriaDisplay = document.getElementById('search-criteria-display');
 
-                // searchCriteriaDisplay.innerText = "Success :)"
+                // searchCriteriaDisplay.a
+                searchCriteriaDisplay.innerText = "Success :)"
+                searchCriteriaDisplay.innerText = "";
+
                 await this.clientLoaded();
             }
 
